@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style>
+</head><body>
+<title>ReNailed Financial Model</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Public+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{--bg:#F2F4EF;--panel:#FFFFFF;--ink:#15211A;--muted:#56635A;--rule:#D5DCD4;--fir:#B06A28;--green:#2C6A4C;--bad:#B0412E;--soft:#B06A2824;
+--display:'Bricolage Grotesque',Arial,sans-serif;--body:'Public Sans',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1713;--panel:#16201B;--ink:#E5ECE7;--muted:#A0AEA5;--rule:#2A3831;--fir:#E3A466;--green:#7FC3A0;--bad:#EC8A77;--soft:#E3A46626;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0F1713;--panel:#16201B;--ink:#E5ECE7;--muted:#A0AEA5;--rule:#2A3831;--fir:#E3A466;--green:#7FC3A0;--bad:#EC8A77;--soft:#E3A46626;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.5;margin:0}
+.wrap{max-width:1100px;margin:0 auto;padding:24px max(16px,env(safe-area-inset-left,0px)) 48px}
+h1,h2{font-family:var(--display);margin:0;line-height:1.05}
+h1{font-size:clamp(28px,5vw,44px);font-weight:800}h1 span{color:var(--fir)}
+h2{font-size:20px;margin:28px 0 10px}
+.k{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--fir)}
+.muted{color:var(--muted)}.small{font-size:13px}
+.tag{font-family:var(--mono);font-size:10.5px;font-weight:600;padding:1px 5px;border-radius:3px;background:var(--soft);white-space:nowrap}
+.tag.s{background:#2C6A4C22}
+.scen{display:flex;flex-wrap:wrap;gap:8px;margin:16px 0}
+.scen button{font-family:var(--mono);font-size:13px;border:1px solid var(--rule);background:var(--panel);color:var(--ink);border-radius:999px;padding:8px 14px;cursor:pointer}
+.scen button[aria-pressed="true"]{background:var(--green);border-color:var(--green);color:#fff}
+button:focus-visible,input:focus-visible{outline:2px solid var(--fir);outline-offset:2px}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.kpi{background:var(--panel);border:1px solid var(--rule);border-radius:8px;padding:12px 14px}
+.kpi b{display:block;font-family:var(--display);font-size:28px;font-weight:800;line-height:1.1;font-variant-numeric:tabular-nums}
+.kpi .up{color:var(--green)}.kpi .down{color:var(--bad)}
+@media (max-width:700px){.kpis{grid-template-columns:1fr 1fr}}
+.tbl{overflow-x:auto;background:var(--panel);border:1px solid var(--rule);border-radius:8px}
+table{border-collapse:collapse;width:100%;min-width:760px;font-size:14px}
+th,td{padding:8px 10px;border-bottom:1px solid var(--rule);text-align:left;vertical-align:middle}
+th{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:400;background:var(--bg)}
+td.r,th.r{text-align:right;font-variant-numeric:tabular-nums}
+tr:last-child td{border-bottom:0}
+tfoot td{font-weight:700;border-top:2px solid var(--rule)}
+input[type=number]{width:84px;font:inherit;font-variant-numeric:tabular-nums;padding:4px 6px;border:1px solid var(--rule);border-radius:4px;background:var(--bg);color:var(--ink);text-align:right}
+.pos{color:var(--green)}.neg{color:var(--bad)}
+.bars{display:grid;gap:8px;background:var(--panel);border:1px solid var(--rule);border-radius:8px;padding:14px}
+.bar{display:grid;grid-template-columns:150px 1fr 90px;gap:10px;align-items:center;font-size:13px}
+.track{height:18px;background:var(--bg);border-radius:4px;position:relative;overflow:hidden}
+.track i{position:absolute;top:0;bottom:0;border-radius:4px;transition:all .4s}
+.axis{position:absolute;top:0;bottom:0;width:1px;background:var(--muted)}
+details{background:var(--panel);border:1px solid var(--rule);border-radius:8px;padding:10px 14px;margin-top:8px}
+summary{cursor:pointer;font-weight:600}
+ol.refs{font-size:13px;padding-left:20px;margin:8px 0 0}ol.refs li{margin:4px 0}
+a{color:var(--green)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+<div class="wrap">
+ <p class="k">ReNailed · Forward Vision 2026 · Year-1 financial model</p>
+ <h1><span>Re</span>Nailed: six products, one P&amp;L</h1>
+ <p class="muted" style="max-width:70ch;margin-top:8px">Change any number in a box and every total updates. <span class="tag s">cited</span> = from a public source (numbered below) · <span class="tag">C</span> = our calculation from cited inputs · <span class="tag">T</span> = team assumption until a quote. Panels, acoustic panels and DLT start at zero: no partner has quoted yet.</p>
+
+ <div class="scen" role="group" aria-label="Scenarios">
+  <button data-s="base" aria-pressed="true">Base</button><button data-s="down">Downside</button><button data-s="nobench">No bench buyer</button><button data-s="y2">Year 2 sketch</button>
+ </div>
+
+ <div class="kpis">
+  <div class="kpi"><span class="small muted">Revenue</span><b id="k-rev"></b></div>
+  <div class="kpi"><span class="small muted">Contribution (after direct + selling cost)</span><b id="k-con"></b></div>
+  <div class="kpi"><span class="small muted">Profit after fixed costs</span><b id="k-pro"></b></div>
+  <div class="kpi"><span class="small muted">Net margin</span><b id="k-mar"></b></div>
+ </div>
+
+ <h2>Products</h2>
+ <div class="tbl"><table>
+  <thead><tr><th>Product</th><th class="r">Units</th><th class="r">Price / unit</th><th class="r">Cost / unit</th><th class="r">Margin / unit</th><th class="r">Margin %</th><th class="r">Revenue</th><th class="r">Contribution</th><th>Evidence</th></tr></thead>
+  <tbody id="rows"></tbody>
+  <tfoot><tr><td>Total</td><td></td><td></td><td></td><td></td><td></td><td class="r" id="t-rev"></td><td class="r" id="t-con"></td><td></td></tr>
+  <tr><td>Fixed costs <span class="tag">T</span></td><td colspan="6" class="small muted">insurance, workspace, admin, website; De-Nail Lab kit ≈ US$2,670 is one-off</td><td class="r"><input type="number" id="fixed" step="500" aria-label="Fixed costs"></td><td></td></tr></tfoot>
+ </table></div>
+
+ <h2>Where the profit comes from</h2>
+ <div class="bars" id="bars" aria-label="Contribution by product"></div>
+ <p class="small muted" style="margin-top:8px">Revenue per kg of wood <span class="tag">C</span>: bench ≈ $135 · table ≈ $65 · planter ≈ $7 · long lumber ≈ $1.13. Benches use only ≈ 1% of a house’s lumber (5 × 26 kg of 13,005 kg), yet earn the most per kilogram.</p>
+
+ <h2>Unit costs, line by line</h2>
+ <details open><summary>Bench (Model L): price $3,500 <span class="tag s">cited</span></summary><div class="tbl" style="margin-top:8px"><table id="cb"></table></div></details>
+ <details><summary>Table T: price $4,000 <span class="tag s">cited</span></summary><div class="tbl" style="margin-top:8px"><table id="ct"></table></div></details>
+ <details><summary>Planter P: price $175 <span class="tag s">cited range</span></summary><div class="tbl" style="margin-top:8px"><table id="cp"></table></div></details>
+ <details><summary>Long lumber: per house</summary><div class="tbl" style="margin-top:8px"><table id="cl"></table></div></details>
+
+ <h2>Sources</h2>
+ <ol class="refs">
+  <li id="r1">City of Richmond (2024). Parks dedication bench program: full dedication $3,500 bench, $4,000 picnic table (incl. plaque; City maintains for 10 years). <a href="https://www.richmond.ca/__shared/assets/Parks_Dedication_Bench_Program_-_Dedication_Letter_Application_2024_UPDATE74327.pdf" target="_blank" rel="noopener">richmond.ca</a></li>
+  <li id="r2">Burnaby Now. Burnaby halts memorial bench program: $5,000 per bench incl. installation; ≈ $200/yr maintenance. <a href="https://burnabynow.com/local-news/burnaby-halts-memorial-bench-program-too-costly-9181992" target="_blank" rel="noopener">burnabynow.com</a></li>
+  <li id="r3">Reclaimed Woodworks (BC). Condo-size raised planters $150 / $175 / $200. <a href="http://www.reclaimedwoodworks.ca/" target="_blank" rel="noopener">reclaimedwoodworks.ca</a></li>
+  <li id="r4">Coastline Cedar (North Vancouver). New cedar planters $144 (sale) to $349. <a href="https://coastlinecedar.com/collections/cedar-planters" target="_blank" rel="noopener">coastlinecedar.com</a></li>
+  <li id="r5">Metro Vancouver. Deconstruction case studies: Dunbar lumber sold for $6,000 (5.3 t) → $1,132/t. <a href="https://metrovancouver.org/services/solid-waste/Documents/deconstruction-case-studies.pdf" target="_blank" rel="noopener">metrovancouver.org</a></li>
+  <li id="r6">City of Vancouver. Deconstruction case study, Grandview-Woodland: 13,005 kg lumber; 7.15 t reused; 160 h de-nailing. <a href="https://vancouver.ca/files/cov/deconstruction-case-study-grandview-woodland.pdf" target="_blank" rel="noopener">vancouver.ca</a></li>
+  <li id="r7">USDA Forest Service. Wood Handbook data for Douglas-fir (≈ 545 kg/m³), via Virginia Tech. <a href="https://dendro.cnre.vt.edu/DENDROLOGY/woodtech/pseudotsuga_menziesii.pdf" target="_blank" rel="noopener">dendro.cnre.vt.edu</a></li>
+  <li id="r8">Government of BC. Minimum wage. <a href="https://www2.gov.bc.ca/gov/content/employment-business/employment-standards-advice/employment-standards/wages/minimum-wage" target="_blank" rel="noopener">gov.bc.ca</a></li>
+  <li id="r9">SnW Wood. SecondStory panels: no public price (“call for current pricing”). <a href="https://www.snwwood.com/SecondStory-Architectural-Panels" target="_blank" rel="noopener">snwwood.com</a></li>
+ </ol>
+ <p class="small muted">Steel and wood masses come from our CAD models <span class="tag">C</span>: bench 30.6 kg steel / 25.7 kg wood; table 65.4 / 61.7; planter 10.5 / 25.1. Steel cost scales from the bench’s $800 frame <span class="tag">T</span> ≈ $26/kg. Richmond’s fee is what donors pay the City (incl. 10 years of upkeep); Burnaby’s $5,000 is what the City actually spends, so $3,500 sits below a city’s real cost. Not financial advice; a student concept model.</p>
+</div>
+<script>
+(function(){
+const $=id=>document.getElementById(id);
+const fmt=n=>(n<0?'−$':'$')+Math.abs(Math.round(n)).toLocaleString('en-CA');
+const S=(n)=>`<a href="#r${n}">[${n}]</a>`;
+// unit cost lines: [label, value, tag]
+const UNIT={
+ bench:[['Reclaimed wood: 25.7 kg × $1.132/kg',29,'C'],['Steel frame (30.6 kg)',800,'T'],['Installation',400,'T'],['Labour: 12 h × $25/h (BC min. $18.25 '+S(8)+')',300,'T'],['Engineering check + warranty reserve',300,'T'],['Bolts, finish, QR tag',150,'T']],
+ table:[['Reclaimed wood: 61.7 kg × $1.132/kg',70,'C'],['Steel frame: 65.4 kg × $26/kg',1710,'C'],['Installation',400,'T'],['Labour: 18 h × $25/h',450,'T'],['Engineering check + warranty reserve',300,'T'],['Bolts (100), finish, QR tag',200,'T']],
+ planter:[['Reclaimed wood: 25.1 kg × $1.132/kg',28,'C'],['Steel corners + bands at bench rate: 10.5 kg × $26/kg',275,'C'],['Labour: 3 h × $25/h',75,'T'],['Bolts (44), liner, tag',45,'T'],['Redesign target (off-the-shelf brackets, fewer bolts)',120,'T']],
+ lumber:[['Revenue: 7.15 t reused × $1,132/t '+S(5)+S(6),8094,'C'],['De-nailing labour: 160 h × $25/h '+S(6),4000,'C'],['Transport',500,'T']]
+};
+const tagH=t=>t==='s'?'<span class="tag s">cited</span>':`<span class="tag">${t}</span>`;
+function costTable(id,lines,total,extra){$(id).innerHTML=lines.map(([l,v,t])=>`<tr><td>${l}</td><td class="r">${fmt(v)}</td><td>${tagH(t)}</td></tr>`).join('')+(extra||'');}
+costTable('cb',UNIT.bench,0,'<tr><td><b>Direct cost</b></td><td class="r"><b>$1,979</b></td><td></td></tr><tr><td>Selling, admin, collection</td><td class="r">$250</td><td><span class="tag">T</span></td></tr>');
+costTable('ct',UNIT.table,0,'<tr><td><b>Direct cost</b></td><td class="r"><b>$3,130</b></td><td><span class="tag">C</span></td></tr><tr><td>Selling, admin, collection</td><td class="r">$250</td><td><span class="tag">T</span></td></tr>');
+costTable('cp',UNIT.planter,0,'<tr><td><b>Direct cost as modelled</b></td><td class="r"><b>$423</b></td><td><span class="tag">C</span></td></tr>');
+costTable('cl',UNIT.lumber,0,'<tr><td><b>Margin per house</b></td><td class="r"><b>$3,594</b></td><td><span class="tag">C</span></td></tr>');
+// products: unit cost includes selling cost where relevant
+const P=[
+ {id:'bench',n:'Bench (Model L)',ev:`Price: Richmond ${S(1)}; city cost $5,000 ${S(2)}`,price:3500,cost:2229,units:20},
+ {id:'table',n:'Table T',ev:`Price: Richmond table ${S(1)}`,price:4000,cost:3380,units:5},
+ {id:'planter',n:'Planter P (redesigned)',ev:`$150–200 reclaimed ${S(3)}; new cedar $144–349 ${S(4)}`,price:175,cost:120,units:30},
+ {id:'lumber',n:'Long lumber (per house)',ev:`$1,132/t ${S(5)}; 7.15 t, 160 h ${S(6)}`,price:8094,cost:4500,units:2},
+ {id:'care',n:'Care plans (per bench-year)',ev:`$200/yr benchmark ${S(2)}`,price:200,cost:100,units:0},
+ {id:'panel',n:'ReNailed Panels (per sheet)',ev:`No public price ${S(9)}: partner quote`,price:0,cost:0,units:0},
+ {id:'acoustic',n:'Acoustic panels (per sheet)',ev:'Untested: quote + test first',price:0,cost:0,units:0},
+ {id:'dlt',n:'DLT lamstock (per tonne)',ev:'Year 3+: Douglas-fir test first',price:0,cost:0,units:0}
+];
+const SCEN={
+ base:{fixed:10000,set:{}},
+ down:{fixed:10000,set:{bench:{price:2500,cost:2730},table:{price:3500},planter:{price:150}}},
+ nobench:{fixed:10000,set:{bench:{units:0},table:{units:0}}},
+ y2:{fixed:20000,set:{bench:{units:40},table:{units:15},planter:{units:100},lumber:{units:4},care:{units:20}}}
+};
+const base=JSON.parse(JSON.stringify(P));
+function apply(s){P.forEach((p,i)=>Object.assign(p,base[i],(SCEN[s].set[p.id]||{})));$('fixed').value=SCEN[s].fixed;draw();render();
+ document.querySelectorAll('.scen button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.s===s));}
+function draw(){$('rows').innerHTML=P.map((p,i)=>`<tr><td>${p.n}</td>
+ <td class="r"><input type="number" min="0" data-i="${i}" data-k="units" value="${p.units}" aria-label="${p.n} units"></td>
+ <td class="r"><input type="number" min="0" step="25" data-i="${i}" data-k="price" value="${p.price}" aria-label="${p.n} price"></td>
+ <td class="r"><input type="number" min="0" step="25" data-i="${i}" data-k="cost" value="${p.cost}" aria-label="${p.n} cost"></td>
+ <td class="r" id="m${i}"></td><td class="r" id="p${i}"></td><td class="r" id="rv${i}"></td><td class="r" id="c${i}"></td><td class="small">${p.ev}</td></tr>`).join('');
+ document.querySelectorAll('#rows input').forEach(el=>el.addEventListener('input',e=>{const t=e.target;P[t.dataset.i][t.dataset.k]=+t.value||0;render();}));}
+$('fixed').addEventListener('input',render);
+function render(){let R=0,C=0;const con=[];
+ P.forEach((p,i)=>{const m=p.price-p.cost,rv=p.price*p.units,c=m*p.units;R+=rv;C+=c;con.push([p.n,c]);
+  $('m'+i).innerHTML=p.price?`<span class="${m>=0?'pos':'neg'}">${fmt(m)}</span>`:'–';
+  $('p'+i).textContent=p.price?Math.round(m/p.price*100)+'%':'–';$('rv'+i).textContent=fmt(rv);$('c'+i).innerHTML=`<span class="${c>=0?'pos':'neg'}">${fmt(c)}</span>`;});
+ const F=+$('fixed').value||0,Pr=C-F;
+ $('t-rev').textContent=fmt(R);$('t-con').textContent=fmt(C);
+ $('k-rev').textContent=fmt(R);$('k-con').textContent=fmt(C);
+ $('k-pro').innerHTML=`<span class="${Pr>=0?'up':'down'}">${fmt(Pr)}</span>`;$('k-mar').innerHTML=R?`<span class="${Pr>=0?'up':'down'}">${Math.round(Pr/R*100)}%</span>`:'–';
+ const max=Math.max(1,...con.map(c=>Math.abs(c[1])));
+ $('bars').innerHTML=con.filter(c=>c[1]!==0).map(([n,c])=>{const w=Math.abs(c)/max*50;return `<div class="bar"><span>${n}</span><span class="track"><span class="axis" style="left:50%"></span><i style="left:${c>=0?50:50-w}%;width:${w}%;background:${c>=0?'var(--green)':'var(--bad)'}"></i></span><span class="${c>=0?'pos':'neg'}" style="text-align:right;font-variant-numeric:tabular-nums">${fmt(c)}</span></div>`}).join('')||'<p class="small muted">No sales in this scenario.</p>';}
+document.querySelectorAll('.scen button').forEach(b=>b.onclick=()=>apply(b.dataset.s));
+apply('base');
+})();
+</script>
+
+</body></html>
