@@ -59,7 +59,7 @@ ol.refs a{color:var(--green);word-break:break-word}
   <div class="hud" role="group" aria-label="Camera views">
    <button id="v-iso" aria-pressed="true">3D</button><button id="v-top">Top</button><button id="v-front">Front</button><button id="v-end">End</button><button id="v-explode" aria-pressed="false">Explode</button><button id="v-tour" aria-pressed="false">▶ Company tour</button>
   </div>
-  <div class="pick" id="pick" aria-live="polite"><div class="top"><span class="num">i</span><b>Explore the bench</b><button class="x" id="pick-x" aria-label="Close panel">×</button></div><p class="tags">Tap a numbered marker to see each part of the company, or tap any part for its size, material and weight. Press “Company tour” to walk through all nine.</p></div>
+  <div class="pick" id="pick" aria-live="polite"><div class="top"><span class="num">i</span><b>Explore the bench</b><button class="x" id="pick-x" aria-label="Close panel">×</button></div><p class="tags">Tap a numbered marker to see each part of the company, or tap any part for its size, material and weight. Press “Company tour” to walk through all eight.</p></div>
   <div id="hs-layer"></div>
   <div class="hint">Drag to rotate · scroll or pinch to zoom · right-drag to pan</div>
  </div>
@@ -195,7 +195,7 @@ const DATA={"parts": [{"n": "Side rail", "k": "steel", "b": [0, 72.0, 0, 1.5, 14
  const tagW=7.5*IN,tagH=7.5*IN*270/900;
  const tag=new THREE.Mesh(new THREE.BoxGeometry(tagW,tagH,0.06*IN),[0,0,0,0,new THREE.MeshStandardMaterial({map:tagTex,metalness:0.35,roughness:0.45}),0].map(m=>m||new THREE.MeshStandardMaterial({color:0x8A6428,metalness:0.7,roughness:0.4})));
  tag.position.set(36*IN,16.5*IN+0.03,20.54*IN);tag.castShadow=true;tag.userData={p:{n:'QR source tag',k:'tag',b:[32.25,39.75,20.5,20.56,15.6,17.4],s:'brass plate 7½ × 2¼ in',m:0},home:tag.position.clone()};
- groups.wood.add(tag);meshes.push(tag);
+ /* QR tag removed from the bench model */
  const bg=new THREE.CylinderGeometry(0.3*IN,0.3*IN,0.12*IN,14), bm=new THREE.MeshStandardMaterial({color:0x8E969A,metalness:0.9,roughness:0.25});
  DATA.bolts.forEach(([x,y])=>{const b=new THREE.Mesh(bg,bm);b.position.set(x*IN,17.53*IN+0.03,y*IN);b.userData.home=b.position.clone();groups.bolts.add(b)});
  [[48,1*4.125+2],[24,2*4.125+2],[48,4*4.125+2]].forEach(([x,y])=>{
@@ -241,8 +241,6 @@ const DATA={"parts": [{"n": "Side rail", "k": "steel", "b": [0, 72.0, 0, 1.5, 14
 
  const R=n=>`<a class="r" href="#ref${n}">[${n}]</a>`;
  const HS=[
-  {t:'Traceable source tag',at:[40.5,21.6,15.2],v:'tag',
-   b:`Each bench carries a brass tag naming the house its wood came from, its weight, and a QR code linking to the full story and the re-slat contact. The QR here opens our pitch page. Wood weight ≈ 26 kg [C] from Douglas-fir density${R(5)}.`},
   {t:'Sort & Supply: finding the wood',at:[10,8,17.6],
    b:`Before a pre-1950 house comes down, we survey it and take only clean wood. Contractors get receipts for the City’s $15,310 demolition deposit, refunded only with recycling proof${R(14)}. One Grandview-Woodland house held 13,005 kg of lumber${R(13)}.`},
   {t:'Material ID Desk: only safe wood',at:[60,14,17.6],

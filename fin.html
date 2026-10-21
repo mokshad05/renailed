@@ -50,8 +50,8 @@ a{color:var(--green)}
 </style>
 <div class="wrap">
  <p class="k">ReNailed · Forward Vision 2026 · Year-1 financial model</p>
- <h1><span>Re</span>Nailed: six products, one P&amp;L</h1>
- <p class="muted" style="max-width:70ch;margin-top:8px">Change any number in a box and every total updates. <span class="tag s">cited</span> = from a public source (numbered below) · <span class="tag">C</span> = our calculation from cited inputs · <span class="tag">T</span> = team assumption until a quote. Panels, acoustic panels and DLT start at zero: no partner has quoted yet.</p>
+ <h1><span>Re</span>Nailed: four revenue lines, one P&amp;L</h1>
+ <p class="muted" style="max-width:70ch;margin-top:8px">Change any number in a box and every total updates. <span class="tag s">cited</span> = from a public source (numbered below) · <span class="tag">C</span> = our calculation from cited inputs · <span class="tag">T</span> = team assumption until a quote.</p>
 
  <div class="scen" role="group" aria-label="Scenarios">
   <button data-s="base" aria-pressed="true">Base</button><button data-s="down">Downside</button><button data-s="nobench">No bench buyer</button><button data-s="y2">Year 2 sketch</button>
@@ -92,7 +92,6 @@ a{color:var(--green)}
   <li id="r6">City of Vancouver. Deconstruction case study, Grandview-Woodland: 13,005 kg lumber; 7.15 t reused; 160 h de-nailing. <a href="https://vancouver.ca/files/cov/deconstruction-case-study-grandview-woodland.pdf" target="_blank" rel="noopener">vancouver.ca</a></li>
   <li id="r7">USDA Forest Service. Wood Handbook data for Douglas-fir (≈ 545 kg/m³), via Virginia Tech. <a href="https://dendro.cnre.vt.edu/DENDROLOGY/woodtech/pseudotsuga_menziesii.pdf" target="_blank" rel="noopener">dendro.cnre.vt.edu</a></li>
   <li id="r8">Government of BC. Minimum wage. <a href="https://www2.gov.bc.ca/gov/content/employment-business/employment-standards-advice/employment-standards/wages/minimum-wage" target="_blank" rel="noopener">gov.bc.ca</a></li>
-  <li id="r9">SnW Wood. SecondStory panels: no public price (“call for current pricing”). <a href="https://www.snwwood.com/SecondStory-Architectural-Panels" target="_blank" rel="noopener">snwwood.com</a></li>
  </ol>
  <p class="small muted">Steel and wood masses come from our CAD models <span class="tag">C</span>: bench 30.6 kg steel / 25.7 kg wood; table 65.4 / 61.7; planter 10.5 / 25.1. Steel cost scales from the bench’s $800 frame <span class="tag">T</span> ≈ $26/kg. Richmond’s fee is what donors pay the City (incl. 10 years of upkeep); Burnaby’s $5,000 is what the City actually spends, so $3,500 sits below a city’s real cost. Not financial advice; a student concept model.</p>
 </div>
@@ -121,9 +120,6 @@ const P=[
  {id:'planter',n:'Planter P (redesigned)',ev:`$150–200 reclaimed ${S(3)}; new cedar $144–349 ${S(4)}`,price:175,cost:120,units:30},
  {id:'lumber',n:'Long lumber (per house)',ev:`$1,132/t ${S(5)}; 7.15 t, 160 h ${S(6)}`,price:8094,cost:4500,units:2},
  {id:'care',n:'Care plans (per bench-year)',ev:`$200/yr benchmark ${S(2)}`,price:200,cost:100,units:0},
- {id:'panel',n:'ReNailed Panels (per sheet)',ev:`No public price ${S(9)}: partner quote`,price:0,cost:0,units:0},
- {id:'acoustic',n:'Acoustic panels (per sheet)',ev:'Untested: quote + test first',price:0,cost:0,units:0},
- {id:'dlt',n:'DLT lamstock (per tonne)',ev:'Year 3+: Douglas-fir test first',price:0,cost:0,units:0}
 ];
 const SCEN={
  base:{fixed:10000,set:{}},
