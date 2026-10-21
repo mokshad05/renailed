@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style>
+</head><body>
+<title>ReNailed Product Viewer</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Public+Sans:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Same workshop-drawing layout as the Model L bench viewer: 3D stage on the left, spec rail on the right. */
+:root{--bg:#F2F4EF;--panel:#FFFFFF;--ink:#15211A;--muted:#56635A;--rule:#D5DCD4;--fir:#B06A28;--green:#2C6A4C;--canvas:#E6EBE4;
+--display:'Bricolage Grotesque',Arial,sans-serif;--body:'Public Sans',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,Menlo,monospace}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1713;--panel:#16201B;--ink:#E5ECE7;--muted:#A0AEA5;--rule:#2A3831;--fir:#E3A466;--green:#6FBF93;--canvas:#1A2621;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0F1713;--panel:#16201B;--ink:#E5ECE7;--muted:#A0AEA5;--rule:#2A3831;--fir:#E3A466;--green:#6FBF93;--canvas:#1A2621;color-scheme:dark}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:14px;margin:0}
+.wrap{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:16px;padding-block:16px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));height:100%;box-sizing:border-box}
+.stage{position:relative;background:linear-gradient(#7FB2D9 0%,#B9D6E6 45%,#D7E6E8 70%);border:1px solid var(--rule);border-radius:8px;overflow:hidden;min-height:420px;transition:background .6s}
+.stage.indoor{background:linear-gradient(#EDE6DA,#D9CFBF)}
+.stage.shop{background:linear-gradient(#C9CFCB,#AEB6B1)}
+#c{display:block;width:100%;height:100%;touch-action:none}
+.hud{position:absolute;left:12px;top:12px;display:flex;flex-wrap:wrap;gap:6px;z-index:3}
+.hud button,.tog button,.tabs button,.tabs a{font-family:var(--mono);font-size:12px;background:var(--panel);color:var(--ink);border:1px solid var(--rule);border-radius:999px;padding:6px 12px;cursor:pointer;text-decoration:none}
+.hud button[aria-pressed="true"],.tog button[aria-pressed="true"],.tabs button[aria-selected="true"]{background:var(--green);border-color:var(--green);color:#fff}
+button:focus-visible,a:focus-visible{outline:2px solid var(--fir);outline-offset:2px}
+.hint{position:absolute;left:12px;bottom:10px;font-family:var(--mono);font-size:11px;color:#15211A99}
+.pick{z-index:5;position:absolute;right:12px;top:56px;width:min(330px,calc(100% - 24px));background:var(--panel);border:1px solid var(--rule);border-radius:10px;padding:12px 14px;font-size:13px;line-height:1.45;box-shadow:0 6px 24px #0f171326;display:flex;flex-direction:column;gap:6px;max-height:calc(100% - 110px);overflow:auto}
+.pick .top{display:flex;align-items:center;gap:8px}
+.pick .num{font-family:var(--mono);font-size:11px;background:var(--fir);color:#fff;border-radius:999px;min-width:22px;height:22px;display:grid;place-items:center}
+.pick b{font-family:var(--display);font-size:16px;line-height:1.2;flex:1}
+.pick .x{border:0;background:none;color:var(--muted);font-size:18px;cursor:pointer;padding:2px 6px}
+.pick p{margin:0}
+.pick .nav{display:flex;gap:6px;margin-top:4px}
+.pick .nav button{flex:1;font-family:var(--mono);font-size:12px;border:1px solid var(--rule);background:var(--bg);color:var(--ink);border-radius:999px;padding:6px 8px;cursor:pointer}
+.hs{z-index:2;position:absolute;left:0;top:0;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;border:2px solid #fff;background:#B06A28;color:#fff;font-family:var(--mono);font-size:12px;font-weight:600;cursor:pointer;box-shadow:0 2px 8px #0005;display:grid;place-items:center;padding:0}
+.hs.on{background:#2C6A4C;transform:translate(-50%,-50%) scale(1.15)}
+.hs[hidden],.pick[hidden]{display:none}
+@media (max-width:820px){.hint{display:none}.pick{top:auto;bottom:34px;right:12px;left:12px;width:auto;max-height:46%}}
+aside{display:flex;flex-direction:column;gap:14px;overflow:auto;min-width:0}
+.card{background:var(--panel);border:1px solid var(--rule);border-radius:8px;padding:14px}
+.tabs{display:flex;flex-wrap:wrap;gap:6px}
+h1{font-family:var(--display);font-weight:800;font-size:28px;margin:0;line-height:1.05;letter-spacing:-.5px}
+h1 span{color:var(--fir)}
+.k{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--fir);margin:0 0 6px}
+h2{font-family:var(--display);font-size:16px;margin:0 0 8px}
+table{width:100%;border-collapse:collapse;font-size:12.5px;font-variant-numeric:tabular-nums}
+td{padding:4px 0;border-bottom:1px solid var(--rule);vertical-align:top}td:last-child{text-align:right;font-family:var(--mono);padding-left:8px}
+.tog{display:flex;flex-wrap:wrap;gap:6px}
+.note{font-size:12px;color:var(--muted);line-height:1.45;margin:0}
+.sw{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+@media (max-width:820px){.wrap{grid-template-columns:1fr;height:auto}.stage{height:62vh}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+.r{font-family:var(--mono);font-size:10px;color:var(--fir);vertical-align:super;margin-left:2px;text-decoration:none}
+.r:hover{text-decoration:underline}
+ol.refs{margin:0;padding-left:20px;font-size:11.5px;line-height:1.45;color:var(--muted);display:flex;flex-direction:column;gap:4px}
+ol.refs a{color:var(--green);word-break:break-word}
+.tags{font-family:var(--mono);font-size:11px;color:var(--muted)}
+body.shot .hud,body.shot .pick,body.shot .hint,body.shot #hs-layer,body.shot aside{display:none!important}
+body.shot .wrap{grid-template-columns:1fr;padding:0}body.shot .stage{border:0;border-radius:0}
+</style>
+<div class="wrap">
+ <div class="stage" id="stage">
+  <canvas id="c" aria-label="Interactive 3D model of a ReNailed product"></canvas>
+  <div class="hud" role="group" aria-label="Camera views">
+   <button id="v-iso" aria-pressed="true">3D</button><button id="v-top">Top</button><button id="v-front">Front</button><button id="v-end">End</button><button id="v-explode" aria-pressed="false">Explode</button><button id="v-tour" aria-pressed="false">▶ Tour</button>
+  </div>
+  <div class="pick" id="pick" aria-live="polite"></div>
+  <div id="hs-layer"></div>
+  <div class="hint">Drag to rotate · scroll or pinch to zoom · right-drag to pan</div>
+ </div>
+ <aside>
+  <div class="card">
+   <p class="k">ReNailed product line · concept Rev A</p>
+   <div class="tabs" role="tablist" aria-label="Products">
+    <a id="bench-link" href="bench-3d.html">Bench</a>
+    <button role="tab" data-p="table">Picnic table</button><button role="tab" data-p="planter">Planter</button><button role="tab" data-p="panel">Panels</button><button role="tab" data-p="acoustic">Acoustic</button><button role="tab" data-p="timber">Mass timber</button>
+   </div>
+  </div>
+  <div class="card"><p class="k" id="p-k"></p><h1 id="p-h"></h1><p class="note" id="p-note" style="margin-top:8px"></p></div>
+  <div class="card"><h2>Show</h2><div class="tog" id="tog" role="group" aria-label="Show layers"></div></div>
+  <div class="card"><h2>Key dimensions</h2><table id="p-dims"></table></div>
+  <div class="card"><h2>Weight [C]</h2><p class="tags" id="p-wnote" style="margin:0 0 6px"></p><table id="p-mass"></table></div>
+  <div class="card"><h2>Design basis</h2><p class="note" id="p-basis"></p></div>
+  <div class="card"><h2>References</h2><ol class="refs" id="refs"></ol><p class="note" style="margin-top:8px">[C] our calculation from cited inputs · [T] assumption until quoted or tested. US codes are used as design guides only; an engineer must review every product before sale.</p></div>
+  <div class="card"><p class="note">Moksha · SFU Enactus · Forward Vision 2026 · mda77@sfu.ca</p></div>
+ </aside>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+<script>
+(function(){
+const SITE='https://mokshad05.github.io/renailed/';
+const REFS=[
+ ['US Access Board. ADA Standards, Ch. 9: §902 dining surfaces (28–34 in high), §903 benches.','https://www.access-board.gov/ada/chapter/ch09/','access-board.gov'],
+ ['US Access Board. Guide to Ch. 3: knee and toe space ≥ 30 in wide, ≥ 17 in deep, ≥ 27 in high.','https://www.access-board.gov/ada/guides/chapter-3-clear-floor-or-ground-space-and-turning-space','access-board.gov'],
+ ['IRC Table R507.7, max. joist spacing for decking (via Anne Arundel County Deck Guide).','https://www.aacounty.org/sites/default/files/2023-03/Deck_Guide.pdf','aacounty.org'],
+ ['Teshnizi, Z. (2015). Reuse of salvaged dimensional lumber from pre-1940s houses. UBC / City of Vancouver.','https://sustain.ubc.ca/sites/default/files/2015-20_Opportunities%20Barriers%20for%20Reuse%20of%20Salvaged%20Dimensional%20Lumber_Teshnizi.pdf','sustain.ubc.ca'],
+ ['USDA Forest Service. Wood Handbook data for Douglas-fir (via Virginia Tech Dendrology).','https://dendro.cnre.vt.edu/DENDROLOGY/woodtech/pseudotsuga_menziesii.pdf','dendro.cnre.vt.edu'],
+ ['Canadian Wood Council. Moisture content (S-Dry ≤ 19%).','https://old.cwc.ca/wp-content/uploads/2019/03/Moisture-content.pdf','cwc.ca'],
+ ['Falk, R. H. & Green, D. (1999). Stress grading of recycled lumber and timber. USDA FPL.','https://research.fs.usda.gov/treesearch/5725','research.fs.usda.gov'],
+ ['Metro Vancouver. Clean wood disposal ban info card.','https://metrovancouver.org/services/solid-waste/Documents/clean-wood-disposal-ban-info-card.pdf','metrovancouver.org'],
+ ['Health Canada. Lead-based paint: homes built before 1960.','https://www.canada.ca/en/health-canada/services/home-safety/lead-based-paint.html','canada.ca'],
+ ['City of Richmond (2024). Parks dedication bench program ($3,500 bench, $4,000 table).','https://www.richmond.ca/__shared/assets/Parks_Dedication_Bench_Program_-_Dedication_Letter_Application_2024_UPDATE74327.pdf','richmond.ca'],
+ ['Tetra Tech (2026). 2025 C&D waste composition study, Table D-1 (plywood 51,748 t).','https://metrovancouver.org/services/solid-waste/Documents/construction-demolition-waste-composition-study-2025.pdf','metrovancouver.org'],
+ ['SnW Wood. SecondStory architectural panels (Sankofa Lumber, Portland).','https://www.snwwood.com/SecondStory-Architectural-Panels','snwwood.com'],
+ ['Uí Chúláin, C. et al. (2023). Bending characteristics of CLT from recovered spruce. WCTE 2023.','https://www.universityofgalway.ie/media/timberengineeringresearchgroup/WCTE-2023---Caitriona---recovered-CLT.pdf','universityofgalway.ie'],
+ ['Mass Timber Report. Reclaimed wood in DLT (Urban Machine, Oakland, 2023).','https://masstimberconference.com/report/content/reclaimed-wood-in-dlt/','masstimberconference.com'],
+ ['Think Wood. Dowel Laminated Timber (DLT) design + construction.','https://www.thinkwood.com/mass-timber/dowel-laminated-timber-dlt','thinkwood.com'],
+ ['ICC. IRC Table R602.3(1) fastening schedule (stud-to-plate end nails).','https://www.iccsafe.org/wp-content/uploads/bcac/IRC-TableR60231.pdf','iccsafe.org'],
+ ['Burnaby Now. Burnaby halts memorial bench program ($5,000 installed; $200/yr upkeep).','https://burnabynow.com/local-news/burnaby-halts-memorial-bench-program-too-costly-9181992','burnabynow.com'],
+ ['worldsteel (2024). Sustainability indicators: 1.92 t CO₂ per t steel (2023).','https://worldsteel.org/steel-topics/sustainability/sustainability-indicators-2024-report','worldsteel.org'],
+ ['Gildersleve, C. & Fraser, H. (2025, May 20). Embark’s community garden has a new home behind Maggie Benston Center. The Peak.','https://the-peak.ca/2025/05/embarks-community-garden-has-a-new-home-behind-maggie-benston-center/','the-peak.ca'],
+ ['Reclaimed Woodworks (BC). Raised beds and planters price list.','http://www.reclaimedwoodworks.ca/','reclaimedwoodworks.ca'],
+ ['Coastline Cedar (North Vancouver). Cedar planter boxes price list.','https://coastlinecedar.com/collections/cedar-planters','coastlinecedar.com'],
+ ['PDXNext. Valerie Carey, Sankofa Lumber (PDX terminal concession stands).','https://pdxnext.com/Stories/valerie-carey-sankofa-lumber','pdxnext.com'],
+ ['Song, B., Peng, L., Fu, F., Liu, M. & Zhang, H. (2016). Sound absorption properties of finely perforated wooden panels. Materials 9(11), 942.','https://pmc.ncbi.nlm.nih.gov/articles/PMC5457217','pmc.ncbi.nlm.nih.gov'],
+ ['Naturally Wood. Hudson Mitchell & Sons Lumber (HMS), Surrey: laminating, finger-jointing, sanding.','https://www.naturallywood.com/suppliers/listings/hudson-mitchell-sons-lumber-inc/','naturallywood.com'],
+ ['Health Canada. Staying safe around treated wood (older CCA-treated wood).','https://www.canada.ca/en/health-canada/services/consumer-product-safety/reports-publications/pesticides-pest-management/fact-sheets-other-resources/staying-safe-around-treated-wood.html','canada.ca'],
+ ['Metro Vancouver. Service providers directory (ReStore: lumber minimum 6 ft).','https://metrovancouver.org/services/solid-waste/Documents/service-providers-directory.pdf','metrovancouver.org'],
+ ['Job Bank (2025). Woodrose Woodworking, Vancouver: custom cabinetry and millwork.','https://www.jobbank.gc.ca/jobsearch/jobposting/44083070','jobbank.gc.ca']
+];
+document.getElementById('refs').innerHTML=REFS.map((r,i)=>`<li id="ref${i+1}">${r[0].replace(/&(?!amp;)/g,'&amp;')} <a href="${r[1]}" target="_blank" rel="noopener">${r[2]}</a></li>`).join('');
+const R=(...n)=>n.map(k=>`<a class="r" href="#ref${k}">[${k}]</a>`).join('');
+if(/[?&]shot/.test(location.search))document.body.classList.add('shot');
+
+const IN=0.0254, canvas=document.getElementById('c'), stage=document.getElementById('stage');
+const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,preserveDrawingBuffer:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+renderer.outputEncoding=THREE.sRGBEncoding; renderer.toneMapping=THREE.ACESFilmicToneMapping; renderer.toneMappingExposure=0.95;
+renderer.shadowMap.enabled=true; renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+const scene=new THREE.Scene();
+const lin=c=>new THREE.Color(c).convertSRGBToLinear();
+const cam=new THREE.PerspectiveCamera(32,1,0.05,200);
+const ctl=new THREE.OrbitControls(cam,canvas); ctl.enableDamping=true; ctl.maxPolarAngle=Math.PI*0.49; ctl.minDistance=0.8; ctl.maxDistance=14;
+const hemi=new THREE.HemisphereLight(0xDDEBFF,0x5B6B45,0.75); scene.add(hemi);
+const sun=new THREE.DirectionalLight(0xFFF1DA,1.35); sun.position.set(3.5,5,2.5); sun.target.position.set(0.9,0,0.4);
+sun.castShadow=true; sun.shadow.mapSize.set(2048,2048); {const sc=sun.shadow.camera; sc.left=-4;sc.right=4;sc.top=4;sc.bottom=-4;sc.near=1;sc.far=15;} sun.shadow.bias=-0.0006; sun.shadow.radius=4;
+scene.add(sun,sun.target);
+
+/* ---------- textures ---------- */
+function tex(w,h,draw,rep){const c=document.createElement('canvas');c.width=w;c.height=h;draw(c.getContext('2d'),w,h);const t=new THREE.CanvasTexture(c);t.encoding=THREE.sRGBEncoding;t.wrapS=t.wrapT=THREE.RepeatWrapping;if(rep)t.repeat.set(...rep);t.anisotropy=8;return t;}
+let seed=11; const rnd=()=>{seed=(seed*16807)%2147483647;return seed/2147483647};
+const woodTex=(base,holes=4)=>tex(1024,128,(g,w,h)=>{g.fillStyle=base;g.fillRect(0,0,w,h);
+  for(let i=0;i<70;i++){const y=rnd()*h,a=0.05+rnd()*0.12;g.strokeStyle=`rgba(90,45,15,${a})`;g.lineWidth=0.6+rnd()*1.6;g.beginPath();g.moveTo(0,y);for(let x=0;x<=w;x+=32)g.lineTo(x,y+Math.sin(x/(60+rnd()*40)+i)*3*rnd());g.stroke();}
+  for(let k=0;k<3;k++){const x=rnd()*w,y=rnd()*h;g.fillStyle='rgba(80,40,15,0.35)';g.beginPath();g.ellipse(x,y,6+rnd()*6,3+rnd()*3,0,0,7);g.fill();}
+  for(let k=0;k<holes;k++){const x=60+rnd()*(w-120),y=20+rnd()*(h-40);g.fillStyle='rgba(30,18,8,0.85)';g.beginPath();g.arc(x,y,2.2,0,7);g.fill();g.strokeStyle='rgba(60,30,10,0.4)';g.lineWidth=2;g.beginPath();g.arc(x,y,4,0,7);g.stroke();}});
+const WOOD=[woodTex('#C98648'),woodTex('#B9773D'),woodTex('#C2814A'),woodTex('#AF6E38')];
+function woodMat(len,i){const t=WOOD[i%WOOD.length].clone();t.needsUpdate=true;t.repeat.set(Math.max(len,6)/36,1);t.offset.x=rnd();return new THREE.MeshStandardMaterial({map:t,roughness:0.78});}
+const steelM=new THREE.MeshStandardMaterial({color:0x2F3A34,metalness:0.35,roughness:0.55});
+const boltM=new THREE.MeshStandardMaterial({color:0x8E969A,metalness:0.9,roughness:0.25});
+
+/* box helper: inches; x=length, y=depth, z=up */
+function box(b,mat,grp,data){const [x0,x1,y0,y1,z0,z1]=b;const m=new THREE.Mesh(new THREE.BoxGeometry((x1-x0)*IN,(z1-z0)*IN,(y1-y0)*IN),mat);
+ m.position.set((x0+x1)/2*IN,(z0+z1)/2*IN,(y0+y1)/2*IN);m.castShadow=true;m.receiveShadow=true;m.userData={p:data,home:m.position.clone()};grp.add(m);return m;}
+function qrCanvas(text,lines,W=900,H=270){const c=document.createElement('canvas');c.width=W;c.height=H;const g=c.getContext('2d');
+ const grd=g.createLinearGradient(0,0,W,H);grd.addColorStop(0,'#D8B06A');grd.addColorStop(1,'#A97A34');g.fillStyle=grd;g.fillRect(0,0,W,H);g.strokeStyle='#5A3E15';g.lineWidth=6;g.strokeRect(6,6,W-12,H-12);
+ g.fillStyle='#fff';g.fillRect(24,24,H-48,H-48);
+ try{const q=qrcode(0,'M');q.addData(text);q.make();const n=q.getModuleCount(),s=(H-64)/n;g.fillStyle='#15211A';for(let r=0;r<n;r++)for(let k=0;k<n;k++)if(q.isDark(r,k))g.fillRect(32+k*s,32+r*s,Math.ceil(s),Math.ceil(s));}catch(e){}
+ g.fillStyle='#24170A';g.font='800 46px Arial';g.fillText('ReNailed',H,78);g.font='600 26px monospace';lines.forEach((l,i)=>g.fillText(l,H,128+i*42));
+ const t=new THREE.CanvasTexture(c);t.encoding=THREE.sRGBEncoding;t.anisotropy=8;return t;}
+function plate(t,w,h,mat2){return new THREE.Mesh(new THREE.BoxGeometry(w,h,0.06*IN),[0,0,0,0,new THREE.MeshStandardMaterial({map:t,metalness:0.35,roughness:0.45}),0].map(m=>m||mat2||new THREE.MeshStandardMaterial({color:0x8A6428,metalness:0.7,roughness:0.4})));}
+
+/* ---------- environments ---------- */
+const envs={park:new THREE.Group(),indoor:new THREE.Group(),shop:new THREE.Group()};Object.values(envs).forEach(g=>scene.add(g));
+(function park(){const G=envs.park;
+ const grassTex=tex(256,256,(g,w,h)=>{g.fillStyle='#6E9650';g.fillRect(0,0,w,h);for(let i=0;i<5000;i++){const c=60+rnd()*60;g.fillStyle=`rgba(${c-20},${c+50},${c-30},0.35)`;g.fillRect(rnd()*w,rnd()*h,1.5,2.5)}},[40,40]);
+ const gravelTex=tex(256,256,(g,w,h)=>{g.fillStyle='#B8A88A';g.fillRect(0,0,w,h);for(let i=0;i<2500;i++){const c=150+rnd()*70;g.fillStyle=`rgba(${c},${c-12},${c-35},0.6)`;g.beginPath();g.arc(rnd()*w,rnd()*h,0.6+rnd()*1.6,0,7);g.fill()}},[30,1.2]);
+ const concTex=tex(256,256,(g,w,h)=>{g.fillStyle='#B5B8B1';g.fillRect(0,0,w,h);for(let i=0;i<3000;i++){const c=160+rnd()*40;g.fillStyle=`rgba(${c},${c},${c-6},0.25)`;g.fillRect(rnd()*w,rnd()*h,1,1)}},[2,2]);
+ const grass=new THREE.Mesh(new THREE.PlaneGeometry(80,80),new THREE.MeshStandardMaterial({map:grassTex,roughness:1}));grass.rotation.x=-Math.PI/2;grass.position.set(0.9,-0.01,0);grass.receiveShadow=true;G.add(grass);
+ const path=new THREE.Mesh(new THREE.PlaneGeometry(60,1.8),new THREE.MeshStandardMaterial({map:gravelTex,roughness:1}));path.rotation.x=-Math.PI/2;path.position.set(0.9,0.002,2.6);path.receiveShadow=true;G.add(path);
+ const pad=new THREE.Mesh(new THREE.BoxGeometry(3.0,0.06,2.4),new THREE.MeshStandardMaterial({map:concTex,roughness:0.95}));pad.position.set(0.915,-0.02,0.42);pad.receiveShadow=true;G.add(pad);
+ const trunkM=new THREE.MeshStandardMaterial({color:0x5E4330,roughness:1});
+ const leaf=[0x4E7F3F,0x5B8C46,0x3F6F3A,0x6A9A4E].map(c=>new THREE.MeshStandardMaterial({color:c,roughness:0.95}));
+ const fir=[0x2E5A3A,0x355F3D,0x2A5236].map(c=>new THREE.MeshStandardMaterial({color:c,roughness:0.95}));
+ function dec(x,z,h){const t=new THREE.Mesh(new THREE.CylinderGeometry(0.09,0.14,h*0.5,10),trunkM);t.position.set(x,h*0.25,z);t.castShadow=true;G.add(t);
+  for(let k=0;k<3;k++){const r=h*(0.2+rnd()*0.1);const b=new THREE.Mesh(new THREE.SphereGeometry(r,18,14),leaf[Math.floor(rnd()*4)]);b.position.set(x+(rnd()-0.5)*h*0.25,h*(0.6+rnd()*0.15),z+(rnd()-0.5)*h*0.25);b.castShadow=true;G.add(b);}}
+ function con(x,z,h){const t=new THREE.Mesh(new THREE.CylinderGeometry(0.07,0.1,h*0.25,8),trunkM);t.position.set(x,h*0.125,z);G.add(t);const m=fir[Math.floor(rnd()*3)];for(let k=0;k<3;k++){const c=new THREE.Mesh(new THREE.ConeGeometry(h*(0.24-k*0.05),h*0.38,16),m);c.position.set(x,h*(0.33+k*0.2),z);c.castShadow=true;G.add(c);}}
+ for(let i=0;i<30;i++){const x=-10+rnd()*22,z=-3-rnd()*16;(rnd()<0.45?con:dec)(x,z,3.2+rnd()*4);}
+ dec(-1.9,-1.6,4.6);con(5.2,-3.4,6);dec(6,3.9,4.2);con(-4.2,4.2,5.5);
+})();
+(function indoor(){const G=envs.indoor;
+ const floorTex=tex(512,512,(g,w,h)=>{for(let r=0;r<8;r++){g.fillStyle=['#CDB38F','#C4A882','#D3BB98'][r%3];g.fillRect(0,r*64,w,64);g.strokeStyle='rgba(80,55,30,.35)';g.strokeRect(0,r*64,w,64);for(let k=0;k<3;k++){const x=(rnd()*w)|0;g.beginPath();g.moveTo(x,r*64);g.lineTo(x,r*64+64);g.stroke();}}},[8,8]);
+ const floor=new THREE.Mesh(new THREE.PlaneGeometry(14,14),new THREE.MeshStandardMaterial({map:floorTex,roughness:0.85}));floor.rotation.x=-Math.PI/2;floor.position.set(0.6,0,0.5);floor.receiveShadow=true;G.add(floor);
+ const wallM=new THREE.MeshStandardMaterial({color:0xE9E2D6,roughness:0.95});
+ const wall=new THREE.Mesh(new THREE.BoxGeometry(14,3.4,0.1),wallM);wall.position.set(0.6,1.7,-1.45);wall.receiveShadow=true;G.add(wall);
+ const side=new THREE.Mesh(new THREE.BoxGeometry(0.1,3.4,6),wallM);side.position.set(-2.6,1.7,1.5);side.receiveShadow=true;G.add(side);
+ // pendant lamps
+ [[-0.4,0.4],[1.6,0.4]].forEach(([x,z])=>{const c=new THREE.Mesh(new THREE.CylinderGeometry(0.005,0.005,1.2,6),new THREE.MeshStandardMaterial({color:0x222222}));c.position.set(x,2.8,z);G.add(c);
+  const s=new THREE.Mesh(new THREE.ConeGeometry(0.16,0.2,24,1,true),new THREE.MeshStandardMaterial({color:0x2C6A4C,side:THREE.DoubleSide}));s.position.set(x,2.15,z);G.add(s);
+  const b=new THREE.Mesh(new THREE.SphereGeometry(0.05,12,8),new THREE.MeshStandardMaterial({color:0xFFF3D0,emissive:0xFFE7A8,emissiveIntensity:1}));b.position.set(x,2.07,z);G.add(b);});
+ // plants
+ const potM=new THREE.MeshStandardMaterial({color:0x8B5A3C,roughness:.9}),lf=new THREE.MeshStandardMaterial({color:0x4E7F3F,roughness:.95});
+ const pot=new THREE.Mesh(new THREE.CylinderGeometry(0.18,0.14,0.4,20),potM);pot.position.set(-2.1,0.2,-1.0);pot.castShadow=true;G.add(pot);
+ for(let k=0;k<6;k++){const s=new THREE.Mesh(new THREE.SphereGeometry(0.2,14,10),lf);s.position.set(-2.1+(rnd()-.5)*.35,0.6+rnd()*.5,-1.0+(rnd()-.5)*.35);s.castShadow=true;G.add(s);}
+})();
+(function shop(){const G=envs.shop;
+ const concTex=tex(512,512,(g,w,h)=>{g.fillStyle='#A9ADA8';g.fillRect(0,0,w,h);for(let i=0;i<9000;i++){const c=140+rnd()*50;g.fillStyle=`rgba(${c},${c},${c-4},0.25)`;g.fillRect(rnd()*w,rnd()*h,1.5,1.5)}g.strokeStyle='rgba(70,72,70,.5)';g.lineWidth=2;g.strokeRect(0,0,w,h);},[6,6]);
+ const fl=new THREE.Mesh(new THREE.PlaneGeometry(16,16),new THREE.MeshStandardMaterial({map:concTex,roughness:0.9}));fl.rotation.x=-Math.PI/2;fl.position.set(1,0,0.5);fl.receiveShadow=true;G.add(fl);
+ const wallM=new THREE.MeshStandardMaterial({color:0xC8CEC9,roughness:0.95});
+ const wall=new THREE.Mesh(new THREE.BoxGeometry(16,4,0.1),wallM);wall.position.set(1,2,-1.9);wall.receiveShadow=true;G.add(wall);
+ // big door outline
+ const door=new THREE.Mesh(new THREE.BoxGeometry(3,2.8,0.02),new THREE.MeshStandardMaterial({color:0x9AA39D,roughness:.8}));door.position.set(3.4,1.4,-1.84);G.add(door);
+ for(let k=0;k<10;k++){const l=new THREE.Mesh(new THREE.BoxGeometry(3,0.012,0.03),new THREE.MeshStandardMaterial({color:0x7F8983}));l.position.set(3.4,0.14+k*0.28,-1.82);G.add(l);}
+ // sign
+ const st=tex(1024,256,(g,w,h)=>{g.fillStyle='#173528';g.fillRect(0,0,w,h);g.fillStyle='#D98A3E';g.font='800 110px Arial';g.fillText('Re',40,170);g.fillStyle='#EAF1EC';g.fillText('Nailed',185,170);g.font='600 40px monospace';g.fillStyle='#A9C2B4';g.fillText('De-Nail Lab',590,165);});
+ const sign=new THREE.Mesh(new THREE.PlaneGeometry(2,0.5),new THREE.MeshStandardMaterial({map:st,roughness:.6}));sign.position.set(-0.6,2.6,-1.84);G.add(sign);
+})();
+
+/* ---------- product builders ---------- */
+const P={};
+function steelMass(b){const d=[b[1]-b[0],b[3]-b[2],b[5]-b[4]].sort((a,c)=>c-a);const L=d[0],A=d[1]*d[2];
+ let area; if(A<=2.3)area=1.5*1.5-1.25*1.25; else if(A<=4.6)area=3*1.5-2.75*1.25; else area=A; return L*area*16.387e-6*7850;}
+const WOOD_KG_PER_IN3=545*16.387e-6; // Douglas-fir 545 kg/m³ [5]
+
+/* PICNIC TABLE */
+P.table=(function(){
+ const g={wood:new THREE.Group(),steel:new THREE.Group(),bolts:new THREE.Group()};const root=new THREE.Group();Object.values(g).forEach(x=>root.add(x));
+ const meshes=[];let mw=0,ms=0,nb=0;
+ const S=(b,n,s)=>{const m=box(b,steelM.clone(),g.steel,{n,k:'steel',b,s});meshes.push(m);ms+=steelMass(b);};
+ // top: 8 rows × 4 in, ⅛ in gaps; top surface 31 in
+ const zT0=29,zT1=31, rows=8; const topW=rows*4+(rows-1)*0.125;
+ const pat=[[72],[48,24],[24,48],[72],[48,24],[24,48],[72],[48,24]];
+ let i=0;pat.forEach((seg,r)=>{let x=0;const y0=r*4.125;seg.forEach(L=>{const b=[x,x+L,y0,y0+4,zT0,zT1];const m=box(b,woodMat(L,i++),g.wood,{n:`Top slat row ${r+1} (${L} in)`,k:'wood',b,s:'2×4 full-size'});meshes.push(m);mw+=L*8*WOOD_KG_PER_IN3;x+=L;});});
+ // seats: 3 rows each side, x 24–72, top 17.5 in
+ const sy=[[-14.5,-2.25],[topW+2.25,topW+14.5]];
+ sy.forEach(([a],side)=>{for(let r=0;r<3;r++){const y0=a+r*4.125;const segs=r===1?[24,24]:[48];let x=24;segs.forEach(L=>{const b=[x,x+L,y0,y0+4,15.5,17.5];const m=box(b,woodMat(L,i++),g.wood,{n:`Seat slat (${L} in)`,k:'wood',b,s:'2×4 full-size'});meshes.push(m);mw+=L*8*WOOD_KG_PER_IN3;x+=L;});}});
+ // steel under top
+ S([0,72,0,1.5,27.5,29],'Top side rail','HSS 1.5×1.5×⅛');S([0,72,topW-1.5,topW,27.5,29],'Top side rail','HSS 1.5×1.5×⅛');
+ [[0,1.5],[22.5,25.5],[46.5,49.5],[70.5,72]].forEach(([a,c])=>S([a,c,1.5,topW-1.5,27.5,29],'Top cross-support',c-a>2?'HSS 3×1.5×⅛':'HSS 1.5×1.5×⅛'));
+ // two leg stations
+ [[22.5,24],[70.5,72]].forEach(([a,c])=>{
+  [[1.5,3],[topW-3,topW-1.5]].forEach(([y0,y1])=>{S([a,c,y0,y1,0.25,27.5],'Leg','HSS 1.5×1.5×⅛');const fp=[a-1.25,c+1.25,y0-1.25,y1+1.25,0,0.25];box(fp,steelM.clone(),g.steel,{n:'Foot plate',k:'steel',b:fp,s:'PL 4×4×¼'});ms+=4*4*0.25*16.387e-6*7850;});
+  S([a,c,sy[0][0],sy[1][1],14,15.5],'Seat cross-beam','HSS 1.5×1.5×⅛');
+  S([a,c,3,topW-3,6,7.5],'Leg stretcher','HSS 1.5×1.5×⅛');
+ });
+ // seat rails + middle seat support
+ [[sy[0][0]+4,sy[0][0]+5.5],[sy[1][1]-5.5,sy[1][1]-4]].forEach(([y0,y1])=>S([24,72,y0,y1,12.5,14],'Seat rail','HSS 1.5×1.5×⅛'));
+ [sy[0],sy[1]].forEach(([y0,y1])=>S([46.5,49.5,y0,y1,14,15.5],'Seat cross-support','HSS 3×1.5×⅛'));
+ // bolts
+ const bg=new THREE.CylinderGeometry(0.3*IN,0.3*IN,0.12*IN,14);
+ const addB=(x,y,z)=>{const b=new THREE.Mesh(bg,boltM);b.position.set(x*IN,(z+0.03)*IN,y*IN);b.userData.home=b.position.clone();g.bolts.add(b);nb++;};
+ for(let r=0;r<rows;r++){const y=r*4.125+2;[0.75,24,48,71.25].forEach(x=>{addB(x,y-1,zT1);addB(x,y+1,zT1);});}
+ sy.forEach(([a])=>{for(let r=0;r<3;r++){const y=a+r*4.125+2;[23.25,48,71.25].forEach(x=>{addB(x,y-1,17.5);addB(x,y+1,17.5);});}});
+ // QR tag on top front edge
+ const tg=plate(qrCanvas(SITE,['Kitsilano · 1920s house [T]','≈ 62 kg reclaimed fir','Scan for its story']),7.5*IN,7.5*IN*270/900);
+ tg.position.set(56*IN,30*IN,(topW+0.04)*IN);tg.castShadow=true;tg.userData={p:{n:'QR source tag',k:'tag',b:[52,59.5,0,0.06,29,31],s:'brass plate 7½ × 2¼ in'},home:tg.position.clone()};g.wood.add(tg);meshes.push(tg);
+ // accessible-zone marker
+ const zone=new THREE.Mesh(new THREE.BoxGeometry(22.5*IN,27*IN,30*IN),new THREE.MeshBasicMaterial({color:0x2C6A4C,transparent:true,opacity:0.16,depthWrite:false}));
+ zone.position.set(11.25*IN,13.5*IN,topW/2*IN);zone.visible=false;root.add(zone);g.zone=zone;
+ const T=new THREE.Vector3(36*IN,0.42,topW/2*IN);
+ return {root,g,meshes,env:'park',target:T,mass:{wood:mw,steel:ms},nb,
+  explode(on){const L=on?8*IN:0;g.wood.children.forEach(m=>m.position.y=m.userData.home.y+(m.userData.home.y>0.6?L*1.4:L));g.bolts.children.forEach(m=>m.position.y=m.userData.home.y+(m.userData.home.y>0.6?L*1.8:L*1.4));},
+  toggles:[['wood','Wood','#D98A3E'],['steel','Steel','#7E8C84'],['bolts','Bolts','#15211A'],['zone','Wheelchair space','#2C6A4C',false]],
+  views:{iso:[2.6,1.35,3.4],top:[0,3.8,0.001],front:[0,0.6,3.9],end:[3.4,0.6,0],acc:[-2.6,0.8,0.9],tag:[0.45,0.8,1.5]},
+  k:'Product 2 · park and campus table',h:'<span>Re</span>Nailed Table T',
+  note:`A 6-ft picnic table built from the bench’s parts: the same reclaimed 2×4 slats, the same 24 in support grid and the same bolts. One end is open for a wheelchair user.${R(1,2,3)}`,
+  dims:[[`Top height: 28–34 in allowed${R(1)}`,'31 in · 787 mm'],[`Open end: ≥ 17 in deep, ≥ 30 in wide, ≥ 27 in clear${R(2)}`,'22½ × 32⅞ × 27½ in'],[`Seat height (bench range 17–19 in)${R(1)}`,'17½ in'],[`Supports ≤ 24 in apart${R(3)}`,'24 in grid'],['Length × width (top)','72 × 32⅞ in'],['Bolts, ⅜ in carriage [T]',String(nb)]],
+  wnote:'Fir ≈ 545 kg/m³ [5] · steel 7,850 kg/m³ · 1½ in HSS, ⅛ in wall [T]',
+  basis:`Same slat rules as the bench: clean, unpainted, untreated, unglued wood${R(8)}, no paint from pre-1960 homes${R(9)}, ≤ 19% moisture${R(6)}, nail holes graded as knots${R(7)}. The top and seats are 2 in slats on supports every 24 in, the same span as the bench, so the bench load check carries over [C]. The 22½ in overhang at the open end is a cantilever and needs its own engineer check [T]. Richmond charges $4,000 for a dedication table against $3,500 for a bench${R(10)}: a bigger ticket from the same lab.`,
+  hs:[
+   {t:'Wheelchair-accessible end',at:[8,16,29],v:'acc',on:'zone',b:`The left end has no seat. It leaves 22½ in deep × 32⅞ in wide × 27½ in high of open space under the top. ADA knee space must be at least 17 in deep, 30 in wide and 27 in high${R(2)}. The top is 31 in high, inside the 28–34 in range for dining surfaces${R(1)} [C].`},
+   {t:'Same slats, same 24 in grid',at:[48,10,31],v:'top',b:`The top uses the bench’s 2×4 slats in 72 in or 48 + 24 in pieces. Every joint lands on a 3 in-wide steel support, every 24 in, the spacing deck rules allow for 2 in wood${R(3)}. 4–6 ft pieces need a use, because ReStores take only 6 ft or more${R(4)}.`},
+   {t:'Seats at bench height',at:[60,-8,17.5],b:`Seats are 17½ in high, inside the 17–19 in range for benches${R(1)}, and 12¼ in deep (3 slats) [T]. Seats start 24 in from the open end so a wheelchair can pull in.`},
+   {t:'2.4× the wood of one bench',at:[36,26,31],b:`≈ ${mw.toFixed(0)} kg of reclaimed fir per table vs ≈ 26 kg per bench [C], using Douglas-fir density${R(5)}. More wood placed per sale means more wood saved from each house.`},
+   {t:'A bigger ticket from the same lab',at:[71,30,31],b:`Richmond charges $4,000 for a dedication table and $3,500 for a bench${R(10)}. The table reuses the same De-Nail Lab, frame supplier and installer. Our price is set only after a fabricator quote [T].`},
+   {t:'Tagged, bolted, taken back',at:[56,topW+1,30],v:'tag',b:`Like the bench, each table carries a brass QR tag naming its source house (the one shown is illustrative). ${nb} bolts let a worn slat be swapped, not the table. Upkeep can be sold as a plan, as Burnaby budgets $200 per bench per year${R(17)}.`}
+  ]};
+})();
+
+/* RENAILED PANEL */
+P.panel=(function(){
+ const g={layers:new THREE.Group(),wall:new THREE.Group(),label:new THREE.Group()};const root=new THREE.Group();Object.values(g).forEach(x=>root.add(x));
+ const meshes=[];
+ const tones=['#D7B98A','#C9A776','#E0C79D','#B98F5E','#D2B07C','#CDB48C','#BFA070'];
+ function patch(vertical,k){return tex(512,1024,(G,w,h)=>{G.fillStyle='#CDB38A';G.fillRect(0,0,w,h);
+   let y=0;while(y<h){const ph=40+rnd()*110;let x=0;while(x<w){const pw=60+rnd()*200;const tone=tones[Math.floor(rnd()*tones.length)];
+     G.fillStyle=tone;G.fillRect(x,y,pw,ph);
+     const osb=rnd()<0.22;
+     if(osb){for(let q=0;q<60;q++){G.fillStyle=`rgba(${120+rnd()*60},${80+rnd()*40},${40+rnd()*30},.55)`;G.save();G.translate(x+rnd()*pw,y+rnd()*ph);G.rotate(rnd()*3);G.fillRect(-9,-3,18,6);G.restore();}}
+     else{G.strokeStyle='rgba(110,70,30,.18)';G.lineWidth=1;for(let q=0;q<10;q++){G.beginPath();if(vertical){const xx=x+rnd()*pw;G.moveTo(xx,y);G.bezierCurveTo(xx+6,y+ph/3,xx-6,y+2*ph/3,xx,y+ph);}else{const yy=y+rnd()*ph;G.moveTo(x,yy);G.bezierCurveTo(x+pw/3,yy+4,x+2*pw/3,yy-4,x+pw,yy);}G.stroke();}}
+     G.strokeStyle='rgba(60,40,20,.45)';G.lineWidth=1.2;G.strokeRect(x,y,pw,ph);x+=pw;}y+=ph;}
+   if(k===2){G.fillStyle='rgba(255,255,255,.06)';G.fillRect(0,0,w,h);}});}
+ const edgeTex=tex(64,64,(G,w,h)=>{for(let i=0;i<8;i++){G.fillStyle=i%2?'#B8935F':'#E2C99F';G.fillRect(0,i*8,w,8);}});
+ const W=48,H=96,Tk=0.75;
+ // three layers; outer layers vertical grain, core horizontal (cross-laminated)
+ const lay=[];for(let k=0;k<3;k++){const t=patch(k===1?false:true,k);const em=new THREE.MeshStandardMaterial({map:edgeTex,roughness:.8});
+  const face=new THREE.MeshStandardMaterial({map:t,roughness:k===2?0.55:0.8});
+  const m=new THREE.Mesh(new THREE.BoxGeometry(W*IN,H*IN,Tk/3*IN),[em,em,em,em,face,face]);
+  m.position.set(0,H/2*IN+2*IN,(k-1)*Tk/3*IN);m.castShadow=true;m.receiveShadow=true;
+  m.userData={p:{n:['Back layer: offcuts, vertical','Core layer: offcuts, crosswise','Face layer: sanded to 150 grit'][k],k:'panel',b:[0,W,0,Tk/3,0,H],s:'¼ in layer [T]'},home:m.position.clone(),idx:k};
+  g.layers.add(m);meshes.push(m);lay.push(m);}
+ // display stand
+ const standM=steelM.clone();
+ [[-20,-6],[20,-6]].forEach(([x])=>{const f=new THREE.Mesh(new THREE.BoxGeometry(1.5*IN,1.5*IN,20*IN),standM);f.position.set(x*IN,0.75*IN,0);f.castShadow=true;root.add(f);
+  const u=new THREE.Mesh(new THREE.BoxGeometry(1.5*IN,3*IN,0.5*IN),standM);u.position.set(x*IN,2.5*IN,-0.9*IN);root.add(u);const u2=u.clone();u2.position.z=0.9*IN;root.add(u2);});
+ g.layers.position.set(0,0,0);
+ // label with QR on the back of the panel
+ const lb=plate(qrCanvas(SITE,['Panel 0001 · 4 × 8 ft · ¾ in','Offcuts from 1 jobsite [T]','Scan for its source']),8*IN,8*IN*270/900);
+ lb.position.set(14*IN,84*IN,-(Tk/2+0.04)*IN);lb.rotation.y=Math.PI;lb.userData={p:{n:'QR panel label',k:'tag',b:[0,8,0,0.06,0,2.4],s:'printed label 8 × 2.4 in'},home:lb.position.clone()};g.label.add(lb);meshes.push(lb);
+ // café wall clad with panels + counter
+ const cladTex=patch(true,2);
+ for(let k=0;k<5;k++){const t=cladTex.clone();t.needsUpdate=true;t.offset.set(rnd(),rnd());
+  const m=new THREE.Mesh(new THREE.BoxGeometry(W*IN-0.004,H*IN,Tk*IN),new THREE.MeshStandardMaterial({map:t,roughness:.6}));
+  m.position.set((-60+k*48)*IN+0.6,H/2*IN,-1.39);m.receiveShadow=true;g.wall.add(m);}
+ const ct=cladTex.clone();ct.needsUpdate=true;ct.repeat.set(2,0.42);
+ const counter=new THREE.Mesh(new THREE.BoxGeometry(96*IN,40*IN,24*IN),[0,0,0,0,new THREE.MeshStandardMaterial({map:ct,roughness:.6}),0].map(m=>m||new THREE.MeshStandardMaterial({color:0xC7AE86,roughness:.7})));
+ counter.position.set(1.7,20*IN,-0.95);counter.castShadow=true;counter.receiveShadow=true;g.wall.add(counter);
+ const ctop=new THREE.Mesh(new THREE.BoxGeometry(98*IN,1.5*IN,26*IN),new THREE.MeshStandardMaterial({color:0x2F3A34,roughness:.5}));ctop.position.set(1.7,40.75*IN,-0.95);ctop.castShadow=true;g.wall.add(ctop);
+ // two stools
+ [1.3,2.1].forEach(x=>{const s=new THREE.Mesh(new THREE.CylinderGeometry(0.17,0.17,0.04,24),new THREE.MeshStandardMaterial({color:0xB06A28,roughness:.6}));s.position.set(x,0.66,-0.45);s.castShadow=true;g.wall.add(s);
+  const l=new THREE.Mesh(new THREE.CylinderGeometry(0.02,0.03,0.64,8),steelM);l.position.set(x,0.32,-0.45);l.castShadow=true;g.wall.add(l);});
+ const vol=W*H*Tk; const mPanel=vol*16.387e-6*550;
+ const T=new THREE.Vector3(0.3,1.05,-0.2);
+ return {root,g,meshes,env:'indoor',target:T,mass:{panel:mPanel},
+  explode(on){lay.forEach(m=>{m.position.z=m.userData.home.z+(on?(m.userData.idx-1)*9*IN:0);});g.label.children.forEach(m=>m.position.z=m.userData.home.z+(on?-9*IN:0));},
+  toggles:[['layers','Panel','#D7B98A'],['label','Label','#B08A3C'],['wall','Café wall','#2F3A34']],
+  views:{iso:[3.3,2.2,5.0],top:[0.4,7,0.0],front:[0.4,1.3,6.2],end:[6,1.3,-0.2],tag:[0.45,2.2,-1.3],layers:[3.4,1.9,2.6]},
+  k:'Product 4 · indoor panels from plywood offcuts',h:'<span>Re</span>Nailed Panels',
+  note:`A ¾ in × 4 × 8 ft panel made from clean plywood and OSB offcuts. A millwork partner glues them in crossed layers, the way SecondStory panels are made in Portland, and we screen, brand and sell them.${R(12)} Shown on its stand and as a café wall and counter.`,
+  dims:[[`Sheet size${R(12)}`,'48 × 96 in'],[`Thickness${R(12)}`,'¾ in · 19 mm'],[`Face sanded to${R(12)}`,'150 grit'],['Layers, crossed [T]','3 × ¼ in'],[`Plywood thrown out per year${R(11)}`,'51,748 t'],[`Share of disposed wood${R(11)} [C]`,'≈ 29.7%']],
+  wnote:'Plywood density ≈ 550 kg/m³ [T], to be weighed',
+  basis:`Only clean offcuts: no paint, stain, treatment or contamination${R(8)}. Plywood is glued, so these panels are an indoor product and separate from our bolted, no-glue outdoor benches. Old adhesives need an emissions check before sale [T]. SecondStory’s uses are wall cladding, casework, tabletops, furniture and cabinetry, and it is certified FSC Recycled 100%${R(12)}. Pre-1950 houses mostly have board sheathing, so offcuts come mainly from newer buildings and new construction [T]. No panel price is claimed until a millwork partner quotes.`,
+  hs:[
+   {t:'The biggest wood stream',at:[-14,0,70],b:`51,748 t of plywood is disposed of in Metro Vancouver each year: ≈ 29.7% of the 174,241 t of wood, and about 5.7× the clean dimensional lumber [C]${R(11)}.`},
+   {t:'Crossed layers of offcuts',at:[16,0,40],v:'layers',ex:true,b:`Press Explode. Each layer is a patchwork of offcuts, and the core runs crosswise, like SecondStory’s cross-laminated panels${R(12)}. Crossing the grain is what makes plywood stable. Layer count and thickness are our assumption until a partner confirms [T].`},
+   {t:'Proven in Portland',at:[-18,0,20],b:`Sankofa Lumber collects OSB and plywood scraps from job sites, and a millwork shop just south of Portland makes them into ¾ in × 4 × 8 ft SecondStory panels, sanded to 150 grit${R(12)}. Sankofa’s recycled-wood panels were specified for most concession stands in Portland Airport’s new terminal (those were made from mass-timber roof scraps under a white-oak veneer)${R(22)}. We found no BC firm doing this yet. Possible partners to approach: HMS Lumber in Surrey, which already laminates and sands${R(24)}, and Woodrose Woodworking, a Vancouver millwork shop${R(27)} [T].`},
+   {t:'Clean only, indoor only',at:[18,0,88],b:`We reject painted, stained, treated or dirty plywood${R(8)}. Because the panels are glued, they are sold for indoor use, and old adhesives get an emissions check before sale [T].`},
+   {t:'Where it ends up',at:[67,-37,42],v:'iso',b:`Wall cladding, counters, tabletops, shelves and furniture${R(12)}. A café that buys our benches for the patio can buy panels for the counter wall, with the same source story on the label.`},
+   {t:'Labelled like every ReNailed product',at:[14,-1,84],v:'tag',b:`Each sheet carries a QR label naming the jobsite its offcuts came from (illustrative here). That traceability is what lets us report reuse honestly.`}
+  ]};
+})();
+
+/* MASS TIMBER: DLT panel from reclaimed lamstock */
+P.timber=(function(){
+ const g={wood:new THREE.Group(),dowels:new THREE.Group(),stack:new THREE.Group(),tags:new THREE.Group()};const root=new THREE.Group();Object.values(g).forEach(x=>root.add(x));
+ const meshes=[];let mw=0;
+ const L=96,N=24,LW=2,D=4,z0=30; // panel 96 in long, 24 laminations × 2 in = 48 in wide, 4 in deep (boards on edge)
+ let i=0;
+ for(let r=0;r<N;r++){const y0=r*LW;const off=[0,24,48,72,36,60][r%6];let cuts=[0];let x=off%96;if(x>0)cuts.push(x);while(x+72<96){x+=72;cuts.push(x);}cuts.push(96);cuts=[...new Set(cuts)].sort((a,b)=>a-b);
+  for(let k=0;k<cuts.length-1;k++){const a=cuts[k],c=cuts[k+1];if(c-a<1)continue;const b=[a,c,y0,y0+LW-0.02,z0,z0+D];
+   const m=box(b,woodMat(c-a,i++),g.wood,{n:`Lamination ${r+1} (${(c-a).toFixed(0)} in piece)`,k:'wood',b,s:'reclaimed 2×4 on edge'});m.userData.r=r;meshes.push(m);mw+=(c-a)*LW*D*WOOD_KG_PER_IN3;}}
+ // dowels: through the width every 12 in, two heights [T]
+ const dm=new THREE.MeshStandardMaterial({color:0xE7D3A8,roughness:.6});let nd=0;
+ for(let x=6;x<96;x+=12){[z0+1.25,z0+2.75].forEach((z,j)=>{const xx=x+(j?6:0);if(xx>=96)return;const c=new THREE.Mesh(new THREE.CylinderGeometry(0.375*IN,0.375*IN,N*LW*IN,16),dm);c.rotation.x=Math.PI/2;c.position.set(xx*IN,z*IN,N*LW/2*IN);c.userData={home:c.position.clone(),p:{n:'Hardwood dowel',k:'dowel',b:[0,0.75,0,0.75,0,48],s:'¾ in hardwood dowel [T]'}};g.dowels.add(c);meshes.push(c);nd++;});}
+ // trestles
+ [[10],[86]].forEach(([x])=>{const tb=[x-1,x+1,-4,52,26,30];box(tb,steelM.clone(),root,{n:'Trestle beam',k:'steel',b:tb});
+  [[-2],[48]].forEach(([y])=>{const lb=[x-0.75,x+0.75,y,y+1.5,0,26];box(lb,steelM.clone(),root,{n:'Trestle leg',k:'steel',b:lb});});});
+ // graded lamstock stack beside the panel
+ const tagCols=['#2C6A4C','#2C6A4C','#B06A28','#2C6A4C','#B06A28'];
+ for(let lv=0;lv<5;lv++){for(let k=0;k<6;k++){const len=72+((k*13+lv*7)%5)*6;const y0=-30+k*4.5-0.0;const b=[4,4+len,y0,y0+4,lv*2.3+3.5,lv*2.3+5.5];box(b,woodMat(len,i++),g.stack,{n:`Graded lamstock (${len} in)`,k:'wood',b,s:'de-nailed, graded, tagged'});
+   const t=new THREE.Mesh(new THREE.BoxGeometry(0.06*IN,1.2*IN,2.4*IN),new THREE.MeshStandardMaterial({color:tagCols[(k+lv)%5],roughness:.5}));t.position.set((4+len+0.04)*IN,(lv*2.3+4.5)*IN,(y0+2)*IN);g.stack.add(t);}
+  const s1=[10,12,-31,-2,lv*2.3+2,lv*2.3+3.5];box(s1,new THREE.MeshStandardMaterial({color:0x8C7355,roughness:.9}),g.stack,{n:'Sticker',k:'wood',b:s1});const s2=[60,62,-31,-2,lv*2.3+2,lv*2.3+3.5];box(s2,new THREE.MeshStandardMaterial({color:0x8C7355,roughness:.9}),g.stack,{n:'Sticker',k:'wood',b:s2});}
+ // QR tag on the panel's long edge
+ const tg=plate(qrCanvas(SITE,['DLT test panel 01 [T]','24 laminations · ≈ '+Math.round(mw)+' kg','Every board traced']),8*IN,8*IN*270/900);
+ tg.position.set(48*IN,(z0+2)*IN,(N*LW+0.05)*IN);tg.userData={p:{n:'QR panel tag',k:'tag',b:[0,8,0,0.06,0,2.4],s:'brass plate'},home:tg.position.clone()};g.tags.add(tg);meshes.push(tg);
+ const T=new THREE.Vector3(48*IN,0.6,16*IN);
+ return {root,g,meshes,env:'shop',target:T,mass:{wood:mw},nd,
+  explode(on){g.wood.children.forEach(m=>{m.position.z=m.userData.home.z+(on?m.userData.r*1.1*IN:0);m.position.y=m.userData.home.y+(on?6*IN:0);});g.dowels.children.forEach(m=>{m.position.y=m.userData.home.y+(on?6*IN:0);m.position.z=m.userData.home.z+(on?12.6*IN:0);m.scale.y=on?1.55:1;});g.tags.children.forEach(m=>m.position.y=m.userData.home.y+(on?6*IN:0));},
+  toggles:[['wood','Boards','#D98A3E'],['dowels','Dowels','#E7D3A8'],['stack','Lamstock','#B9773D'],['tags','Tag','#B08A3C']],
+  views:{iso:[4.4,2.5,4.6],top:[1.22,6,0.63],front:[1.22,1.1,5.6],end:[6,1.1,0.6],tag:[1.22,1.0,2.4],dowel:[3.2,1.6,3.0]},
+  k:'Product 6 · long-term: mass-timber feedstock',h:'<span>Re</span>Nailed DLT lamstock',
+  note:`Our longer reclaimed boards, de-nailed and graded, become feedstock for dowel-laminated timber (DLT): boards stacked side by side and held with hardwood dowels, with no nails, screws or glue.${R(15)} We supply graded boards and data; a manufacturer makes the panels [T].`,
+  dims:[['Panel shown (test size) [T]','96 × 48 × 4 in'],['Laminations (2×4 on edge) [T]',String(N)],[`Dowels, ¾ in hardwood [T]`,String(nd)],[`Recovered CLT stiffness vs new${R(13)}`,'10,300 vs 10,900 N/mm²'],[`Recovered CLT bending strength vs new${R(13)}`,'49 vs 50 N/mm²'],[`Recovered wood that reached panels${R(13)}`,'≈ 28% (→ ≈ 70%)']],
+  wnote:'Fir ≈ 545 kg/m³ [5] · dowels not included',
+  basis:`DLT laminations are “friction-fit together with hardwood dowels”, and the fit comes from the different moisture contents of the softwood and the hardwood${R(15)}. With no nails, screws or adhesive, it is easier to mill${R(15)}, and it suits our no-glue rule. Our boards are de-nailed and metal-scanned, with nail holes graded as knots${R(7)} and ≤ 19% moisture${R(6)}. Heavy framing nails sit at stud ends${R(16)}, so trimmed ends go to recycling. Galway’s recovered-timber CLT test used only 3 panels per group, one source and Norway spruce, not Douglas-fir${R(13)}, so we need our own species-matched test. Dowel size and spacing shown are placeholders for an engineer’s design [T].`,
+  hs:[
+   {t:'Dowels, not nails or glue',at:[78,49,31.5],v:'dowel',ex:true,b:`Press Explode to see the hardwood dowels. DLT is softwood lumber “friction-fit together with hardwood dowels”, with no nails, screws or adhesive${R(15)}. Here: ${nd} dowels, ¾ in, at 12 in centres [T].`},
+   {t:'Reclaimed boards, staggered joints',at:[30,24,34],v:'top',b:`Each lamination is made of reclaimed pieces, with end joints staggered so neighbouring joints don’t line up [T]. This uses our 6 ft+ line, wood that today is sold to reclaimed yards. An engineer sets the joint rules [T].`},
+   {t:'Does recovered wood perform?',at:[84,40,34],b:`In Galway, CLT made from 1970s roof-truss spruce matched new timber: stiffness 10,300 vs 10,900 N/mm² and bending strength 49 vs 50 N/mm². But there were only 3 panels per group, from one source${R(13)}.`},
+   {t:'Built in Oakland',at:[12,8,34],b:`Urban Machine’s building at 1070 40th St, Oakland, used reclaimed-wood DLT made by All Bay Lumber, and was completed on Oct 15, 2023${R(14)}. No tonnage was published.`},
+   {t:'Our role: graded lamstock + data',at:[40,-16,14],v:'iso',b:`The stack shows what we would sell: de-nailed, metal-scanned, graded boards, each tagged with its source house, length and grade. Nail holes are graded as knots${R(7)}; moisture ≤ 19%${R(6)}. The manufacturer makes the panels; we do not build a plant [T].`},
+   {t:'Yield is the business question',at:[48,49,33],v:'tag',b:`Only ≈ 28% of Galway’s recovered wood ended up in panels; the authors estimate ≈ 70% with boards closer to the final size${R(13)}. Our per-piece length and grade records are what a manufacturer needs to plan that yield.`}
+  ]};
+})();
+
+
+/* PLANTER / RAISED BED: boards cut from pieces too short for a 2 ft bench slat */
+P.planter=(function(){
+ const g={wood:new THREE.Group(),steel:new THREE.Group(),bolts:new THREE.Group(),liner:new THREE.Group(),plants:new THREE.Group()};const root=new THREE.Group();Object.values(g).forEach(x=>root.add(x));
+ const meshes=[];let mw=0,ms=0,nb=0,i=0;
+ const L=32.875,W=16.375,BH=16,z0=1; // 8 boards long side, 4 boards short side incl. 2 in thickness
+ const board=(b,n)=>{const m=box(b,woodMat(16,i++),g.wood,{n,k:'wood',b,s:'2×4 offcut, 16 in'});meshes.push(m);mw+=(b[1]-b[0])*(b[3]-b[2])*(b[5]-b[4])*WOOD_KG_PER_IN3;return m;};
+ for(let k=0;k<8;k++){const x=k*4.125;board([x,x+4,0,2,z0,z0+BH],'Front board');board([x,x+4,W-2,W,z0,z0+BH],'Back board');}
+ for(let k=0;k<3;k++){const y=2+k*4.125;if(y+4>W-2+0.01)continue;board([0,2,y,Math.min(y+4,W-2),z0,z0+BH],'End board');board([L-2,L,y,Math.min(y+4,W-2),z0,z0+BH],'End board');}
+ const sm=steelM.clone();const st=(b,n,s2)=>{const m=box(b,sm,g.steel,{n,k:'steel',b,s:s2});meshes.push(m);ms+=(b[1]-b[0])*(b[3]-b[2])*(b[5]-b[4])*16.387e-6*7850;};
+ // corner angles (two leaves each), 1.5 × 1.5 × 1/8 in
+ [[0,0,-1,-1],[L,0,1,-1],[0,W,-1,1],[L,W,1,1]].forEach(([x,y,sx,sy])=>{
+  st([sx<0?x-0.125:x,sx<0?x:x+0.125,sy<0?y:y-1.5,sy<0?y+1.5:y,0,z0+BH],'Corner angle','L 1½×1½×⅛ [T]');
+  st([sx<0?x:x-1.5,sx<0?x+1.5:x,sy<0?y-0.125:y,sy<0?y:y+0.125,0,z0+BH],'Corner angle','L 1½×1½×⅛ [T]');});
+ // two steel bands around the outside
+ [[3,4.5],[13,14.5]].forEach(([a,c])=>{st([-0.125,L+0.125,-0.19,0,a,c],'Steel band','flat bar 1½×3⁄16 [T]');st([-0.125,L+0.125,W,W+0.19,a,c],'Steel band','flat bar 1½×3⁄16 [T]');st([-0.19,0,0,W,a,c],'Steel band','flat bar 1½×3⁄16 [T]');st([L,L+0.19,0,W,a,c],'Steel band','flat bar 1½×3⁄16 [T]');});
+ const bg=new THREE.CylinderGeometry(0.3*IN,0.3*IN,0.12*IN,14);
+ const addB=(x,y,z,ax)=>{const b=new THREE.Mesh(bg,boltM);if(ax==='y')b.rotation.x=Math.PI/2;else b.rotation.z=Math.PI/2;b.position.set(x*IN,z*IN,y*IN);b.userData.home=b.position.clone();g.bolts.add(b);nb++;};
+ for(let k=0;k<8;k++){const x=k*4.125+2;[3.75,13.75].forEach(z=>{addB(x,-0.25,z,'y');addB(x,W+0.25,z,'y');});}
+ for(let k=0;k<3;k++){const y=2+k*4.125+2;if(y>W-2)continue;[3.75,13.75].forEach(z=>{addB(-0.25,y,z,'x');addB(L+0.25,y,z,'x');});}
+ // liner (fabric) + soil + plants
+ const linerM=new THREE.MeshStandardMaterial({color:0x2B2E2C,roughness:1});
+ [[2,L-2,2,2.15,z0+0.5,z0+BH-0.5],[2,L-2,W-2.15,W-2,z0+0.5,z0+BH-0.5],[2,2.15,2,W-2,z0+0.5,z0+BH-0.5],[L-2.15,L-2,2,W-2,z0+0.5,z0+BH-0.5],[2,L-2,2,W-2,z0+0.5,z0+0.65]].forEach(b=>{const m=box(b,linerM,g.liner,{n:'Fabric liner',k:'liner',b,s:'keeps soil off the wood [T]'});meshes.push(m);});
+ const soilTex=tex(128,128,(G,w,h)=>{G.fillStyle='#4A3526';G.fillRect(0,0,w,h);for(let q=0;q<900;q++){const c=50+rnd()*40;G.fillStyle=`rgba(${c+20},${c},${c-15},.7)`;G.fillRect(rnd()*w,rnd()*h,2,2)}},[3,2]);
+ const soil=box([2.15,L-2.15,2.15,W-2.15,z0+0.65,z0+BH-1.5],new THREE.MeshStandardMaterial({map:soilTex,roughness:1}),g.plants,{n:'Soil',k:'soil',b:[0,1,0,1,0,1]});
+ const lfs=[0x3F7A3A,0x5B8C46,0x4E7F3F,0x6FA052].map(c=>new THREE.MeshStandardMaterial({color:c,roughness:.95}));
+ for(let k=0;k<7;k++){const x=5+k*3.9,y=W/2+(k%2?2.5:-2.5);for(let q=0;q<4;q++){const r=(1.1+rnd()*0.9)*IN;const m=new THREE.Mesh(new THREE.SphereGeometry(r,12,10),lfs[(k+q)%4]);m.scale.y=0.7;m.position.set((x+(rnd()-.5)*2.5)*IN,(z0+BH-1.2+rnd()*3)*IN,(y+(rnd()-.5)*2.5)*IN);m.castShadow=true;g.plants.add(m);}}
+ // QR tag on the front
+ const tg=plate(qrCanvas(SITE,['Planter P · 16 in offcuts','≈ '+Math.round(mw)+' kg reclaimed fir','Scan for its story']),6*IN,6*IN*270/900);
+ tg.position.set(L/2*IN,9*IN,-0.3*IN);tg.rotation.y=Math.PI;tg.userData={p:{n:'QR source tag',k:'tag',b:[0,6,0,0.06,0,1.8],s:'brass plate 6 × 1.8 in'},home:tg.position.clone()};g.wood.add(tg);meshes.push(tg);
+ root.position.set(0.5,0,0.25);
+ const T=new THREE.Vector3(0.5+L/2*IN,0.22,0.25+W/2*IN);
+ return {root,g,meshes,env:'park',target:T,mass:{wood:mw,steel:ms},nb,
+  explode(on){const d=on?6*IN:0;g.wood.children.forEach(m=>{const h=m.userData.home;const cx=L/2*IN,cy=W/2*IN;const dx=h.x-cx,dz=h.z-cy;const n=Math.hypot(dx/(L/2*IN),dz/(W/2*IN))||1;m.position.x=h.x+dx/(L/2*IN)/n*d*1.2;m.position.z=h.z+dz/(W/2*IN)/n*d*1.2;});
+   g.plants.visible=!on&&document.querySelector('#tog [data-g="plants"]')?.getAttribute('aria-pressed')!=='false';},
+  toggles:[['wood','Wood','#D98A3E'],['steel','Steel','#7E8C84'],['bolts','Bolts','#15211A'],['liner','Liner','#2B2E2C'],['plants','Soil & plants','#4E7F3F']],
+  views:{iso:[2.3,1.25,-1.55],top:[0.92,3.0,0.45],front:[0.92,0.5,-2.1],end:[3.1,0.5,0.46],tag:[0.92,0.4,-0.75]},
+  k:'Product 3 · the next size down',h:'<span>Re</span>Nailed Planter P',
+  note:`A raised planter built from pieces too short even for a 2 ft bench slat: 16 in boards bolted between steel corners, with a fabric liner, no glue and a provenance tag. Priced as a cheap, replaceable, story-driven piece, not as the longest-lasting bed.${R(19,20)}`,
+  dims:[['Outside size [T]','33 × 16⅜ × 17 in'],['Board length (fits pieces < 24 in)','16 in'],['Boards per planter',String(22)],['Bolts, ⅜ in carriage [T]',String(nb)],[`Reclaimed condo planters, BC${R(20)}`,'$150 · $175 · $200'],[`New cedar, North Vancouver${R(21)}`,'$144 sale – $349']],
+  wnote:'Fir ≈ 545 kg/m³ [5] · steel 7,850 kg/m³ · sizes [T]',
+  basis:`Food-garden screening is stricter than for benches: no paint from pre-1960 homes${R(9)}, and no old deck or fence wood that may be CCA-treated${R(25)}. Douglas-fir is only moderately decay-resistant${R(5)}, so a fabric liner keeps soil off the boards and any rotten board is unbolted and swapped [T]. Honest lifespan: SFU’s Embark said its wood beds had “a long life of 5–6 years, pushing”, and is moving to aluminum beds that cost $1,800 and last over 20 years, against about $950 to rebuild wood beds every three years${R(19)}. Our pitch has to beat that $950: swap boards, not whole beds [T].`,
+  hs:[
+   {t:'Wood too short for a bench',at:[10,-0.5,12],v:'front',b:`ReStores take lumber only 6 ft or longer${R(26)}, and our bench needs at least 2 ft slats. These 16 in boards use the offcuts left after that, the next size down.`},
+   {t:'Bolted between steel corners, no glue',at:[0,0,16],exo:[-7,-7,0],ex:true,b:`Press Explode. Every board is held by ${nb} carriage bolts through two steel bands and four corner angles [T]. A rotten board is unbolted and replaced, not the whole bed.`},
+   {t:'Liner and food-safe wood only',at:[16,8,10],ex:true,b:`A fabric liner keeps wet soil off the wood [T]. We reject paint from pre-1960 homes${R(9)} and old deck or fence wood that may be CCA-treated${R(25)}. Douglas-fir is only moderately decay-resistant${R(5)}.`},
+   {t:'Local price anchor',at:[30,8,18],b:`A BC maker sells reclaimed condo-size planters at $150 (24 in), $175 (36 in) and $200 (48 in)${R(20)}. New cedar from North Vancouver’s Coastline Cedar lists $179–$349, with a 47 in box on sale at $144${R(21)}, so we compete on story and repairability, not on lowest price.`},
+   {t:'The honest objection: lifespan',at:[22,16,17],b:`SFU’s Embark is replacing wood beds that lasted “5–6 years, pushing” with aluminum: $1,800 per bed for 20+ years vs about $950 to rebuild wood every three years${R(19)}. Our answer is cheap board swaps; we must show they cost well under $950 [T].`},
+   {t:'Tagged with its source house',at:[16.4,-0.4,9],v:'tag',b:`Like every ReNailed piece, the planter carries a QR tag naming the house its wood came from (illustrative here).`}
+  ]};
+})();
+
+/* ACOUSTIC PANEL: the same plywood-offcut sheet, perforated, over an air gap */
+P.acoustic=(function(){
+ const g={face:new THREE.Group(),absorber:new THREE.Group(),battens:new THREE.Group(),label:new THREE.Group()};const root=new THREE.Group();Object.values(g).forEach(x=>root.add(x));
+ const meshes=[];
+ const tones=['#D7B98A','#C9A776','#E0C79D','#B98F5E','#D2B07C','#CDB48C'];
+ const faceTex=tex(512,1024,(G,w,h)=>{G.fillStyle='#CDB38A';G.fillRect(0,0,w,h);let y=0;while(y<h){const ph=50+rnd()*110;let x=0;while(x<w){const pw=60+rnd()*200;G.fillStyle=tones[Math.floor(rnd()*tones.length)];G.fillRect(x,y,pw,ph);G.strokeStyle='rgba(60,40,20,.4)';G.strokeRect(x,y,pw,ph);x+=pw;}y+=ph;}
+   G.fillStyle='rgba(25,18,10,.85)';for(let yy=10;yy<h;yy+=14)for(let xx=10;xx<w;xx+=14){G.beginPath();G.arc(xx,yy,2.6,0,7);G.fill();}});
+ const edge=new THREE.MeshStandardMaterial({color:0xD9BF94,roughness:.8});
+ const W=48,H=96,wallZ=-1.40/IN; // inches; wall face at z = -1.40 m
+ const panels=[-26,26];
+ panels.forEach((cx,j)=>{
+  const t=faceTex.clone();t.needsUpdate=true;t.offset.set(j*0.37,j*0.21);
+  const face=new THREE.Mesh(new THREE.BoxGeometry(W*IN,H*IN,0.75*IN),[edge,edge,edge,edge,new THREE.MeshStandardMaterial({map:t,roughness:.7}),edge]);
+  face.position.set(cx*IN,(H/2+6)*IN,(wallZ+2+0.375)*IN);face.castShadow=true;face.receiveShadow=true;face.userData={p:{n:'Perforated face sheet',k:'face',b:[0,W,0,0.75,0,H],s:'¾ in plywood-offcut panel, drilled [T]'},home:face.position.clone()};g.face.add(face);meshes.push(face);
+  const ab=new THREE.Mesh(new THREE.BoxGeometry((W-3)*IN,(H-3)*IN,1.5*IN),new THREE.MeshStandardMaterial({color:0xC9B27A,roughness:1}));
+  ab.position.set(cx*IN,(H/2+6)*IN,(wallZ+0.75)*IN);ab.userData={p:{n:'Absorber in the air gap',k:'abs',b:[0,W-3,0,1.5,0,H-3],s:'1½ in mineral wool [T]'},home:ab.position.clone()};g.absorber.add(ab);meshes.push(ab);
+  [-W/2+0.75,0,W/2-0.75].forEach(dx=>{const b=new THREE.Mesh(new THREE.BoxGeometry(1.5*IN,H*IN,2*IN),new THREE.MeshStandardMaterial({color:0x9C7A4E,roughness:.9}));b.position.set((cx+dx)*IN,(H/2+6)*IN,(wallZ+1)*IN);b.castShadow=true;b.userData={p:{n:'Batten (sets the 2 in air gap)',k:'batten',b:[0,1.5,0,2,0,H],s:'2 in ≈ 50 mm deep [T]'},home:b.position.clone()};g.battens.add(b);meshes.push(b);});
+ });
+ const lb=plate(qrCanvas(SITE,['Acoustic panel A · 4 × 8 ft','Same offcuts as our flat panels','Scan for its source']),8*IN,8*IN*270/900);
+ lb.position.set(-26*IN,14*IN,(wallZ+2.8)*IN);lb.userData={p:{n:'QR panel label',k:'tag',b:[0,8,0,0.06,0,2.4],s:'printed label'},home:lb.position.clone()};g.label.add(lb);meshes.push(lb);
+ // meeting table + chairs to read scale
+ const tb=box([-30,30,-34,-4,28.5,30],new THREE.MeshStandardMaterial({color:0xC7A06A,roughness:.6}),root,{n:'Table',k:'x',b:[0,1,0,1,0,1]});
+ [[-26,-32],[26,-32],[-26,-6],[26,-6]].forEach(([x,y])=>box([x-0.75,x+0.75,y-0.75,y+0.75,0,28.5],steelM,root,{n:'Leg',k:'x',b:[0,1,0,1,0,1]}));
+ root.position.set(0.6,0,0);
+ const T=new THREE.Vector3(0.6,1.25,-1.2);
+ return {root,g,meshes,env:'indoor',target:T,mass:{panel:W*H*0.75*16.387e-6*550},
+  explode(on){g.face.children.forEach(m=>m.position.z=m.userData.home.z+(on?14*IN:0));g.absorber.children.forEach(m=>m.position.z=m.userData.home.z+(on?7*IN:0));g.label.children.forEach(m=>m.position.z=m.userData.home.z+(on?14*IN:0));},
+  toggles:[['face','Perforated face','#D7B98A'],['absorber','Absorber','#C9B27A'],['battens','Battens','#9C7A4E'],['label','Label','#B08A3C']],
+  views:{iso:[3.9,1.8,3.6],top:[0.6,7,0.2],front:[0.6,1.4,5.2],end:[5.4,1.4,-1.0],tag:[0.0,0.7,0.3],gap:[3.6,1.7,0.9]},
+  k:'Product 5 · a different cut of the panel line',h:'<span>Re</span>Nailed Acoustic',
+  note:`The same screened plywood-offcut sheet and the same millwork partner as ReNailed Panels, but drilled with a grid of small holes and fixed over a 2 in air gap so it absorbs sound. Aimed at campus and office rooms rather than cladding.${R(23)}`,
+  dims:[['Sheet size (same as Panels)','48 × 96 in'],['Face thickness','¾ in'],[`Air gap behind (study used 50 mm)${R(23)}`,'2 in · 50 mm'],[`Holes in the study${R(23)}`,'1–2 mm, 8–10 mm apart'],[`Study absorption peaks${R(23)}`,'200–500 Hz'],['Absorber in the gap [T]','1½ in mineral wool']],
+  wnote:'Plywood density ≈ 550 kg/m³ [T], before drilling',
+  basis:`Perforated wood over an air gap is a published sound-absorber design: Song et al. drilled 1–2 mm holes 8–10 mm apart in 5–10 mm pine panels, used a 50 mm air cavity, and measured absorption peaks at 200–500 Hz${R(23)}. That study used solid pine, not plywood, so we claim no absorption number until our own panels are tested [T]. Hole sizes drawn here are enlarged so they show on screen. Indoor wall finishes usually need a flame-spread rating, which we must check before quoting [T]. Supply and partner are the same as ReNailed Panels${R(12,24)}.`,
+  hs:[
+   {t:'Same sheet, different cut',at:[-14,-52,80],b:`No new supply chain: the same screened plywood offcuts, laminated by the same millwork partner as ReNailed Panels${R(12)}, then drilled instead of left flat [T].`},
+   {t:'Holes + air gap = sound absorber',at:[26,-52,60],exo:[0,14,0],v:'gap',ex:true,b:`Press Explode. Small holes in the face and an air gap behind it make a resonant absorber. In Song et al., 1–2 mm holes in pine over a 50 mm cavity absorbed most around 200–500 Hz${R(23)}. That was solid pine, so we test our own panels [T].`},
+   {t:'Absorber and battens',at:[-26,-54,40],exo:[0,7,0],v:'gap',ex:true,b:`Battens set the 2 in (≈ 50 mm) gap; mineral wool in the gap is a common addition [T]. Both are standard, cheap materials, so the reclaimed face is where the value is.`},
+   {t:'Who buys it',at:[0,-15,31],v:'iso',b:`Campus classrooms, study rooms and offices, where echo is the problem. Sold alongside our benches and flat panels as one story [T].`},
+   {t:'Check before selling: fire rating',at:[30,-52,96],b:`Indoor wall finishes on campuses and offices usually need a flame-spread rating, so we check that requirement and test before quoting [T].`},
+   {t:'Labelled with its source',at:[-26,-52,14],v:'tag',exo:[0,14,0],b:`Each panel carries a QR label naming the jobsite its offcuts came from (illustrative here).`}
+  ]};
+})();
+
+Object.values(P).forEach(p=>{p.root.visible=false;scene.add(p.root);});
+scene.traverse(o=>{if(o.isMesh){[].concat(o.material).forEach(m=>{if(m&&!m.userData.lin&&m.color&&!m.map){m.color.convertSRGBToLinear();if(m.emissive&&m.emissive.getHex())m.emissive.convertSRGBToLinear();m.userData.lin=1}})}});
+
+/* ---------- UI ---------- */
+const pick=document.getElementById('pick'),layer=document.getElementById('hs-layer');
+let cur=null,curHS=-1,hsEls=[],exploded=false,sel=null;
+function size(){const w=stage.clientWidth,h=stage.clientHeight;renderer.setSize(w,h,false);cam.aspect=w/h;cam.updateProjectionMatrix();}
+new ResizeObserver(size).observe(stage);size();
+function setView(v){const p=P[cur],T=p.target,o=p.views[v]||p.views.iso;
+ if(cur==='table')cam.position.set(T.x+o[0],o[1],T.z+o[2]);else cam.position.set(o[0],o[1],o[2]);
+ ctl.target.copy(T);ctl.update();['iso','top','front','end'].forEach(k=>document.getElementById('v-'+k).setAttribute('aria-pressed',k===v));}
+['iso','top','front','end'].forEach(k=>document.getElementById('v-'+k).onclick=()=>setView(k));
+function setExplode(on){exploded=on;document.getElementById('v-explode').setAttribute('aria-pressed',on);P[cur].explode(on);}
+document.getElementById('v-explode').onclick=()=>setExplode(!exploded);
+function panel(num,title,html,nav){pick.hidden=false;pick.innerHTML=`<div class="top"><span class="num">${num}</span><b></b><button class="x" aria-label="Close panel">×</button></div><p class="body"></p>`+(nav?`<div class="nav"><button data-d="-1">‹ Prev</button><button data-d="1">Next ›</button></div>`:'');
+ pick.querySelector('b').textContent=title;pick.querySelector('.body').innerHTML=html;pick.querySelector('.x').onclick=()=>{pick.hidden=true;hsEls.forEach(e=>e.classList.remove('on'));curHS=-1;};
+ pick.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>showHS((curHS+(+b.dataset.d)+P[cur].hs.length)%P[cur].hs.length));}
+function clearSel(){if(sel){[].concat(sel.material).forEach(m=>m&&m.emissive&&m.emissive.setHex(0));sel=null}}
+function showHS(i){const p=P[cur];curHS=i;hsEls.forEach((e,j)=>e.classList.toggle('on',j===i));clearSel();
+ const h=p.hs[i];if(h.ex!==undefined)setExplode(!!h.ex);else if(exploded)setExplode(false);
+ if(p.g.zone)p.g.zone.visible=h.on==='zone'||document.querySelector('#tog [data-g="zone"]').getAttribute('aria-pressed')==='true';
+ setView(h.v||'iso');panel(i+1,h.t,h.b,true);}
+document.getElementById('v-tour').onclick=()=>showHS(curHS<0?0:(curHS+1)%P[cur].hs.length);
+function load(name){if(!P[name])name='table';
+ Object.entries(P).forEach(([k,p])=>p.root.visible=k===name);
+ if(cur&&exploded)P[cur].explode(false);exploded=false;document.getElementById('v-explode').setAttribute('aria-pressed',false);
+ cur=name;const p=P[name];
+ Object.entries(envs).forEach(([k,e])=>e.visible=k===p.env);
+ stage.className='stage'+(p.env==='indoor'?' indoor':p.env==='shop'?' shop':'');
+ scene.fog=p.env==='park'?new THREE.Fog(lin(0xC9DCE4),16,48):null;
+ hemi.intensity=p.env==='park'?0.75:0.9; sun.intensity=p.env==='indoor'?1.0:1.35;
+ sun.target.position.copy(p.target);sun.position.set(p.target.x+2.6,5,p.target.z+2.2);
+ document.querySelectorAll('.tabs button').forEach(b=>b.setAttribute('aria-selected',b.dataset.p===name));
+ document.getElementById('p-k').textContent=p.k;document.getElementById('p-h').innerHTML=p.h;document.getElementById('p-note').innerHTML=p.note;
+ document.getElementById('p-dims').innerHTML=p.dims.map(([a,b])=>`<tr><td>${a}</td><td>${b}</td></tr>`).join('');
+ const ms=p.mass;let rows='';
+ if(ms.wood!==undefined)rows+=`<tr><td>Reclaimed wood</td><td>${ms.wood.toFixed(1)} kg</td></tr>`;
+ if(ms.steel!==undefined)rows+=`<tr><td>Steel frame</td><td>${ms.steel.toFixed(1)} kg</td></tr><tr><td><b>Total</b></td><td>${(ms.wood+ms.steel).toFixed(1)} kg</td></tr><tr><td>Steel CO₂ at 1.92 t/t${R(18)}</td><td>≈ ${Math.round(ms.steel*1.92)} kg CO₂</td></tr>`;
+ if(ms.panel!==undefined)rows+=`<tr><td>One 4 × 8 ft panel</td><td>≈ ${ms.panel.toFixed(0)} kg</td></tr><tr><td>Panels per tonne of offcuts [C]</td><td>≈ ${Math.floor(1000/ms.panel)}</td></tr>`;
+ if(name==='timber')rows+=`<tr><td>Panels per tonne of lamstock [C]</td><td>≈ ${(1000/ms.wood).toFixed(1)}</td></tr>`;
+ document.getElementById('p-mass').innerHTML=rows;document.getElementById('p-wnote').innerHTML=p.wnote;
+ document.getElementById('p-basis').innerHTML=p.basis;
+ const tg=document.getElementById('tog');tg.innerHTML='';p.toggles.forEach(([k,label,c,def])=>{const b=document.createElement('button');b.dataset.g=k;const on=def!==false;b.setAttribute('aria-pressed',on);b.innerHTML=`<span class="sw" style="background:${c}"></span>${label}`;
+  if(p.g[k])p.g[k].visible=on;b.onclick=()=>{const v=!p.g[k].visible;p.g[k].visible=v;b.setAttribute('aria-pressed',v);};tg.appendChild(b);});
+ const hb=document.createElement('button');hb.dataset.g='hs';hb.setAttribute('aria-pressed',true);hb.innerHTML='<span class="sw" style="background:#B06A28;border-radius:50%"></span>Markers';hb.onclick=()=>{hsOn=!hsOn;hb.setAttribute('aria-pressed',hsOn)};tg.appendChild(hb);
+ layer.innerHTML='';hsEls=p.hs.map((h,i)=>{const b=document.createElement('button');b.className='hs';b.textContent=i+1;b.setAttribute('aria-label',h.t);b.onclick=()=>showHS(i);layer.appendChild(b);return b;});
+ curHS=-1;clearSel();setView('iso');
+ panel('i','Explore the '+({table:'table',planter:'planter',panel:'panel',acoustic:'acoustic panel',timber:'DLT panel'}[name]),`Tap a numbered marker for the evidence behind each part, or tap any part for its size and material. Press “Tour” to walk through all ${p.hs.length}.`,false);
+ if(location.hash.slice(1)!==name)history.replaceState(null,'','#'+name);}
+let hsOn=true;
+document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>load(b.dataset.p));
+addEventListener('hashchange',()=>load(location.hash.slice(1)));
+// picking
+const ray=new THREE.Raycaster(),pt=new THREE.Vector2();let down=null;
+canvas.addEventListener('pointerdown',e=>down=[e.clientX,e.clientY]);
+canvas.addEventListener('pointerup',e=>{if(!down||Math.hypot(e.clientX-down[0],e.clientY-down[1])>5)return;
+ const r=canvas.getBoundingClientRect();pt.set((e.clientX-r.left)/r.width*2-1,-(e.clientY-r.top)/r.height*2+1);ray.setFromCamera(pt,cam);
+ const hit=ray.intersectObjects(P[cur].meshes.filter(m=>m.parent.visible),false)[0];clearSel();if(!hit)return;
+ sel=hit.object;[].concat(sel.material).forEach(m=>m&&m.emissive&&m.emissive.setHex(0x0B2A1A));
+ const p=sel.userData.p;const [x0,x1,y0,y1,z0,z1]=p.b;const d=[x1-x0,y1-y0,z1-z0].map(v=>+v.toFixed(2)).sort((a,b)=>b-a);
+ const mat={wood:'Reclaimed Douglas-fir, ≤ 19% moisture',steel:'Steel, galvanized or powder-coated [T]',tag:'Brass plate or printed label',panel:'Clean plywood/OSB offcuts, glued in crossed layers',dowel:'Hardwood dowel, friction fit'}[p.k]||'';
+ hsEls.forEach(e=>e.classList.remove('on'));curHS=-1;
+ const esc=t=>t.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+ panel('•',p.n,`${esc(d.join(' × ')+' in'+(p.s?' · '+p.s:''))}<br>${esc(mat)}`,false);});
+const v3=new THREE.Vector3();
+function placeHS(){const p=P[cur],w=stage.clientWidth,h=stage.clientHeight;p.hs.forEach((s,i)=>{const [x,y,z]=s.at;
+  let X=x*IN,Y=z*IN,Z=y*IN;if(cur==='panel'){X=(x)*IN;Y=z*IN+2*IN;Z=y*IN;}
+  if(exploded&&s.exo){X+=s.exo[0]*IN;Z+=s.exo[1]*IN;Y+=s.exo[2]*IN;}
+  if(exploded&&cur==='table'&&z>15)Y+=8*IN*1.4; if(exploded&&cur==='timber'&&z>25)Y+=6*IN;
+  X+=p.root.position.x;Y+=p.root.position.y;Z+=p.root.position.z;
+  v3.set(X,Y,Z).project(cam);const el=hsEls[i];const vis=hsOn&&v3.z<1&&Math.abs(v3.x)<1.05&&Math.abs(v3.y)<1.05;el.hidden=!vis;if(vis){el.style.left=((v3.x+1)/2*w)+'px';el.style.top=((1-v3.y)/2*h)+'px';}});}
+load(location.hash.slice(1)||'table');
+(function loop(){ctl.update();renderer.render(scene,cam);placeHS();requestAnimationFrame(loop)})();
+window.__RN={load,setView,setExplode,P};
+})();
+</script>
+
+</body></html>
