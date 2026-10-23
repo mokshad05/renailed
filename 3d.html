@@ -246,9 +246,6 @@ P.table=(function(){
  const addB=(x,y,z)=>{const b=new THREE.Mesh(bg,boltM);b.position.set(x*IN,(z+0.03)*IN,y*IN);b.userData.home=b.position.clone();g.bolts.add(b);nb++;};
  for(let r=0;r<rows;r++){const y=r*4.125+2;[0.75,24,48,71.25].forEach(x=>{addB(x,y-1,zT1);addB(x,y+1,zT1);});}
  sy.forEach(([a])=>{for(let r=0;r<3;r++){const y=a+r*4.125+2;[23.25,48,71.25].forEach(x=>{addB(x,y-1,17.5);addB(x,y+1,17.5);});}});
- // QR tag on top front edge
- const tg=plate(qrCanvas(SITE,['Kitsilano · 1920s house [T]','≈ 62 kg reclaimed fir','Scan for its story']),7.5*IN,7.5*IN*270/900);
- tg.position.set(56*IN,30*IN,(topW+0.04)*IN);tg.castShadow=true;tg.userData={p:{n:'QR source tag',k:'tag',b:[52,59.5,0,0.06,29,31],s:'brass plate 7½ × 2¼ in'},home:tg.position.clone()};g.wood.add(tg);meshes.push(tg);
  // accessible-zone marker
  const zone=new THREE.Mesh(new THREE.BoxGeometry(22.5*IN,27*IN,30*IN),new THREE.MeshBasicMaterial({color:0x2C6A4C,transparent:true,opacity:0.16,depthWrite:false}));
  zone.position.set(11.25*IN,13.5*IN,topW/2*IN);zone.visible=false;root.add(zone);g.zone=zone;
@@ -256,7 +253,7 @@ P.table=(function(){
  return {root,g,meshes,env:'park',target:T,mass:{wood:mw,steel:ms},nb,
   explode(on){const L=on?8*IN:0;g.wood.children.forEach(m=>m.position.y=m.userData.home.y+(m.userData.home.y>0.6?L*1.4:L));g.bolts.children.forEach(m=>m.position.y=m.userData.home.y+(m.userData.home.y>0.6?L*1.8:L*1.4));},
   toggles:[['wood','Wood','#D98A3E'],['steel','Steel','#7E8C84'],['bolts','Bolts','#15211A'],['zone','Wheelchair space','#2C6A4C',false]],
-  views:{iso:[2.6,1.35,3.4],top:[0,3.8,0.001],front:[0,0.6,3.9],end:[3.4,0.6,0],acc:[-2.6,0.8,0.9],tag:[0.45,0.8,1.5]},
+  views:{iso:[2.6,1.35,3.4],top:[0,3.8,0.001],front:[0,0.6,3.9],end:[3.4,0.6,0],acc:[-2.6,0.8,0.9]},
   k:'Product 2 · park and campus table',h:'<span>Re</span>Nailed Table T',
   note:`A 6-ft picnic table built from the bench’s parts: the same reclaimed 2×4 slats, the same 24 in support grid and the same bolts. One end is open for a wheelchair user.${R(1,2,3)}`,
   dims:[[`Top height: 28–34 in allowed${R(1)}`,'31 in · 787 mm'],[`Open end: ≥ 17 in deep, ≥ 30 in wide, ≥ 27 in clear${R(2)}`,'22½ × 32⅞ × 27½ in'],[`Seat height (bench range 17–19 in)${R(1)}`,'17½ in'],[`Supports ≤ 24 in apart${R(3)}`,'24 in grid'],['Length × width (top)','72 × 32⅞ in'],['Bolts, ⅜ in carriage [T]',String(nb)]],
@@ -268,7 +265,7 @@ P.table=(function(){
    {t:'Seats at bench height',at:[60,-8,17.5],b:`Seats are 17½ in high, inside the 17–19 in range for benches${R(1)}, and 12¼ in deep (3 slats) [T]. Seats start 24 in from the open end so a wheelchair can pull in.`},
    {t:'2.4× the wood of one bench',at:[36,26,31],b:`≈ ${mw.toFixed(0)} kg of reclaimed fir per table vs ≈ 26 kg per bench [C], using Douglas-fir density${R(5)}. More wood placed per sale means more wood saved from each house.`},
    {t:'A bigger ticket from the same lab',at:[71,30,31],b:`Richmond charges $4,000 for a dedication table and $3,500 for a bench${R(10)}. The table reuses the same De-Nail Lab, frame supplier and installer. Our price is set only after a fabricator quote [T].`},
-   {t:'Tagged, bolted, taken back',at:[56,topW+1,30],v:'tag',b:`Like the bench, each table carries a brass QR tag naming its source house (the one shown is illustrative). ${nb} bolts let a worn slat be swapped, not the table. Upkeep can be sold as a plan, as Burnaby budgets $200 per bench per year${R(17)}.`}
+   {t:'Bolted, swapped, taken back',at:[56,topW+1,30],b:`${nb} bolts let a worn slat be swapped, not the table. Upkeep can be sold as a plan, as Burnaby budgets $200 per bench per year${R(17)}.`}
   ]};
 })();
 
@@ -405,18 +402,15 @@ P.planter=(function(){
  const soil=box([2.15,L-2.15,2.15,W-2.15,z0+0.65,z0+BH-1.5],new THREE.MeshStandardMaterial({map:soilTex,roughness:1}),g.plants,{n:'Soil',k:'soil',b:[0,1,0,1,0,1]});
  const lfs=[0x3F7A3A,0x5B8C46,0x4E7F3F,0x6FA052].map(c=>new THREE.MeshStandardMaterial({color:c,roughness:.95}));
  for(let k=0;k<7;k++){const x=5+k*3.9,y=W/2+(k%2?2.5:-2.5);for(let q=0;q<4;q++){const r=(1.1+rnd()*0.9)*IN;const m=new THREE.Mesh(new THREE.SphereGeometry(r,12,10),lfs[(k+q)%4]);m.scale.y=0.7;m.position.set((x+(rnd()-.5)*2.5)*IN,(z0+BH-1.2+rnd()*3)*IN,(y+(rnd()-.5)*2.5)*IN);m.castShadow=true;g.plants.add(m);}}
- // QR tag on the front
- const tg=plate(qrCanvas(SITE,['Planter P · 16 in offcuts','≈ '+Math.round(mw)+' kg reclaimed fir','Scan for its story']),6*IN,6*IN*270/900);
- tg.position.set(L/2*IN,9*IN,-0.3*IN);tg.rotation.y=Math.PI;tg.userData={p:{n:'QR source tag',k:'tag',b:[0,6,0,0.06,0,1.8],s:'brass plate 6 × 1.8 in'},home:tg.position.clone()};g.wood.add(tg);meshes.push(tg);
  root.position.set(0.5,0,0.25);
  const T=new THREE.Vector3(0.5+L/2*IN,0.22,0.25+W/2*IN);
  return {root,g,meshes,env:'park',target:T,mass:{wood:mw,steel:ms},nb,
   explode(on){const d=on?6*IN:0;g.wood.children.forEach(m=>{const h=m.userData.home;const cx=L/2*IN,cy=W/2*IN;const dx=h.x-cx,dz=h.z-cy;const n=Math.hypot(dx/(L/2*IN),dz/(W/2*IN))||1;m.position.x=h.x+dx/(L/2*IN)/n*d*1.2;m.position.z=h.z+dz/(W/2*IN)/n*d*1.2;});
    g.plants.visible=!on&&document.querySelector('#tog [data-g="plants"]')?.getAttribute('aria-pressed')!=='false';},
   toggles:[['wood','Wood','#D98A3E'],['steel','Steel','#7E8C84'],['bolts','Bolts','#15211A'],['liner','Liner','#2B2E2C'],['plants','Soil & plants','#4E7F3F']],
-  views:{iso:[2.3,1.25,-1.55],top:[0.92,3.0,0.45],front:[0.92,0.5,-2.1],end:[3.1,0.5,0.46],tag:[0.92,0.4,-0.75]},
+  views:{iso:[2.3,1.25,-1.55],top:[0.92,3.0,0.45],front:[0.92,0.5,-2.1],end:[3.1,0.5,0.46]},
   k:'Product 3 · the next size down',h:'<span>Re</span>Nailed Planter P',
-  note:`A raised planter built from pieces too short even for a 2 ft bench slat: 16 in boards bolted between steel corners, with a fabric liner, no glue and a provenance tag. Priced as a cheap, replaceable, story-driven piece, not as the longest-lasting bed.${R(19,20)}`,
+  note:`A raised planter built from pieces too short even for a 2 ft bench slat: 16 in boards bolted between steel corners, with a fabric liner and no glue. Priced as a cheap, replaceable, story-driven piece, not as the longest-lasting bed.${R(19,20)}`,
   dims:[['Outside size [T]','33 × 16⅜ × 17 in'],['Board length (fits pieces < 24 in)','16 in'],['Boards per planter',String(22)],['Bolts, ⅜ in carriage [T]',String(nb)],[`Reclaimed condo planters, BC${R(20)}`,'$150 · $175 · $200'],[`New cedar, North Vancouver${R(21)}`,'$144 sale – $349']],
   wnote:'Fir ≈ 545 kg/m³ [5] · steel 7,850 kg/m³ · sizes [T]',
   basis:`Food-garden screening is stricter than for benches: no paint from pre-1960 homes${R(9)}, and no old deck or fence wood that may be CCA-treated${R(25)}. Douglas-fir is only moderately decay-resistant${R(5)}, so a fabric liner keeps soil off the boards and any rotten board is unbolted and swapped [T]. Honest lifespan: SFU’s Embark said its wood beds had “a long life of 5–6 years, pushing”, and is moving to aluminum beds that cost $1,800 and last over 20 years, against about $950 to rebuild wood beds every three years${R(19)}. Our pitch has to beat that $950: swap boards, not whole beds [T].`,
@@ -425,8 +419,7 @@ P.planter=(function(){
    {t:'Bolted between steel corners, no glue',at:[0,0,16],exo:[-7,-7,0],ex:true,b:`Press Explode. Every board is held by ${nb} carriage bolts through two steel bands and four corner angles [T]. A rotten board is unbolted and replaced, not the whole bed.`},
    {t:'Liner and food-safe wood only',at:[16,8,10],ex:true,b:`A fabric liner keeps wet soil off the wood [T]. We reject paint from pre-1960 homes${R(9)} and old deck or fence wood that may be CCA-treated${R(25)}. Douglas-fir is only moderately decay-resistant${R(5)}.`},
    {t:'Local price anchor',at:[30,8,18],b:`A BC maker sells reclaimed condo-size planters at $150 (24 in), $175 (36 in) and $200 (48 in)${R(20)}. New cedar from North Vancouver’s Coastline Cedar lists $179–$349, with a 47 in box on sale at $144${R(21)}, so we compete on story and repairability, not on lowest price.`},
-   {t:'The honest objection: lifespan',at:[22,16,17],b:`SFU’s Embark is replacing wood beds that lasted “5–6 years, pushing” with aluminum: $1,800 per bed for 20+ years vs about $950 to rebuild wood every three years${R(19)}. Our answer is cheap board swaps; we must show they cost well under $950 [T].`},
-   {t:'Tagged with its source house',at:[16.4,-0.4,9],v:'tag',b:`Like every ReNailed piece, the planter carries a QR tag naming the house its wood came from (illustrative here).`}
+   {t:'The honest objection: lifespan',at:[22,16,17],b:`SFU’s Embark is replacing wood beds that lasted “5–6 years, pushing” with aluminum: $1,800 per bed for 20+ years vs about $950 to rebuild wood every three years${R(19)}. Our answer is cheap board swaps; we must show they cost well under $950 [T].`}
   ]};
 })();
 
