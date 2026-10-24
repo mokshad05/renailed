@@ -1,0 +1,897 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ReGrade — Forward Vision 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400..700&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;box-sizing:border-box}
+html,body{height:100%;background:#1E4A37;overflow:hidden}
+#stage{position:absolute;left:50%;top:50%;width:1920px;height:1080px;transform-origin:0 0}
+.slide{position:absolute!important;inset:0;width:1920px;height:1080px;overflow:hidden}
+.slide:not(.on){display:none!important}
+.slide div{display:flex;flex-direction:column}
+aside{display:none} .slide>*{position:relative;z-index:1}
+table{border-collapse:collapse} td,th{padding:12px 16px;border-bottom:1px solid #DDD5C6;text-align:left;vertical-align:top}
+a{color:inherit}
+#bar{position:fixed;left:0;right:0;bottom:0;display:flex;gap:8px;align-items:center;justify-content:center;padding:8px;font:14px 'Public Sans',Arial,sans-serif;color:#EEF3EA;background:rgba(30,74,55,.9);opacity:0;transition:opacity .2s}
+body:hover #bar,#bar:focus-within{opacity:1}
+#bar button{font:inherit;color:inherit;background:#2A5C47;border:1px solid #E3A33B;border-radius:6px;padding:6px 12px;cursor:pointer}
+#notes{position:fixed;left:16px;right:16px;bottom:56px;max-height:35vh;overflow:auto;padding:16px 20px;font:16px/1.5 'Public Sans',Arial,sans-serif;color:#1E4A37;background:#EEF3EA;border-radius:8px;display:none}
+#notes.on{display:block}
+</style></head><body>
+<div id="stage">
+<section class="slide" id="cover" data-transition="fade" style="background:radial-gradient(circle at 78% 50%, #2a5c47 0%, #1e4a37 60%); font-family:'Public Sans', Arial, sans-serif">
+  <div style="position:absolute; top:0; left:0; width:36px; height:1080px; display:flex; flex-direction:column; background:repeating-linear-gradient(180deg, #c98b4a 0, #c98b4a 54px, #b37a3e 54px, #b37a3e 58px, #d29a5c 58px, #d29a5c 120px, #b37a3e 120px, #b37a3e 123px)">
+  </div>
+  <p id="e3-1ftwghs" style="position:absolute; bottom:64px; left:128px; width:1664px; font-family:'Oswald', Arial, sans-serif; font-size:24px; letter-spacing:3px; text-transform:uppercase; color:#a9c9b6">Problem · Model · Money · Pilot · Impact · Ask</p>
+  <div id="p430051f9699br0-f26daab5" style="position:absolute; top:252px; left:128px; width:840px; height:544px; display:flex; flex-direction:column; gap:32px">
+    <p style="font-family:'Oswald', Arial, sans-serif; font-size:24px; letter-spacing:4px; text-transform:uppercase; color:#e3a33b">Forward Vision 2026 · Enactus SFU · Final pitch</p>
+    <h1 style="font-family:'Oswald', Arial, sans-serif; font-size:200px; font-weight:700; line-height:1; letter-spacing:-2px; text-decoration:underline; color:#eef3ea">Re<span style="color:#e3a33b">Grade</span></h1>
+    <p style="font-family:'Oswald', Arial, sans-serif; font-size:72px; font-weight:600; line-height:1.1; color:#eef3ea">Old wood. <span style="color:#e3a33b">New life.</span></p>
+    <p style="width:820px; font-family:'Public Sans', Arial, sans-serif; font-size:34px; line-height:1.4; color:#cfe3d6">We turn the wood from Vancouver teardowns into graded, saleable material, and the best pieces into outdoor furniture.</p>
+  </div>
+  <div style="position:absolute; top:164px; left:1032px; width:760px; height:720px; display:flex; flex-direction:column">
+<svg aria-label="Scattered teardown planks dropping into place to form a new outdoor bench, with a seedling growing beside it" viewBox="0 0 760 720" width="760" height="720" style="position:absolute;left:0;top:0;width:760px;height:720px">
+<ellipse cx="380" cy="690" rx="330" ry="22" fill="#163D2D"/>
+<rect x="40" y="60" width="230" height="24" rx="5" fill="#C98B4A" opacity="1" transform="rotate(-18 155.0 72)"/>
+<circle cx="58" cy="72" r="3" fill="#EEF3EA" opacity="0.8" transform="rotate(-18 155.0 72)"/>
+<rect x="250" y="30" width="200" height="24" rx="5" fill="#D29A5C" opacity="0.9" transform="rotate(12 350.0 42)"/>
+<circle cx="268" cy="42" r="3" fill="#EEF3EA" opacity="0.8" transform="rotate(12 350.0 42)"/>
+<rect x="90" y="150" width="260" height="24" rx="5" fill="#B37A3E" opacity="1" transform="rotate(8 220.0 162)"/>
+<circle cx="108" cy="162" r="3" fill="#EEF3EA" opacity="0.8" transform="rotate(8 220.0 162)"/>
+<rect x="330" y="120" width="170" height="24" rx="5" fill="#C98B4A" opacity="0.8" transform="rotate(-28 415.0 132)"/>
+<circle cx="348" cy="132" r="3" fill="#EEF3EA" opacity="0.8" transform="rotate(-28 415.0 132)"/>
+<rect x="20" y="230" width="180" height="24" rx="5" fill="#D29A5C" opacity="0.7" transform="rotate(22 110.0 242)"/>
+<circle cx="38" cy="242" r="3" fill="#EEF3EA" opacity="0.8" transform="rotate(22 110.0 242)"/>
+<rect x="240" y="220" width="220" height="24" rx="5" fill="#C98B4A" opacity="1" transform="rotate(-10 350.0 232)"/>
+<circle cx="258" cy="232" r="3" fill="#EEF3EA" opacity="0.8" transform="rotate(-10 350.0 232)"/>
+<rect x="150" y="95" width="120" height="24" rx="5" fill="#8F5A0E" opacity="0.8" transform="rotate(35 210.0 107)"/>
+<circle cx="168" cy="107" r="3" fill="#EEF3EA" opacity="0.8" transform="rotate(35 210.0 107)"/>
+<path d="M200 300 L200 390" stroke="#E3A33B" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 16"/><path d="M188 380 L200 396 L212 380" fill="none" stroke="#E3A33B" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M330 300 L330 390" stroke="#E3A33B" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 16"/><path d="M318 380 L330 396 L342 380" fill="none" stroke="#E3A33B" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M460 300 L460 390" stroke="#E3A33B" stroke-width="5" stroke-linecap="round" stroke-dasharray="2 16"/><path d="M448 380 L460 396 L472 380" fill="none" stroke="#E3A33B" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+
+<rect x="90" y="420" width="580" height="28" rx="6" fill="#C98B4A"/>
+<circle cx="160" cy="434" r="5" fill="#1E4A37" stroke="#EEF3EA" stroke-width="2"/>
+<circle cx="600" cy="434" r="5" fill="#1E4A37" stroke="#EEF3EA" stroke-width="2"/>
+<rect x="90" y="456" width="580" height="28" rx="6" fill="#B37A3E"/>
+<circle cx="160" cy="470" r="5" fill="#1E4A37" stroke="#EEF3EA" stroke-width="2"/>
+<circle cx="600" cy="470" r="5" fill="#1E4A37" stroke="#EEF3EA" stroke-width="2"/>
+<rect x="90" y="492" width="580" height="28" rx="6" fill="#C98B4A"/>
+<circle cx="160" cy="506" r="5" fill="#1E4A37" stroke="#EEF3EA" stroke-width="2"/>
+<circle cx="600" cy="506" r="5" fill="#1E4A37" stroke="#EEF3EA" stroke-width="2"/>
+<rect x="90" y="528" width="580" height="28" rx="6" fill="#B37A3E"/>
+<circle cx="160" cy="542" r="5" fill="#1E4A37" stroke="#EEF3EA" stroke-width="2"/>
+<circle cx="600" cy="542" r="5" fill="#1E4A37" stroke="#EEF3EA" stroke-width="2"/>
+<rect x="90" y="566" width="580" height="12" rx="4" fill="#A9C9B6"/>
+<path d="M150 578 L130 684 M210 578 L230 684 M550 578 L530 684 M610 578 L630 684 M136 650 L224 650 M536 650 L624 650" stroke="#A9C9B6" stroke-width="12" stroke-linecap="round"/>
+<path d="M712 690 L712 610" stroke="#2F7D57" stroke-width="6" stroke-linecap="round"/><path d="M712 640 C690 630 680 606 690 588 C712 596 720 618 712 640 Z" fill="#2F7D57"/><path d="M712 622 C734 610 748 590 742 570 C720 576 708 598 712 622 Z" fill="#3C9A68"/>
+</svg>
+<p style="position:absolute; top:300px; left:0px; width:160px; font-family:'Oswald', Arial, sans-serif; font-size:28px; line-height:1.1; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:#A9C9B6">Teardown wood</p>
+<p style="position:absolute; top:150px; left:500px; width:240px; height:240px; padding:62px 18px 0; font-family:'Oswald', Arial, sans-serif; font-size:40px; font-weight:700; line-height:1.05; text-align:center; text-transform:uppercase; color:#E3A33B; border:8px double #E3A33B; border-radius:50%; transform:rotate(-12deg)">Every load, graded</p>
+<p style="position:absolute; top:690px; left:0px; width:760px; font-family:'Oswald', Arial, sans-serif; font-size:28px; font-weight:600; letter-spacing:2px; text-align:center; text-transform:uppercase; color:#EEF3EA">A second life</p>
+</div>
+  <aside>(25 s) We are ReGrade. Old wood, new life. When a Vancouver house comes down, we turn its wood into graded, saleable material and the best pieces into outdoor furniture. Old home, graded wood, new life: every load graded, every load with a receipt. Demolition wood in, verified saleable streams out.</aside>
+</section>
+
+<section class="slide" id="house" data-transition="fade" style="background:#EEF3EA;color:#1E4A37;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<div style="position:absolute;left:0;top:0;width:36px;height:1080px;background:repeating-linear-gradient(180deg, #C98B4A 0px, #C98B4A 54px, #B37A3E 54px, #B37A3E 58px, #D29A5C 58px, #D29A5C 120px, #B37A3E 120px, #B37A3E 123px)"></div>
+<div style="border-radius:50%;position:absolute;left:1580px;top:0;width:340px;height:340px;background:#DCEADB;opacity:0.7"></div>
+<div style="border-radius:50%;position:absolute;left:1700px;top:860px;width:220px;height:220px;background:#E6EFE2;opacity:0.8"></div>
+<p style="position:absolute;left:128px;top:56px;width:1664px;text-align:right;font-family:'Oswald', Arial, sans-serif;font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#5E7768"><span style="color:#8F5A0E"><b>Problem</b></span> · Model · Money · Pilot · Impact · Ask</p>
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'Oswald', Arial, sans-serif;font-size:24px;letter-spacing:4px;text-transform:uppercase;color:#8F5A0E">01 · The problem</p>
+<h2 style="font-family:'Oswald', Arial, sans-serif;font-size:56px;font-weight:600;line-height:1.1;color:#1E4A37">A house comes down. Its best wood rarely stays wood.</h2>
+</div>
+<div style="position:relative;width:1664px;height:560px;display:flex;flex-direction:column">
+<svg aria-label="A house built of old-growth wooden planks" viewBox="0 0 380 400" width="380" height="400" style="position:absolute;left:0;top:10px;width:380px;height:400px">
+<rect x="10.0" y="170" width="360" height="22" rx="4" fill="#8F5A0E"/>
+<rect x="39.0" y="144" width="302" height="22" rx="4" fill="#B37A3E"/>
+<rect x="68.0" y="118" width="244" height="22" rx="4" fill="#8F5A0E"/>
+<rect x="97.0" y="92" width="186" height="22" rx="4" fill="#B37A3E"/>
+<rect x="126.0" y="66" width="128" height="22" rx="4" fill="#8F5A0E"/>
+<rect x="155.0" y="40" width="70" height="22" rx="4" fill="#B37A3E"/>
+<rect x="40" y="200" width="300" height="21" rx="3" fill="#C98B4A"/>
+<rect x="40" y="224" width="300" height="21" rx="3" fill="#D29A5C"/>
+<rect x="40" y="248" width="300" height="21" rx="3" fill="#C98B4A"/>
+<rect x="40" y="272" width="300" height="21" rx="3" fill="#D29A5C"/>
+<rect x="40" y="296" width="300" height="21" rx="3" fill="#C98B4A"/>
+<rect x="40" y="320" width="300" height="21" rx="3" fill="#D29A5C"/>
+<rect x="40" y="344" width="300" height="21" rx="3" fill="#C98B4A"/>
+<rect x="40" y="368" width="300" height="21" rx="3" fill="#D29A5C"/>
+<rect x="160" y="290" width="62" height="102" rx="4" fill="#1E4A37"/>
+<rect x="70" y="236" width="56" height="50" rx="4" fill="#EEF3EA" stroke="#1E4A37" stroke-width="4"/><rect x="256" y="236" width="56" height="50" rx="4" fill="#EEF3EA" stroke="#1E4A37" stroke-width="4"/>
+<rect x="20" y="392" width="340" height="6" rx="3" fill="#45604F"/></svg>
+<div style="position:absolute;left:0;top:430px;width:380px;display:flex;flex-direction:column;gap:4px"><h3 style="text-align:center;font-family:'Oswald', Arial, sans-serif;font-size:32px;font-weight:600;color:#1E4A37">Built of old-growth wood</h3><p style="text-align:center;font-size:26px;color:#45604F; font-family:'Public Sans', Arial, sans-serif">most pre-1950 homes (City of Vancouver)</p></div>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;position:absolute;left:430px;top:170px;width:56px;height:56px;color:#8F5A0E"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg>
+<svg viewBox="0 0 120 56" preserveAspectRatio="none" style="z-index:0;position:absolute;left:400px;top:240px;width:120px;height:56px;"><path d="M0 16H72V0L120 28 72 56V40H0Z" fill="#E3A33B"/></svg>
+<p style="position:absolute;left:390px;top:310px;width:150px;text-align:center;font-size:26px;line-height:1.25;color:#45604F; font-family:'Public Sans', Arial, sans-serif">taken apart by hand</p>
+<svg aria-label="100 squares for Riley Park lumber: 22 reused as wood, 74 burned for energy, 4 landfill" viewBox="0 0 514 514" width="514" height="514" style="position:absolute;left:560px;top:20px;width:514px;height:514px">
+<rect x="0" y="0" width="46" height="46" rx="8" fill="#2F7D57"/>
+<rect x="52" y="0" width="46" height="46" rx="8" fill="#2F7D57"/>
+<rect x="104" y="0" width="46" height="46" rx="8" fill="#2F7D57"/>
+<rect x="156" y="0" width="46" height="46" rx="8" fill="#2F7D57"/>
+<rect x="208" y="0" width="46" height="46" rx="8" fill="#2F7D57"/>
+<rect x="260" y="0" width="46" height="46" rx="8" fill="#2F7D57"/>
+<rect x="312" y="0" width="46" height="46" rx="8" fill="#2F7D57"/>
+<rect x="364" y="0" width="46" height="46" rx="8" fill="#2F7D57"/>
+<rect x="416" y="0" width="46" height="46" rx="8" fill="#2F7D57"/>
+<rect x="468" y="0" width="46" height="46" rx="8" fill="#2F7D57"/>
+<rect x="0" y="52" width="46" height="46" rx="8" fill="#2F7D57"/>
+<rect x="52" y="52" width="46" height="46" rx="8" fill="#2F7D57"/>
+<rect x="104" y="52" width="46" height="46" rx="8" fill="#2F7D57"/>
+<rect x="156" y="52" width="46" height="46" rx="8" fill="#2F7D57"/>
+<rect x="208" y="52" width="46" height="46" rx="8" fill="#2F7D57"/>
+<rect x="260" y="52" width="46" height="46" rx="8" fill="#2F7D57"/>
+<rect x="312" y="52" width="46" height="46" rx="8" fill="#2F7D57"/>
+<rect x="364" y="52" width="46" height="46" rx="8" fill="#2F7D57"/>
+<rect x="416" y="52" width="46" height="46" rx="8" fill="#2F7D57"/>
+<rect x="468" y="52" width="46" height="46" rx="8" fill="#2F7D57"/>
+<rect x="0" y="104" width="46" height="46" rx="8" fill="#2F7D57"/>
+<rect x="52" y="104" width="46" height="46" rx="8" fill="#2F7D57"/>
+<rect x="104" y="104" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="156" y="104" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="208" y="104" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="260" y="104" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="312" y="104" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="364" y="104" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="416" y="104" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="468" y="104" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="0" y="156" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="52" y="156" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="104" y="156" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="156" y="156" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="208" y="156" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="260" y="156" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="312" y="156" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="364" y="156" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="416" y="156" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="468" y="156" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="0" y="208" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="52" y="208" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="104" y="208" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="156" y="208" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="208" y="208" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="260" y="208" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="312" y="208" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="364" y="208" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="416" y="208" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="468" y="208" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="0" y="260" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="52" y="260" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="104" y="260" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="156" y="260" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="208" y="260" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="260" y="260" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="312" y="260" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="364" y="260" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="416" y="260" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="468" y="260" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="0" y="312" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="52" y="312" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="104" y="312" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="156" y="312" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="208" y="312" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="260" y="312" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="312" y="312" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="364" y="312" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="416" y="312" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="468" y="312" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="0" y="364" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="52" y="364" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="104" y="364" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="156" y="364" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="208" y="364" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="260" y="364" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="312" y="364" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="364" y="364" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="416" y="364" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="468" y="364" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="0" y="416" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="52" y="416" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="104" y="416" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="156" y="416" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="208" y="416" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="260" y="416" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="312" y="416" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="364" y="416" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="416" y="416" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="468" y="416" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="0" y="468" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="52" y="468" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="104" y="468" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="156" y="468" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="208" y="468" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="260" y="468" width="46" height="46" rx="8" fill="#C98B4A"/>
+<rect x="312" y="468" width="46" height="46" rx="8" fill="#45604F"/>
+<rect x="364" y="468" width="46" height="46" rx="8" fill="#45604F"/>
+<rect x="416" y="468" width="46" height="46" rx="8" fill="#45604F"/>
+<rect x="468" y="468" width="46" height="46" rx="8" fill="#45604F"/>
+</svg>
+<p style="position:absolute;left:1140px;top:10px;width:524px;font-family:'Oswald', Arial, sans-serif;font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#45604F">Riley Park · its lumber</p>
+<div style="position:absolute;left:1140px;top:80px;width:524px;display:flex;flex-direction:row;gap:20px;align-items:center"><div style="width:44px;height:44px;background:#2F7D57;border-radius:8px"></div><p style="font-family:'Oswald', Arial, sans-serif;font-size:44px;font-weight:700;color:#1E4A37">22%</p><p style="flex:1;font-size:28px;line-height:1.25;color:#45604F; font-family:'Public Sans', Arial, sans-serif">reused as wood</p></div>
+<div style="position:absolute;left:1140px;top:150px;width:524px;display:flex;flex-direction:row;gap:20px;align-items:center"><div style="width:44px;height:44px;background:#C98B4A;border-radius:8px"></div><p style="font-family:'Oswald', Arial, sans-serif;font-size:44px;font-weight:700;color:#1E4A37">74%</p><p style="flex:1;font-size:28px;line-height:1.25;color:#45604F; font-family:'Public Sans', Arial, sans-serif">burned for energy</p></div>
+<div style="position:absolute;left:1140px;top:220px;width:524px;display:flex;flex-direction:row;gap:20px;align-items:center"><div style="width:44px;height:44px;background:#45604F;border-radius:8px"></div><p style="font-family:'Oswald', Arial, sans-serif;font-size:44px;font-weight:700;color:#1E4A37">4%</p><p style="flex:1;font-size:28px;line-height:1.25;color:#45604F; font-family:'Public Sans', Arial, sans-serif">landfill</p></div>
+<svg aria-label="Donut: wood is 48 percent, nearly half, of disposed construction and demolition waste in Metro Vancouver" viewBox="0 0 200 200" width="200" height="200" style="position:absolute;left:1140px;top:330px;width:200px;height:200px">
+<circle cx="100" cy="100" r="78" fill="none" stroke="#C8D6C6" stroke-width="30"/>
+<circle cx="100" cy="100" r="78" fill="none" stroke="#C98B4A" stroke-width="30" stroke-dasharray="235.2 490.1" transform="rotate(-90 100 100)"/>
+</svg>
+<p style="position:absolute;left:1180px;top:408px;width:120px;text-align:center;font-family:'Oswald', Arial, sans-serif;font-size:36px;font-weight:700;color:#1E4A37">48%</p>
+<div style="position:absolute;left:1360px;top:350px;width:304px;display:flex;flex-direction:column;gap:6px"><h3 style="font-family:'Oswald', Arial, sans-serif;font-size:32px;font-weight:600;color:#8F5A0E">Nearly half</h3><p style="font-size:26px;line-height:1.3;color:#45604F; font-family:'Public Sans', Arial, sans-serif">of Metro Vancouver’s disposed demolition waste is wood</p></div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#45604F; font-family:'Public Sans', Arial, sans-serif">Sources: City of Vancouver (old-growth homes; Riley Park deconstruction case study); Metro Vancouver waste composition study (2022).</p>
+<aside>(35 s) The City of Vancouver says most pre-1950 homes are built of old-growth lumber. In the City’s Riley Park case study, one was taken apart by hand. Only 22 percent of its lumber was reused as wood; 74 percent was burned for energy. Across the region, wood is nearly half of the construction and demolition waste that gets disposed: 48 percent in Metro Vancouver’s 2022 study. Good wood is leaving the system without keeping its value.</aside>
+</section>
+
+<section class="slide" id="model" data-transition="fade" style="background:#eef3ea">
+  <div style="position:absolute; top:0; left:0; width:36px; height:1080px; display:flex; flex-direction:column; background:repeating-linear-gradient(180deg, #c98b4a 0, #c98b4a 54px, #b37a3e 54px, #b37a3e 58px, #d29a5c 58px, #d29a5c 120px, #b37a3e 120px, #b37a3e 123px)">
+  </div>
+  <div id="e2-1czgcii" style="border-radius:50%;position:absolute; top:860px; left:1700px; width:220px; height:220px; background:#e6efe2; opacity:0.8"></div>
+  <p id="e3-1czgcii" style="position:absolute; top:56px; left:128px; width:1664px; font-family:Oswald, Arial, sans-serif; font-size:24px; letter-spacing:3px; text-align:right; text-transform:uppercase; color:#5e7768">Problem · <span style="color:#8f5a0e"><b>Model</b></span> · Money · Pilot · Impact · Ask</p>
+  <p id="e5-1czgcii" style="position:absolute; bottom:64px; left:128px; width:1664px; font-family:'Public Sans', Arial, sans-serif; font-size:24px; color:#45604f">[T] = untested assumption. The contractor’s deposit refund belongs to them, not to ReGrade.</p>
+  <div id="pc9a6dba153e7r0-178c04b8" style="position:absolute; top:128px; left:128px; width:1664px; height:108px; display:flex; flex-direction:column; gap:12px">
+    <p style="font-family:Oswald, Arial, sans-serif; font-size:24px; letter-spacing:4px; text-transform:uppercase; color:#8f5a0e">02 · How it works</p>
+    <h2 style="font-family:Oswald, Arial, sans-serif; font-size:56px; font-weight:600; line-height:1.1; color:#1e4a37">Sorting is the business; furniture is the premium outlet</h2>
+  </div>
+  <div id="pc9a6dba153e7r1-178c04b8" style="position:absolute; top:280px; left:50%; width:1664px; height:580px; display:flex; flex-direction:column; transform:translateX(-50%)">
+    <svg xmlns="http://www.w3.org/2000/svg" aria-label="Five steps on a conveyor: screen, de-nail, grade, sell or build, receipt" viewBox="0 0 1664 300" style="position:absolute; top:0; left:0; width:1664px; height:300px">
+<rect x="30" y="222" width="1604" height="30" rx="15" fill="#C98B4A"/>
+<rect x="40" y="200" width="60" height="14" rx="3" fill="#B37A3E" transform="rotate(-14 70 207)"/><circle cx="50" cy="207" r="2.5" fill="#45604F" transform="rotate(-14 70 207)"/><rect x="95" y="200" width="60" height="14" rx="3" fill="#C98B4A" transform="rotate(10 125 207)"/><circle cx="105" cy="207" r="2.5" fill="#45604F" transform="rotate(10 125 207)"/><rect x="240" y="200" width="60" height="14" rx="3" fill="#D29A5C" transform="rotate(-8 270 207)"/><circle cx="250" cy="207" r="2.5" fill="#45604F" transform="rotate(-8 270 207)"/><rect x="590" y="204" width="58" height="14" rx="3" fill="#C98B4A"/><rect x="680" y="204" width="58" height="14" rx="3" fill="#C98B4A"/><rect x="920" y="204" width="70" height="14" rx="3" fill="#2F7D57"/><rect x="1000" y="204" width="48" height="14" rx="3" fill="#2F7D57"/><rect x="1060" y="204" width="30" height="14" rx="3" fill="#C98B4A"/><rect x="1255" y="196" width="50" height="9" rx="2" fill="#C98B4A"/><rect x="1255" y="207" width="50" height="9" rx="2" fill="#B37A3E"/><rect x="1260" y="216" width="4" height="6" fill="#2F7D57"/><rect x="1296" y="216" width="4" height="6" fill="#2F7D57"/><rect x="1320" y="196" width="50" height="9" rx="2" fill="#C98B4A"/><rect x="1320" y="207" width="50" height="9" rx="2" fill="#B37A3E"/><rect x="1325" y="216" width="4" height="6" fill="#2F7D57"/><rect x="1361" y="216" width="4" height="6" fill="#2F7D57"/>
+<circle cx="70" cy="237" r="9" fill="#8F5A0E"/>
+<circle cx="150" cy="237" r="9" fill="#8F5A0E"/>
+<circle cx="230" cy="237" r="9" fill="#8F5A0E"/>
+<circle cx="310" cy="237" r="9" fill="#8F5A0E"/>
+<circle cx="390" cy="237" r="9" fill="#8F5A0E"/>
+<circle cx="470" cy="237" r="9" fill="#8F5A0E"/>
+<circle cx="550" cy="237" r="9" fill="#8F5A0E"/>
+<circle cx="630" cy="237" r="9" fill="#8F5A0E"/>
+<circle cx="710" cy="237" r="9" fill="#8F5A0E"/>
+<circle cx="790" cy="237" r="9" fill="#8F5A0E"/>
+<circle cx="870" cy="237" r="9" fill="#8F5A0E"/>
+<circle cx="950" cy="237" r="9" fill="#8F5A0E"/>
+<circle cx="1030" cy="237" r="9" fill="#8F5A0E"/>
+<circle cx="1110" cy="237" r="9" fill="#8F5A0E"/>
+<circle cx="1190" cy="237" r="9" fill="#8F5A0E"/>
+<circle cx="1270" cy="237" r="9" fill="#8F5A0E"/>
+<circle cx="1350" cy="237" r="9" fill="#8F5A0E"/>
+<circle cx="1430" cy="237" r="9" fill="#8F5A0E"/>
+<circle cx="1510" cy="237" r="9" fill="#8F5A0E"/>
+<circle cx="1590" cy="237" r="9" fill="#8F5A0E"/>
+<path d="M314.5 90 L338.5 110 L314.5 130" fill="none" stroke="#C98B4A" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M647.5 90 L671.5 110 L647.5 130" fill="none" stroke="#C98B4A" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M980.5 90 L1004.5 110 L980.5 130" fill="none" stroke="#C98B4A" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M1313.5 90 L1337.5 110 L1313.5 130" fill="none" stroke="#C98B4A" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="166" cy="110" r="104" fill="#2F7D57" opacity="0.18"/><circle cx="166" cy="110" r="92" fill="#2F7D57"/>
+<circle cx="499" cy="110" r="104" fill="#2F7D57" opacity="0.18"/><circle cx="499" cy="110" r="92" fill="#2F7D57"/>
+<circle cx="832" cy="110" r="104" fill="#2F7D57" opacity="0.18"/><circle cx="832" cy="110" r="92" fill="#2F7D57"/>
+<circle cx="1165" cy="110" r="104" fill="#2F7D57" opacity="0.18"/><circle cx="1165" cy="110" r="92" fill="#2F7D57"/>
+<circle cx="1498" cy="110" r="104" fill="#E3A33B" opacity="0.18"/><polygon points="1428,14 1568,14 1568,196 1554,184 1540,196 1526,184 1512,196 1498,184 1484,196 1470,184 1456,196 1442,184 1428,196" fill="#F8FBF5" stroke="#E3A33B" stroke-width="5" stroke-linejoin="round"/><rect x="1450" y="40" width="96" height="8" rx="4" fill="#E3A33B"/><rect x="1450" y="148" width="70" height="7" rx="3" fill="#C8D6C6"/><rect x="1450" y="162" width="50" height="7" rx="3" fill="#C8D6C6"/>
+</svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;position:absolute; top:72px; left:128px; width:76px; height:76px; color:#eef3ea"><path d="M12 3 2 21h20L12 3z"/><path d="M12 10v5M12 18h.01"/></svg>
+    <div style="position:absolute; top:268px; left:16px; width:300px; display:flex; flex-direction:column; gap:2px">
+      <h3 style="font-family:Oswald, Arial, sans-serif; font-size:36px; font-weight:600; text-align:center; color:#1e4a37">Screen</h3>
+      <p style="font-family:'Public Sans', Arial, sans-serif; font-size:26px; text-align:center; color:#45604f">hazmat report, copper, lead</p>
+    </div>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;position:absolute; top:72px; left:461px; width:76px; height:76px; color:#eef3ea"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg>
+    <div style="position:absolute; top:268px; left:349px; width:300px; display:flex; flex-direction:column; gap:2px">
+      <h3 style="font-family:Oswald, Arial, sans-serif; font-size:36px; font-weight:600; text-align:center; color:#1e4a37">De-nail</h3>
+      <p style="font-family:'Public Sans', Arial, sans-serif; font-size:26px; text-align:center; color:#45604f">nails → scrap yard</p>
+    </div>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;position:absolute; top:72px; left:794px; width:76px; height:76px; color:#eef3ea"><path d="M12 2l3 2.5 4 .3.3 4L22 12l-2.7 3.2-.3 4-4 .3L12 22l-3-2.5-4-.3-.3-4L2 12l2.7-3.2.3-4 4-.3z"/><path d="M8 12l3 3 5-6"/></svg>
+    <div style="position:absolute; top:268px; left:682px; width:300px; display:flex; flex-direction:column; gap:2px">
+      <h3 style="font-family:Oswald, Arial, sans-serif; font-size:36px; font-weight:600; text-align:center; color:#1e4a37">Grade</h3>
+      <p style="font-family:'Public Sans', Arial, sans-serif; font-size:26px; text-align:center; color:#45604f">A, B or C by length</p>
+    </div>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;position:absolute; top:72px; left:1127px; width:76px; height:76px; color:#eef3ea"><path d="M3 21l7-7M14 4l6 6-4 4-6-6z"/></svg>
+    <div style="position:absolute; top:268px; left:1015px; width:300px; display:flex; flex-direction:column; gap:2px">
+      <h3 style="font-family:Oswald, Arial, sans-serif; font-size:36px; font-weight:600; text-align:center; color:#1e4a37">Sell or build</h3>
+      <p style="font-family:'Public Sans', Arial, sans-serif; font-size:26px; text-align:center; color:#45604f">every grade has a buyer</p>
+    </div>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;position:absolute; top:62px; left:1463px; width:70px; height:70px; color:#2f7d57"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>
+    <div style="position:absolute; top:268px; left:1348px; width:300px; display:flex; flex-direction:column; gap:2px">
+      <h3 style="font-family:Oswald, Arial, sans-serif; font-size:36px; font-weight:600; text-align:center; color:#1e4a37">Receipt</h3>
+      <p style="font-family:'Public Sans', Arial, sans-serif; font-size:26px; text-align:center; color:#45604f">every load, every destination</p>
+    </div>
+  </div>
+  <p id="pc9a6dba153e7r1_12-178c04b8" style="position:absolute; top:726.54px; left:128px; width:600px; font-family:Oswald, Arial, sans-serif; font-size:24px; letter-spacing:3px; text-transform:uppercase; color:#45604f">Three ways money comes in</p>
+  <div id="pc9a6dba153e7r1_13-178c04b8" style="position:absolute; top:772.54px; left:128px; width:532px; height:120px; display:flex; flex-direction:row; gap:20px; align-items:center; padding:16px 24px; background:#f8fbf5; border:2px solid #c8d6c6; border-radius:60px">
+    <svg xmlns="http://www.w3.org/2000/svg" aria-label="A stack of coins" viewBox="0 0 80 80" style="width:80px; height:80px"><ellipse cx="40" cy="62" rx="30" ry="10" fill="#B37A3E"/><rect x="10" y="44" width="60" height="18" fill="#B37A3E"/><ellipse cx="40" cy="44" rx="30" ry="10" fill="#E3A33B"/><rect x="10" y="26" width="60" height="18" fill="#C98B4A"/><ellipse cx="40" cy="26" rx="30" ry="10" fill="#F0C066"/><path d="M40 18 L40 34 M35 21 C35 19 45 19 45 23 C45 27 35 25 35 29 C35 33 45 33 45 31" stroke="#8F5A0E" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>
+    <div style="display:flex; flex-direction:column; gap:2px; flex:1">
+      <h3 style="font-family:Oswald, Arial, sans-serif; font-size:32px; font-weight:600; color:#1e4a37">Contractors</h3>
+      <p style="font-family:'Public Sans', Arial, sans-serif; font-size:26px; color:#45604f">a service fee [T]</p>
+    </div>
+  </div>
+  <div id="pc9a6dba153e7r1_14-178c04b8" style="position:absolute; top:772.54px; left:694px; width:532px; height:120px; display:flex; flex-direction:row; gap:20px; align-items:center; padding:16px 24px; background:#f8fbf5; border:2px solid #c8d6c6; border-radius:60px">
+    <svg xmlns="http://www.w3.org/2000/svg" aria-label="A stack of coins" viewBox="0 0 80 80" style="width:80px; height:80px"><ellipse cx="40" cy="62" rx="30" ry="10" fill="#B37A3E"/><rect x="10" y="44" width="60" height="18" fill="#B37A3E"/><ellipse cx="40" cy="44" rx="30" ry="10" fill="#E3A33B"/><rect x="10" y="26" width="60" height="18" fill="#C98B4A"/><ellipse cx="40" cy="26" rx="30" ry="10" fill="#F0C066"/><path d="M40 18 L40 34 M35 21 C35 19 45 19 45 23 C45 27 35 25 35 29 C35 33 45 33 45 31" stroke="#8F5A0E" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>
+    <div style="display:flex; flex-direction:column; gap:2px; flex:1">
+      <h3 style="font-family:Oswald, Arial, sans-serif; font-size:32px; font-weight:600; color:#1e4a37">Yards and recyclers</h3>
+      <p style="font-family:'Public Sans', Arial, sans-serif; font-size:26px; color:#45604f">buy wood and metal</p>
+    </div>
+  </div>
+  <div id="pc9a6dba153e7r1_15-178c04b8" style="position:absolute; top:772.54px; right:128px; width:532px; height:120px; display:flex; flex-direction:row; gap:20px; align-items:center; padding:16px 24px; background:#f8fbf5; border:2px solid #c8d6c6; border-radius:60px">
+    <svg xmlns="http://www.w3.org/2000/svg" aria-label="A stack of coins" viewBox="0 0 80 80" style="width:80px; height:80px"><ellipse cx="40" cy="62" rx="30" ry="10" fill="#B37A3E"/><rect x="10" y="44" width="60" height="18" fill="#B37A3E"/><ellipse cx="40" cy="44" rx="30" ry="10" fill="#E3A33B"/><rect x="10" y="26" width="60" height="18" fill="#C98B4A"/><ellipse cx="40" cy="26" rx="30" ry="10" fill="#F0C066"/><path d="M40 18 L40 34 M35 21 C35 19 45 19 45 23 C45 27 35 25 35 29 C35 33 45 33 45 31" stroke="#8F5A0E" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg>
+    <div style="display:flex; flex-direction:column; gap:2px; flex:1">
+      <h3 style="font-family:Oswald, Arial, sans-serif; font-size:32px; font-weight:600; color:#1e4a37">Product buyers</h3>
+      <p style="font-family:'Public Sans', Arial, sans-serif; font-size:26px; color:#45604f">pay per bench, table or planter</p>
+    </div>
+  </div>
+  <aside>(45 s) ReGrade is a paid sorting service for demolition contractors; furniture is the premium outlet. Every lot is screened first: the City’s hazardous-materials report, a copper test and a lead check. We de-nail and sell the nails and metal to a scrap yard, grade the wood by length, send every grade to a buyer, and give the contractor a receipt for every load, which supports their deposit claim. Three payers: contractors pay a service fee, still untested; yards and recyclers buy wood and metal; product buyers pay per item.</aside>
+</section>
+
+<section class="slide" id="streams" data-transition="fade" style="background:#eef3ea">
+  <div style="position:absolute; top:0; left:0; width:36px; height:1080px; display:flex; flex-direction:column; background:repeating-linear-gradient(180deg, #c98b4a 0, #c98b4a 54px, #b37a3e 54px, #b37a3e 58px, #d29a5c 58px, #d29a5c 120px, #b37a3e 120px, #b37a3e 123px)">
+  </div>
+  <div style="border-radius:50%;position:absolute; top:0; left:1580px; width:340px; height:340px; background:#dceadb; opacity:0.7"></div>
+  <div style="border-radius:50%;position:absolute; top:860px; left:1700px; width:220px; height:220px; background:#e6efe2; opacity:0.8"></div>
+  <p style="position:absolute; top:56px; left:128px; width:1664px; font-family:Oswald, Arial, sans-serif; font-size:24px; letter-spacing:3px; text-align:right; text-transform:uppercase; color:#5e7768">Problem · <span style="color:#8f5a0e"><b>Model</b></span> · Money · Pilot · Impact · Ask</p>
+  <div id="p04f6c54d4a06r0-5864889d" style="position:absolute; top:128px; left:128px; width:1664px; height:81px; display:flex; flex-direction:column; gap:12px">
+    <p style="font-family:Oswald, Arial, sans-serif; font-size:24px; letter-spacing:4px; text-transform:uppercase; color:#8f5a0e">03 · Where every piece goes</p>
+    <h2 style="font-family:Oswald, Arial, sans-serif; font-size:56px; font-weight:600; line-height:1.1; color:#1e4a37">Every piece has a place to go</h2>
+  </div>
+  <div id="p04f6c54d4a06r1-5864889d" style="position:absolute; top:231px; left:128px; width:1664px; height:572px; display:flex; flex-direction:column">
+    <svg xmlns="http://www.w3.org/2000/svg" aria-label="One teardown lot branches into five crates: long boards, mid-length pieces, clean scraps, metal, and painted or treated wood" viewBox="0 0 1664 600" style="position:absolute; top:0; left:0; width:1664px; height:600px">
+<path d="M832 140 C832 200 166 190 166 230" fill="none" stroke="#C98B4A" stroke-width="6" stroke-dasharray="2 14" stroke-linecap="round"/>
+<path d="M832 140 C832 200 499 190 499 230" fill="none" stroke="#C98B4A" stroke-width="6" stroke-dasharray="2 14" stroke-linecap="round"/>
+<path d="M832 140 C832 200 832 190 832 230" fill="none" stroke="#C98B4A" stroke-width="6" stroke-dasharray="2 14" stroke-linecap="round"/>
+<path d="M832 140 C832 200 1165 190 1165 230" fill="none" stroke="#C98B4A" stroke-width="6" stroke-dasharray="2 14" stroke-linecap="round"/>
+<path d="M832 140 C832 200 1498 190 1498 230" fill="none" stroke="#C98B4A" stroke-width="6" stroke-dasharray="2 14" stroke-linecap="round"/>
+<circle cx="832" cy="70" r="70" fill="#2F7D57" opacity="0.18"/><circle cx="832" cy="70" r="60" fill="#1E4A37"/>
+<rect x="26" y="252" width="280" height="22" rx="5" fill="#C98B4A"/><rect x="38" y="276" width="256" height="22" rx="5" fill="#D29A5C"/>
+<rect x="51.0" y="300" width="230" height="130" rx="12" fill="#2F7D57"/>
+<rect x="51.0" y="341.3333333333333" width="230" height="4" fill="#000000" opacity="0.15"/>
+<rect x="51.0" y="384.6666666666667" width="230" height="4" fill="#000000" opacity="0.15"/>
+<rect x="419" y="252" width="160" height="22" rx="5" fill="#C98B4A"/><rect x="439" y="276" width="120" height="22" rx="5" fill="#D29A5C"/>
+<rect x="384.0" y="300" width="230" height="130" rx="12" fill="#2F7D57"/>
+<rect x="384.0" y="341.3333333333333" width="230" height="4" fill="#000000" opacity="0.15"/>
+<rect x="384.0" y="384.6666666666667" width="230" height="4" fill="#000000" opacity="0.15"/>
+<rect x="762" y="270" width="46" height="18" rx="4" fill="#C98B4A" transform="rotate(-15 785.0 279)"/><rect x="817" y="260" width="34" height="18" rx="4" fill="#C98B4A" transform="rotate(20 834.0 269)"/><rect x="857" y="272" width="52" height="18" rx="4" fill="#C98B4A" transform="rotate(-8 883.0 281)"/><rect x="792" y="286" width="38" height="18" rx="4" fill="#C98B4A" transform="rotate(10 811.0 295)"/><rect x="842" y="284" width="30" height="18" rx="4" fill="#C98B4A" transform="rotate(-25 857.0 293)"/>
+<rect x="717.0" y="300" width="230" height="130" rx="12" fill="#C98B4A"/>
+<rect x="717.0" y="341.3333333333333" width="230" height="4" fill="#000000" opacity="0.15"/>
+<rect x="717.0" y="384.6666666666667" width="230" height="4" fill="#000000" opacity="0.15"/>
+<path d="M1115 256 L1121 294" stroke="#45604F" stroke-width="6" stroke-linecap="round"/><path d="M1107 254 L1125 252" stroke="#45604F" stroke-width="6" stroke-linecap="round"/><path d="M1150 256 L1156 294" stroke="#45604F" stroke-width="6" stroke-linecap="round"/><path d="M1142 254 L1160 252" stroke="#45604F" stroke-width="6" stroke-linecap="round"/><path d="M1185 256 L1191 294" stroke="#45604F" stroke-width="6" stroke-linecap="round"/><path d="M1177 254 L1195 252" stroke="#45604F" stroke-width="6" stroke-linecap="round"/><path d="M1220 256 L1226 294" stroke="#45604F" stroke-width="6" stroke-linecap="round"/><path d="M1212 254 L1230 252" stroke="#45604F" stroke-width="6" stroke-linecap="round"/>
+<rect x="1050.0" y="300" width="230" height="130" rx="12" fill="#5E7768"/>
+<rect x="1050.0" y="341.3333333333333" width="230" height="4" fill="#000000" opacity="0.15"/>
+<rect x="1050.0" y="384.6666666666667" width="230" height="4" fill="#000000" opacity="0.15"/>
+<rect x="1383.0" y="300" width="230" height="130" rx="12" fill="#1E4A37"/>
+<rect x="1383.0" y="341.3333333333333" width="230" height="4" fill="#000000" opacity="0.15"/>
+<rect x="1383.0" y="384.6666666666667" width="230" height="4" fill="#000000" opacity="0.15"/>
+</svg>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;position:absolute; top:36px; left:798px; width:68px; height:68px; color:#e3a33b"><path d="M3 11l9-8 9 8"/><path d="M5 10v11h14V10M10 21v-6h4v6"/></svg>
+    <div style="position:absolute; top:30px; left:940px; width:420px; display:flex; flex-direction:column; gap:2px">
+      <h3 style="font-family:Oswald, Arial, sans-serif; font-size:36px; font-weight:600; color:#1e4a37">One teardown lot</h3>
+      <p style="font-family:'Public Sans', Arial, sans-serif; font-size:26px; color:#45604f">screened, then de-nailed</p>
+    </div>
+    <p style="position:absolute; top:332px; left:106px; width:120px; font-family:Oswald, Arial, sans-serif; font-size:56px; font-weight:700; line-height:1.1; text-align:center; color:#eef3ea">A</p>
+    <div style="position:absolute; top:440px; left:6px; width:320px; display:flex; flex-direction:column; gap:4px">
+      <h3 style="font-family:Oswald, Arial, sans-serif; font-size:30px; font-weight:600; text-align:center; color:#1e4a37">Long boards, 6 ft+</h3>
+      <p style="font-family:'Public Sans', Arial, sans-serif; font-size:26px; line-height:1.3; text-align:center; color:#45604f">→ reclaimed yards, Habitat</p>
+    </div>
+    <p style="position:absolute; top:332px; left:439px; width:120px; font-family:Oswald, Arial, sans-serif; font-size:56px; font-weight:700; line-height:1.1; text-align:center; color:#eef3ea">B</p>
+    <div style="position:absolute; top:440px; left:339px; width:320px; display:flex; flex-direction:column; gap:4px">
+      <h3 style="font-family:Oswald, Arial, sans-serif; font-size:30px; font-weight:600; text-align:center; color:#1e4a37">Pieces 2–6 ft</h3>
+      <p style="font-family:'Public Sans', Arial, sans-serif; font-size:26px; line-height:1.3; text-align:center; color:#45604f">→ our benches, tables, planters</p>
+    </div>
+    <p style="position:absolute; top:332px; left:772px; width:120px; font-family:Oswald, Arial, sans-serif; font-size:56px; font-weight:700; line-height:1.1; text-align:center; color:#eef3ea">C</p>
+    <div style="position:absolute; top:440px; left:672px; width:320px; display:flex; flex-direction:column; gap:4px">
+      <h3 style="font-family:Oswald, Arial, sans-serif; font-size:30px; font-weight:600; text-align:center; color:#1e4a37">Clean scraps</h3>
+      <p style="font-family:'Public Sans', Arial, sans-serif; font-size:26px; line-height:1.3; text-align:center; color:#45604f">→ wood recycler</p>
+    </div>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;position:absolute; top:333px; left:1133px; width:64px; height:64px; color:#eef3ea"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/></svg>
+    <div style="position:absolute; top:440px; left:1005px; width:320px; display:flex; flex-direction:column; gap:4px">
+      <h3 style="font-family:Oswald, Arial, sans-serif; font-size:30px; font-weight:600; text-align:center; color:#1e4a37">Nails and metal</h3>
+      <p style="font-family:'Public Sans', Arial, sans-serif; font-size:26px; line-height:1.3; text-align:center; color:#45604f">→ scrap yard</p>
+    </div>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;position:absolute; top:333px; left:1466px; width:64px; height:64px; color:#e3a33b"><path d="M12 3 2 21h20L12 3z"/><path d="M12 10v5M12 18h.01"/></svg>
+    <div style="position:absolute; top:440px; left:1338px; width:320px; display:flex; flex-direction:column; gap:4px">
+      <h3 style="font-family:Oswald, Arial, sans-serif; font-size:30px; font-weight:600; text-align:center; color:#1e4a37">Painted or treated</h3>
+      <p style="font-family:'Public Sans', Arial, sans-serif; font-size:26px; line-height:1.3; text-align:center; color:#45604f">→ approved disposal, never reused</p>
+    </div>
+  </div>
+<svg aria-label="Arrows from all five crates join and point down to the receipt stamp" viewBox="0 0 1500 66" width="1500" height="66" style="position:absolute;left:174px;top:790px;width:1500px;height:66px">
+<path d="M120 0 L120 22" stroke="#C98B4A" stroke-width="5" stroke-linecap="round" fill="none" stroke-dasharray="2 10"/><path d="M453 0 L453 22" stroke="#C98B4A" stroke-width="5" stroke-linecap="round" fill="none" stroke-dasharray="2 10"/><path d="M786 0 L786 22" stroke="#C98B4A" stroke-width="5" stroke-linecap="round" fill="none" stroke-dasharray="2 10"/><path d="M1119 0 L1119 22" stroke="#C98B4A" stroke-width="5" stroke-linecap="round" fill="none" stroke-dasharray="2 10"/><path d="M1452 0 L1452 22" stroke="#C98B4A" stroke-width="5" stroke-linecap="round" fill="none" stroke-dasharray="2 10"/><path d="M120 22 L1452 22" stroke="#C98B4A" stroke-width="5" stroke-linecap="round" fill="none" stroke-dasharray="2 10"/>
+<path d="M786 22 L786 54" stroke="#C98B4A" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M774 44 L786 60 L798 44" stroke="#C98B4A" stroke-width="5" stroke-linecap="round" fill="none" stroke-linejoin="round"/>
+</svg>
+  <div style="position:absolute;left:640px;top:858px;width:640px;display:flex;flex-direction:row;gap:20px;align-items:center;justify-content:center;padding:10px 30px;border:8px double #D6922F;border-radius:14px;transform:rotate(-3deg)">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;width:52px;height:52px;color:#D6922F"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>
+<div style="display:flex;flex-direction:column;gap:2px">
+<p style="font-family:'Oswald', Arial, sans-serif;font-size:46px;font-weight:700;line-height:1.05;letter-spacing:4px;text-transform:uppercase;white-space:nowrap;color:#C0821F">Receipted</p>
+<p style="font-family:'Oswald', Arial, sans-serif;font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;white-space:nowrap;color:#C0821F">Every load · every destination</p>
+</div>
+</div>
+  <aside>(40 s) Every piece of a teardown has a place to go. Long boards, 6 feet and up, are Grade A: reclaimed yards such as Western Reclaimed and Heritage Lumber, or Habitat for Humanity. Pieces from 2 to 6 feet are Grade B and become our benches and tables; 16-inch offcuts become planters. Clean scraps go to a wood recycler such as Smallwood, nails and metal to a scrap yard such as ABC Recycling, and painted or treated wood to approved disposal, never reuse. Every load gets a receipt the contractor can use to prove compliance.</aside>
+</section>
+
+<section class="slide" id="money" data-transition="fade" style="background:#eef3ea">
+  <div style="position:absolute; top:0; left:0; width:36px; height:1080px; display:flex; flex-direction:column; background:repeating-linear-gradient(180deg, #c98b4a 0, #c98b4a 54px, #b37a3e 54px, #b37a3e 58px, #d29a5c 58px, #d29a5c 120px, #b37a3e 120px, #b37a3e 123px)">
+  </div>
+  <div style="border-radius:50%;position:absolute; top:0; left:1580px; width:340px; height:340px; background:#dceadb; opacity:0.7"></div>
+  <div style="border-radius:50%;position:absolute; top:860px; left:1700px; width:220px; height:220px; background:#e6efe2; opacity:0.8"></div>
+  <p style="position:absolute; top:56px; left:128px; width:1664px; font-family:Oswald, Arial, sans-serif; font-size:24px; letter-spacing:3px; text-align:right; text-transform:uppercase; color:#5e7768">Problem · Model · <span style="color:#8f5a0e"><b>Money</b></span> · Pilot · Impact · Ask</p>
+  <p id="e5-1qim4b3" style="position:absolute; bottom:64px; left:128px; width:1664px; font-family:'Public Sans', Arial, sans-serif; font-size:24px; color:#45604f">[C] our calculation from Heritage Lumber’s price, the CoV Grandview-Woodland case and BC minimum wage. [T] untested. Detail: Appendix A.</p>
+  <div id="p98de6aee5783r0-51195dd0" style="position:absolute; top:128px; left:128px; width:1664px; height:108px; display:flex; flex-direction:column; gap:12px">
+    <p style="font-family:Oswald, Arial, sans-serif; font-size:24px; letter-spacing:4px; text-transform:uppercase; color:#8f5a0e">04 · The money</p>
+    <h2 style="font-family:Oswald, Arial, sans-serif; font-size:56px; font-weight:600; line-height:1.1; color:#1e4a37">What we can prove today, and what we lock in next</h2>
+  </div>
+  <div id="ac7162de" style="position:absolute; top:275px; left:977px; width:815px; display:flex; flex-direction:column; gap:26px; padding:40px; background:#f8fbf5; border:3px dashed #8f5a0e; border-radius:12px">
+    <div style="display:flex; flex-direction:row; align-items:center; justify-content:space-between">
+      <div style="display:flex; flex-direction:row; gap:16px; align-items:center">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;width:48px; height:48px; color:#8f5a0e"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>
+        <p style="font-family:Oswald, Arial, sans-serif; font-size:32px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:#8f5a0e">Next to lock in</p>
+      </div>
+      <p style="padding:4px 14px; font-family:Oswald, Arial, sans-serif; font-size:24px; font-weight:700; letter-spacing:3px; text-transform:uppercase; color:#c0821f; border:4px double #d6922f; border-radius:8px; transform:rotate(6deg)">In progress</p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:18px; align-items:center">
+      <div style="width:140px; height:62px; display:flex; flex-direction:row; gap:10px; align-items:center; padding:0 14px; background:#e3a33b; border-radius:31px 8px 8px 31px; box-shadow:0 4px 10px #8f5a0e40; transform:rotate(-4deg)">
+        <div style="width:16px; height:16px; display:flex; flex-direction:column; background:#f8fbf5; border-radius:256px">
+        </div>
+        <p style="font-family:Oswald, Arial, sans-serif; font-size:26px; font-weight:700; line-height:1; letter-spacing:2px; color:#1e4a37">QUOTE</p>
+      </div>
+      <p style="flex:1; font-family:'Public Sans', Arial, sans-serif; font-size:30px; line-height:1.3; color:#1e4a37">The contractor’s service fee [T]</p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:18px; align-items:center">
+      <div style="width:140px; height:62px; display:flex; flex-direction:row; gap:10px; align-items:center; padding:0 14px; background:#e3a33b; border-radius:31px 8px 8px 31px; box-shadow:0 4px 10px #8f5a0e40; transform:rotate(-4deg)">
+        <div style="width:16px; height:16px; display:flex; flex-direction:column; background:#f8fbf5; border-radius:256px">
+        </div>
+        <p style="font-family:Oswald, Arial, sans-serif; font-size:26px; font-weight:700; line-height:1; letter-spacing:2px; color:#1e4a37">QUOTE</p>
+      </div>
+      <p style="flex:1; font-family:'Public Sans', Arial, sans-serif; font-size:30px; line-height:1.3; color:#1e4a37">Metal and scrap prices</p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:18px; align-items:center">
+      <div style="width:140px; height:62px; display:flex; flex-direction:row; gap:10px; align-items:center; padding:0 14px; background:#e3a33b; border-radius:31px 8px 8px 31px; box-shadow:0 4px 10px #8f5a0e40; transform:rotate(-4deg)">
+        <div style="width:16px; height:16px; display:flex; flex-direction:column; background:#f8fbf5; border-radius:256px">
+        </div>
+        <p style="font-family:Oswald, Arial, sans-serif; font-size:26px; font-weight:700; line-height:1; letter-spacing:2px; color:#1e4a37">QUOTE</p>
+      </div>
+      <p style="flex:1; font-family:'Public Sans', Arial, sans-serif; font-size:30px; line-height:1.3; color:#1e4a37">Collection and transport</p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:18px; align-items:center">
+      <div style="width:140px; height:62px; display:flex; flex-direction:row; gap:10px; align-items:center; padding:0 14px; background:#e3a33b; border-radius:31px 8px 8px 31px; box-shadow:0 4px 10px #8f5a0e40; transform:rotate(-4deg)">
+        <div style="width:16px; height:16px; display:flex; flex-direction:column; background:#f8fbf5; border-radius:256px">
+        </div>
+        <p style="font-family:Oswald, Arial, sans-serif; font-size:26px; font-weight:700; line-height:1; letter-spacing:2px; color:#1e4a37">QUOTE</p>
+      </div>
+      <p style="flex:1; font-family:'Public Sans', Arial, sans-serif; font-size:30px; line-height:1.3; color:#1e4a37">The bench frame, to set our product margin</p>
+    </div>
+    <div style="flex:1"></div>
+    <p style="font-family:'Public Sans', Arial, sans-serif; font-size:24px; font-style:italic; line-height:1.35; color:#45604f">Each tag becomes a written quote during the pilot.</p>
+  </div>
+  <div id="a5bc77b6" style="position:absolute; top:275.01px; left:128px; width:809px; height:645px; display:flex; flex-direction:column; gap:20px; padding:40px; background:#1e4a37; border-radius:12px">
+    <div style="display:flex; flex-direction:row; gap:16px; align-items:center">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;width:48px; height:48px; color:#e3a33b"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>
+      <p style="font-family:Oswald, Arial, sans-serif; font-size:32px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:#e3a33b">Known from sources</p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:18px; align-items:center">
+      <div style="width:190px; height:62px; flex-shrink:0; display:flex; flex-direction:row; gap:8px; align-items:center; justify-content:center; background:#2a5c47; border:2px solid #5e9a78; border-radius:31px; transform:rotate(-4deg)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;width:26px; height:26px; color:#e3a33b"><path d="M4 12l5 5L20 6"/></svg>
+        <p style="font-family:Oswald, Arial, sans-serif; font-size:24px; font-weight:700; line-height:1; letter-spacing:2px; color:#eef3ea">SOURCED</p>
+      </div>
+      <p style="flex:1; font-family:'Public Sans', Arial, sans-serif; font-size:30px; line-height:1.3; color:#eef3ea">Yards pay for long boards</p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:18px; align-items:center">
+      <div style="width:190px; height:62px; flex-shrink:0; display:flex; flex-direction:row; gap:8px; align-items:center; justify-content:center; background:#2a5c47; border:2px solid #5e9a78; border-radius:31px; transform:rotate(-4deg)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;width:26px; height:26px; color:#e3a33b"><path d="M4 12l5 5L20 6"/></svg>
+        <p style="font-family:Oswald, Arial, sans-serif; font-size:24px; font-weight:700; line-height:1; letter-spacing:2px; color:#eef3ea">SOURCED</p>
+      </div>
+      <p style="flex:1; font-family:'Public Sans', Arial, sans-serif; font-size:30px; line-height:1.3; color:#eef3ea">De-nailing time, from a City case study</p>
+    </div>
+    <div style="display:flex; flex-direction:row; gap:18px; align-items:center">
+      <div style="width:190px; height:62px; flex-shrink:0; display:flex; flex-direction:row; gap:8px; align-items:center; justify-content:center; background:#2a5c47; border:2px solid #5e9a78; border-radius:31px; transform:rotate(-4deg)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;width:26px; height:26px; color:#e3a33b"><path d="M4 12l5 5L20 6"/></svg>
+        <p style="font-family:Oswald, Arial, sans-serif; font-size:24px; font-weight:700; line-height:1; letter-spacing:2px; color:#eef3ea">SOURCED</p>
+      </div>
+      <p style="flex:1; font-family:'Public Sans', Arial, sans-serif; font-size:30px; line-height:1.3; color:#eef3ea">Posted disposal price</p>
+    </div>
+    <div style="flex:1"></div>
+    <p style="font-family:Oswald, Arial, sans-serif; font-size:120px; font-weight:700; line-height:1; color:#e3a33b">+$624</p>
+    <p style="font-family:'Public Sans', Arial, sans-serif; font-size:30px; line-height:1.35; color:#cfe3d6">left over on a 10-tonne lot, using only those numbers [C]</p>
+  </div>
+  <aside>(45 s) We only count what we can source. Reclaimed yards pay for long boards: Heritage Lumber paid about $1,132 a tonne for Dunbar’s lumber. The City’s Grandview-Woodland case measured de-nailing at 22.4 hours per reused tonne, which we cost at BC’s $18.25 minimum wage. Using only those numbers, a 10-tonne lot leaves about $624. Next, we lock in four written quotes: the contractor’s fee, metal and scrap prices, collection and transport, and the bench frame, which sets our product margin.</aside>
+</section>
+
+<section class="slide" id="pilot" data-transition="fade" style="background:#EEF3EA;color:#1E4A37;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:28px">
+<div style="position:absolute;left:0;top:0;width:36px;height:1080px;background:repeating-linear-gradient(180deg, #C98B4A 0px, #C98B4A 54px, #B37A3E 54px, #B37A3E 58px, #D29A5C 58px, #D29A5C 120px, #B37A3E 120px, #B37A3E 123px)"></div>
+<div style="border-radius:50%;position:absolute;left:1580px;top:0;width:340px;height:340px;background:#DCEADB;opacity:0.7"></div>
+<p style="position:absolute;left:128px;top:56px;width:1664px;text-align:right;font-family:'Oswald', Arial, sans-serif;font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#5E7768">Problem · Model · Money · <span style="color:#8F5A0E"><b>Pilot</b></span> · Impact · Ask</p>
+<div style="display:flex;flex-direction:column;gap:10px">
+<p style="font-family:'Oswald', Arial, sans-serif;font-size:24px;letter-spacing:4px;text-transform:uppercase;color:#8F5A0E">05 · Pilot</p>
+<h2 style="font-family:'Oswald', Arial, sans-serif;font-size:56px;font-weight:600;line-height:1.1;color:#1E4A37">PILOT: one clean lot, six tests</h2>
+</div>
+<div style="flex:1;display:flex;flex-direction:row;gap:24px;align-items:stretch">
+<div style="width:400px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:28px 20px;background:#1E4A37;border-radius:20px">
+<p style="font-family:'Oswald', Arial, sans-serif;font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#E3A33B">Lot 01</p>
+<svg aria-label="One clean lot: a pallet stacked with boards under a magnifying glass" viewBox="0 0 380 280" width="340" height="250" style="width:340px;height:250px">
+<rect x="20" y="196" width="340" height="14" rx="3" fill="#8F5A0E"/><rect x="30" y="210" width="40" height="20" fill="#8F5A0E"/><rect x="170" y="210" width="40" height="20" fill="#8F5A0E"/><rect x="310" y="210" width="40" height="20" fill="#8F5A0E"/><rect x="20" y="230" width="340" height="12" rx="3" fill="#8F5A0E"/>
+<rect x="40" y="170" width="140" height="20" rx="4" fill="#C98B4A"/><rect x="190" y="170" width="140" height="20" rx="4" fill="#D29A5C"/><rect x="54" y="146" width="140" height="20" rx="4" fill="#D29A5C"/><rect x="204" y="146" width="140" height="20" rx="4" fill="#B37A3E"/><rect x="40" y="122" width="140" height="20" rx="4" fill="#B37A3E"/><rect x="190" y="122" width="140" height="20" rx="4" fill="#C98B4A"/><rect x="54" y="98" width="140" height="20" rx="4" fill="#C98B4A"/><rect x="204" y="98" width="140" height="20" rx="4" fill="#D29A5C"/><rect x="40" y="74" width="140" height="20" rx="4" fill="#D29A5C"/><rect x="190" y="74" width="140" height="20" rx="4" fill="#B37A3E"/><rect x="54" y="50" width="140" height="20" rx="4" fill="#B37A3E"/><rect x="204" y="50" width="140" height="20" rx="4" fill="#C98B4A"/>
+<circle cx="270" cy="70" r="52" fill="#EEF3EA" fill-opacity="0.18" stroke="#E3A33B" stroke-width="12"/><path d="M308 108 L350 150" stroke="#E3A33B" stroke-width="18" stroke-linecap="round"/>
+<rect x="36" y="20" width="96" height="44" rx="6" fill="#EEF3EA"/><circle cx="48" cy="42" r="5" fill="#1E4A37"/>
+</svg>
+<h3 style="font-family:'Oswald', Arial, sans-serif;font-size:44px;font-weight:700;text-align:center;text-transform:uppercase;color:#EEF3EA">One clean lot</h3>
+<p style="font-family:'Public Sans', Arial, sans-serif;font-size:26px;text-align:center;color:#CFE3D6">sorted, weighed and tested</p>
+</div>
+<p style="align-self:center;font-family:'Oswald', Arial, sans-serif;font-size:72px;font-weight:700;line-height:1;color:#C98B4A">→</p>
+<div style="flex:1;display:flex;flex-direction:column;gap:22px">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;flex-direction:row;gap:14px;align-items:baseline"><p style="font-family:'Oswald', Arial, sans-serif;font-size:28px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#2F7D57">Step 1 · Measure the lot</p></div>
+<div style="flex:1;display:flex;flex-direction:row;gap:12px;align-items:stretch">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;padding:18px 22px;background:#F8FBF5;border-top:6px solid #2F7D57;border-radius:12px;box-shadow:0 6px 16px rgba(30,74,55,0.10)">
+<div style="display:flex;flex-direction:row;align-items:center;justify-content:space-between"><div style="width:68px;height:68px;display:flex;align-items:center;justify-content:center;background:#2F7D57;border-radius:50%"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;width:40px;height:40px;color:#EEF3EA"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></div><p style="font-family:'Oswald', Arial, sans-serif;font-size:56px;font-weight:700;line-height:1;color:#DCEADB">01</p></div>
+<h3 style="font-family:'Oswald', Arial, sans-serif;font-size:32px;font-weight:600;color:#1E4A37">Grade yield</h3>
+<p style="font-family:'Public Sans', Arial, sans-serif;font-size:24px;line-height:1.3;color:#8F5A0E;background:#F6E7C8;padding:6px 14px;border-radius:10px;align-self:flex-start">% kept as usable wood</p>
+</div>
+<p style="align-self:center;font-family:'Oswald', Arial, sans-serif;font-size:56px;font-weight:700;line-height:1;color:#C98B4A">→</p>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;padding:18px 22px;background:#F8FBF5;border-top:6px solid #2F7D57;border-radius:12px;box-shadow:0 6px 16px rgba(30,74,55,0.10)">
+<div style="display:flex;flex-direction:row;align-items:center;justify-content:space-between"><div style="width:68px;height:68px;display:flex;align-items:center;justify-content:center;background:#2F7D57;border-radius:50%"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;width:40px;height:40px;color:#EEF3EA"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><p style="font-family:'Oswald', Arial, sans-serif;font-size:56px;font-weight:700;line-height:1;color:#DCEADB">02</p></div>
+<h3 style="font-family:'Oswald', Arial, sans-serif;font-size:32px;font-weight:600;color:#1E4A37">Labour time</h3>
+<p style="font-family:'Public Sans', Arial, sans-serif;font-size:24px;line-height:1.3;color:#8F5A0E;background:#F6E7C8;padding:6px 14px;border-radius:10px;align-self:flex-start">hours to de-nail each tonne</p>
+</div>
+<p style="align-self:center;font-family:'Oswald', Arial, sans-serif;font-size:56px;font-weight:700;line-height:1;color:#C98B4A">→</p>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;padding:18px 22px;background:#F8FBF5;border-top:6px solid #E3A33B;border-radius:12px;box-shadow:0 6px 16px rgba(30,74,55,0.10)">
+<div style="display:flex;flex-direction:row;align-items:center;justify-content:space-between"><div style="width:68px;height:68px;display:flex;align-items:center;justify-content:center;background:#E3A33B;border-radius:50%"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;width:40px;height:40px;color:#1E4A37"><path d="M12 3 2 21h20L12 3z"/><path d="M12 10v5M12 18h.01"/></svg></div><p style="font-family:'Oswald', Arial, sans-serif;font-size:56px;font-weight:700;line-height:1;color:#DCEADB">03</p></div>
+<h3 style="font-family:'Oswald', Arial, sans-serif;font-size:32px;font-weight:600;color:#1E4A37">Safety checks</h3>
+<p style="font-family:'Public Sans', Arial, sans-serif;font-size:24px;line-height:1.3;color:#8F5A0E;background:#F6E7C8;padding:6px 14px;border-radius:10px;align-self:flex-start">test for hazmat, copper, lead</p>
+</div>
+</div>
+</div>
+<div style="height:3px;background:repeating-linear-gradient(90deg, #C98B4A 0px, #C98B4A 10px, transparent 10px, transparent 22px)"></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;flex-direction:row;gap:14px;align-items:baseline"><p style="font-family:'Oswald', Arial, sans-serif;font-size:28px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#8F5A0E">Step 2 · Price and prove it</p></div>
+<div style="flex:1;display:flex;flex-direction:row;gap:12px;align-items:stretch">
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;padding:18px 22px;background:#F8FBF5;border-top:6px solid #2F7D57;border-radius:12px;box-shadow:0 6px 16px rgba(30,74,55,0.10)">
+<div style="display:flex;flex-direction:row;align-items:center;justify-content:space-between"><div style="width:68px;height:68px;display:flex;align-items:center;justify-content:center;background:#2F7D57;border-radius:50%"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;width:40px;height:40px;color:#EEF3EA"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg></div><p style="font-family:'Oswald', Arial, sans-serif;font-size:56px;font-weight:700;line-height:1;color:#DCEADB">04</p></div>
+<h3 style="font-family:'Oswald', Arial, sans-serif;font-size:32px;font-weight:600;color:#1E4A37">Buyer quotes</h3>
+<p style="font-family:'Public Sans', Arial, sans-serif;font-size:24px;line-height:1.3;color:#8F5A0E;background:#F6E7C8;padding:6px 14px;border-radius:10px;align-self:flex-start">written prices from buyers</p>
+</div>
+<p style="align-self:center;font-family:'Oswald', Arial, sans-serif;font-size:56px;font-weight:700;line-height:1;color:#C98B4A">→</p>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;padding:18px 22px;background:#F8FBF5;border-top:6px solid #2F7D57;border-radius:12px;box-shadow:0 6px 16px rgba(30,74,55,0.10)">
+<div style="display:flex;flex-direction:row;align-items:center;justify-content:space-between"><div style="width:68px;height:68px;display:flex;align-items:center;justify-content:center;background:#2F7D57;border-radius:50%"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;width:40px;height:40px;color:#EEF3EA"><circle cx="9" cy="8" r="4"/><path d="M2 21c0-4 3-6 7-6s7 2 7 6M16 4a4 4 0 0 1 0 8M22 21c0-3-2-5-4-6"/></svg></div><p style="font-family:'Oswald', Arial, sans-serif;font-size:56px;font-weight:700;line-height:1;color:#DCEADB">05</p></div>
+<h3 style="font-family:'Oswald', Arial, sans-serif;font-size:32px;font-weight:600;color:#1E4A37">Contractor cost</h3>
+<p style="font-family:'Public Sans', Arial, sans-serif;font-size:24px;line-height:1.3;color:#8F5A0E;background:#F6E7C8;padding:6px 14px;border-radius:10px;align-self:flex-start">vs $124/t landfill fee</p>
+</div>
+<p style="align-self:center;font-family:'Oswald', Arial, sans-serif;font-size:56px;font-weight:700;line-height:1;color:#C98B4A">→</p>
+<div style="flex:1;display:flex;flex-direction:column;gap:10px;padding:18px 22px;background:#F8FBF5;border-top:6px solid #E3A33B;border-radius:12px;box-shadow:0 6px 16px rgba(30,74,55,0.10)">
+<div style="display:flex;flex-direction:row;align-items:center;justify-content:space-between"><div style="width:68px;height:68px;display:flex;align-items:center;justify-content:center;background:#E3A33B;border-radius:50%"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;width:40px;height:40px;color:#1E4A37"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></div><p style="font-family:'Oswald', Arial, sans-serif;font-size:56px;font-weight:700;line-height:1;color:#DCEADB">06</p></div>
+<h3 style="font-family:'Oswald', Arial, sans-serif;font-size:32px;font-weight:600;color:#1E4A37">Load test</h3>
+<p style="font-family:'Public Sans', Arial, sans-serif;font-size:24px;line-height:1.3;color:#8F5A0E;background:#F6E7C8;padding:6px 14px;border-radius:10px;align-self:flex-start">bench tested before we sell</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#45604F; font-family:'Public Sans', Arial, sans-serif">Sources: CoV Grandview-Woodland case; Vancouver Landfill. Buyers named in Appendix A; none committed yet.</p>
+<aside>(25 s) Our pilot is one clean lot and six tests. First, we measure it: grade yield, labour time and safety checks. Then we price and prove it: written buyer quotes, the contractor’s real cost, and a load test on one bench before anything is sold. The small tags on each card are the benchmarks we measure against; no need to walk through them.</aside>
+</section>
+
+<section class="slide" id="impact" data-transition="fade" style="background:#1e4a37">
+  <div style="position:absolute; top:0; left:0; width:36px; height:1080px; display:flex; flex-direction:column; background:repeating-linear-gradient(180deg, #c98b4a 0, #c98b4a 54px, #b37a3e 54px, #b37a3e 58px, #d29a5c 58px, #d29a5c 120px, #b37a3e 120px, #b37a3e 123px)">
+  </div>
+  <p style="position:absolute; top:56px; left:128px; width:1664px; font-family:Oswald, Arial, sans-serif; font-size:24px; letter-spacing:3px; text-align:right; text-transform:uppercase; color:#a9c9b6">Problem · Model · Money · Pilot · <span style="color:#e3a33b"><b>Impact</b></span> · Ask</p>
+  <p id="e3-8g3ixj" style="position:absolute; bottom:64px; left:128px; width:1664px; font-family:'Public Sans', Arial, sans-serif; font-size:24px; color:#a9c9b6">UN SDG targets 12.5, 12.4 and 11.6. No carbon claim until a life-cycle method is run.</p>
+  <div id="p4207f3e7dd67r0-dcdeb685" style="position:absolute; top:128px; left:128px; width:1664px; height:98px; display:flex; flex-direction:column; gap:12px">
+    <p style="font-family:Oswald, Arial, sans-serif; font-size:24px; letter-spacing:4px; text-transform:uppercase; color:#e3a33b">06 · Impact · UN Sustainable Development Goals</p>
+    <h2 style="font-family:Oswald, Arial, sans-serif; font-size:64px; font-weight:700; line-height:1.1; color:#eef3ea">Every lot we grade works toward two global goals</h2>
+  </div>
+  <div id="p4207f3e7dd67r1-dcdeb685" style="position:absolute; top:254px; left:128px; width:1664px; height:520px; display:flex; flex-direction:row">
+    <svg xmlns="http://www.w3.org/2000/svg" aria-label="Diagram: one graded lot at the centre, linked to three UN SDG targets, 12.5 and 12.4 under Goal 12 and 11.6 under Goal 11" viewBox="0 0 1664 520" style="position:absolute; top:0; left:0; width:1664px; height:520px">
+<circle cx="560" cy="260" r="235" fill="none" stroke="#3F7259" stroke-width="3" stroke-dasharray="10 12"/>
+<circle cx="560" cy="260" r="175" fill="#24563F"/>
+<path d="M560 85 A175 175 0 0 1 711.6 347.5" fill="none" stroke="#FD9D24" stroke-width="14" stroke-linecap="round"/>
+<path d="M711.6 347.5 A175 175 0 0 1 408.4 347.5" fill="none" stroke="#BF8B2E" stroke-width="14" stroke-linecap="round" opacity="0.85"/>
+<path d="M408.4 347.5 A175 175 0 0 1 560 85" fill="none" stroke="#BF8B2E" stroke-width="14" stroke-linecap="round"/>
+<line x1="560" y1="260" x2="360" y2="110" stroke="#A9C9B6" stroke-width="4"/>
+<line x1="560" y1="260" x2="360" y2="410" stroke="#A9C9B6" stroke-width="4"/>
+<line x1="560" y1="260" x2="830" y2="260" stroke="#A9C9B6" stroke-width="4"/>
+<circle cx="560" cy="260" r="115" fill="#EEF3EA"/>
+<circle cx="360" cy="110" r="72" fill="#BF8B2E" stroke="#1E4A37" stroke-width="8"/>
+<circle cx="360" cy="410" r="72" fill="#BF8B2E" stroke="#1E4A37" stroke-width="8"/>
+<circle cx="830" cy="260" r="72" fill="#FD9D24" stroke="#1E4A37" stroke-width="8"/>
+<g transform="translate(0,34) scale(1)"><path d="M545 320 C530 298 538 280 560 274 C582 280 590 298 575 320 C568 330 552 330 545 320 Z" fill="#2F7D57"/><path d="M560 274 L560 334" stroke="#1E4A37" stroke-width="3"/></g>
+<path d="M1010 470 C1000 440 1015 420 1040 415 C1048 440 1038 462 1010 470 Z" fill="#2F7D57" opacity="0.6"/>
+</svg>
+    <p style="position:absolute; top:170px; left:470px; width:180px; font-family:Oswald, Arial, sans-serif; font-size:30px; font-weight:700; line-height:1.1; text-align:center; color:#1e4a37">ONE GRADED LOT</p>
+    <p style="position:absolute; top:88px; left:290px; width:140px; font-family:Oswald, Arial, sans-serif; font-size:40px; font-weight:700; text-align:center; color:#1e4a37">12.5</p>
+    <p style="position:absolute; top:388px; left:290px; width:140px; font-family:Oswald, Arial, sans-serif; font-size:40px; font-weight:700; text-align:center; color:#1e4a37">12.4</p>
+    <p style="position:absolute; top:238px; left:760px; width:140px; font-family:Oswald, Arial, sans-serif; font-size:40px; font-weight:700; text-align:center; color:#1e4a37">11.6</p>
+    <div style="position:absolute; top:50px; left:0; width:270px; display:flex; flex-direction:column; gap:6px">
+      <p style="font-family:Oswald, Arial, sans-serif; font-size:24px; letter-spacing:2px; text-align:right; color:#e3a33b">LESS WASTE, MORE REUSE</p>
+      <p style="font-family:'Public Sans', Arial, sans-serif; font-size:28px; font-weight:600; line-height:1.3; text-align:right; color:#eef3ea">We keep good wood in use as wood</p>
+    </div>
+    <div style="position:absolute; top:350px; left:0; width:270px; display:flex; flex-direction:column; gap:6px">
+      <p style="font-family:Oswald, Arial, sans-serif; font-size:24px; letter-spacing:2px; text-align:right; color:#e3a33b">SAFE WASTE HANDLING</p>
+      <p style="font-family:'Public Sans', Arial, sans-serif; font-size:28px; font-weight:600; line-height:1.3; text-align:right; color:#eef3ea">We screen out treated wood, every lot</p>
+    </div>
+    <div style="position:absolute; top:200px; left:920px; width:280px; display:flex; flex-direction:column; gap:6px">
+      <p style="font-family:Oswald, Arial, sans-serif; font-size:24px; letter-spacing:2px; color:#fd9d24">CLEANER CITIES</p>
+      <p style="font-family:'Public Sans', Arial, sans-serif; font-size:28px; font-weight:600; line-height:1.3; color:#eef3ea">We sort and receipt every teardown</p>
+    </div>
+    <div style="position:absolute; top:0; left:1260px; width:404px; height:250px; display:flex; flex-direction:row; gap:20px; align-items:center; padding:24px 28px; background:#bf8b2e; border-radius:16px">
+      <p style="font-family:Oswald, Arial, sans-serif; font-size:120px; font-weight:700; line-height:1; color:#1e4a37">12</p>
+      <p style="flex:1; font-family:Oswald, Arial, sans-serif; font-size:28px; font-weight:600; line-height:1.2; text-transform:uppercase; color:#1e4a37">Responsible consumption and production</p>
+    </div>
+    <div style="position:absolute; top:270px; left:1260px; width:404px; height:250px; display:flex; flex-direction:row; gap:20px; align-items:center; padding:24px 28px; background:#fd9d24; border-radius:16px">
+      <p style="font-family:Oswald, Arial, sans-serif; font-size:120px; font-weight:700; line-height:1; color:#1e4a37">11</p>
+      <p style="flex:1; font-family:Oswald, Arial, sans-serif; font-size:28px; font-weight:600; line-height:1.2; text-transform:uppercase; color:#1e4a37">Sustainable cities and communities</p>
+    </div>
+  </div>
+  <div style="position:absolute; top:822px; left:128px; width:1664px; height:112px; display:flex; flex-direction:row; gap:28px">
+    <div style="position:relative; width:600px; height:112px; display:flex; flex-direction:row; gap:16px; align-items:center; align-self:stretch; padding:0 28px; background:#e3a33b; border-top:8px solid #f0c066; border-radius:0 0 22px 22px">
+      <svg xmlns="http://www.w3.org/2000/svg" aria-label="Stacked reused planks" viewBox="0 0 90 60" style="width:64px; height:43px; flex:0 0 auto"><rect x="4" y="38" width="82" height="16" rx="4" fill="#B37A3E"/><rect x="10" y="20" width="70" height="16" rx="4" fill="#C98B4A"/><rect x="18" y="2" width="54" height="16" rx="4" fill="#D29A5C"/></svg>
+      <p style="font-family:Oswald, Arial, sans-serif; font-size:44px; font-weight:700; line-height:1; white-space:nowrap; color:#f8fbf5">We count</p>
+      <svg xmlns="http://www.w3.org/2000/svg" aria-label="Arrow from we count to reuse" viewBox="0 0 80 40" style="width:72px; height:36px; flex:0 0 auto"><path d="M4 26 C22 6 46 6 66 20" fill="none" stroke="#1E4A37" stroke-width="5" stroke-linecap="round"/><path d="M54 10 L68 21 L52 28" fill="none" stroke="#1E4A37" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <p style="font-family:Oswald, Arial, sans-serif; font-size:56px; font-weight:700; line-height:1; white-space:nowrap; color:#1e4a37">Reuse</p>
+    </div>
+    <div style="position:relative; height:112px; display:flex; flex-direction:row; align-items:center; flex:1; align-self:stretch; padding:0 12px; border:2px dashed #a9c9b6; border-radius:16px">
+      <div style="height:60px; display:flex; flex-direction:row; gap:14px; align-items:center; justify-content:center; flex:1">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="Recycling icon" viewBox="0 0 24 24" style="width:44px; height:44px; flex:0 0 auto"><path d="M12 4 L20 18 L4 18 Z" fill="none" stroke="#CFE3D6" stroke-width="2.5" stroke-linejoin="round"/><path d="M9 12 L12 7 L15 12" fill="none" stroke="#E3A33B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <p style="font-family:'Public Sans', Arial, sans-serif; font-size:28px; white-space:nowrap; color:#eef3ea">Recycling</p>
+      </div>
+      <div style="height:60px; display:flex; flex-direction:row; gap:14px; align-items:center; justify-content:center; flex:1; border-left:2px solid #3f7259">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="Energy recovery icon" viewBox="0 0 24 24" style="width:44px; height:44px; flex:0 0 auto"><path d="M12 3 C15 8 19 10 19 15 C19 19 16 21 12 21 C8 21 5 19 5 15 C5 11 9 9 9 6 C11 8 12 9 12 3 Z" fill="none" stroke="#CFE3D6" stroke-width="2.5" stroke-linejoin="round"/><path d="M12 13 C13.5 15 15 16 15 17.5 C15 19 13.6 20 12 20 C10.4 20 9 19 9 17.5 C9 16 11 15 12 13 Z" fill="#E3A33B"/></svg>
+        <p style="font-family:'Public Sans', Arial, sans-serif; font-size:28px; white-space:nowrap; color:#eef3ea">Energy recovery</p>
+      </div>
+      <div style="height:60px; display:flex; flex-direction:row; gap:14px; align-items:center; justify-content:center; flex:1; border-left:2px solid #3f7259">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-label="Landfill icon" viewBox="0 0 24 24" style="width:44px; height:44px; flex:0 0 auto"><path d="M2 20 C6 11 10 9 13 12 C15 10 19 12 22 20 Z" fill="none" stroke="#CFE3D6" stroke-width="2.5" stroke-linejoin="round"/><path d="M2 20 L22 20" stroke="#E3A33B" stroke-width="2.5" stroke-linecap="round"/></svg>
+        <p style="font-family:'Public Sans', Arial, sans-serif; font-size:28px; white-space:nowrap; color:#eef3ea">Landfill</p>
+      </div>
+      <p style="position:absolute; top:0; left:24px; padding:2px 14px; font-family:Oswald, Arial, sans-serif; font-size:24px; font-weight:600; line-height:1.4; letter-spacing:4px; text-transform:uppercase; white-space:nowrap; color:#e3a33b; background:#1e4a37; border-radius:6px">We track separately</p>
+    </div>
+  </div>
+  <p id="d180f53e" style="position:absolute; top:793.09px; left:517.55px; width:188px; padding:4px 16px; font-family:Oswald, Arial, sans-serif; font-size:24px; font-weight:700; letter-spacing:3px; text-transform:uppercase; white-space:nowrap; color:#1e4a37; background:#f8fbf5; border-radius:8px; box-shadow:0 4px 10px #0000002e; transform:rotate(12deg)">Our impact</p>
+  <aside>(35 s) Impact is why ReGrade exists. Every lot we grade works toward two UN Sustainable Development Goals. Goal 12, responsible consumption and production: target 12.5 asks for less waste through reuse, and we keep good wood in use as wood; target 12.4 asks for safe handling of waste, and we screen out treated wood on every lot. Goal 11, sustainable cities: target 11.6 asks cities to cut their waste impact, and we sort and receipt every teardown. We stay honest about it: we count only reuse, and we track recycling, energy recovery and landfill separately. Riley Park’s waste-to-energy share is energy recovery, not diversion we created, and we make no carbon claim until we run a life-cycle method.</aside>
+</section>
+
+<section class="slide" id="ask" data-transition="fade" style="background:#EEF3EA">
+  <div style="position:absolute; top:0; left:0; width:36px; height:1080px; display:flex; flex-direction:column; background:repeating-linear-gradient(180deg, #c98b4a 0, #c98b4a 54px, #b37a3e 54px, #b37a3e 58px, #d29a5c 58px, #d29a5c 120px, #b37a3e 120px, #b37a3e 123px)">
+  </div>
+  <div style="border-radius:50%;position:absolute; top:-120px; left:1500px; width:520px; height:520px; background:#DCEADB; opacity:0.8"></div>
+  <p style="position:absolute; top:56px; left:128px; width:1664px; font-family:Oswald, Arial, sans-serif; font-size:24px; letter-spacing:3px; text-align:right; text-transform:uppercase; color:#5e7768">Problem · Model · Money · Pilot · Impact · <span style="color:#8f5a0e"><b>Ask</b></span></p>
+  <p style="position:absolute; top:128px; left:128px; width:900px; font-family:Oswald, Arial, sans-serif; font-size:28px; font-weight:600; letter-spacing:5px; text-transform:uppercase; color:#8f5a0e">07 · Our ask</p>
+  <h2 style="position:absolute; top:180px; left:128px; width:1664px; font-family:Oswald, Arial, sans-serif; font-size:100px; font-weight:700; line-height:1.08; color:#1e4a37">Will you help one teardown become <span style="color:#e3a33b; text-decoration:underline; text-decoration-thickness:10px; text-underline-offset:14px">lumber</span>, <span style="color:#8fa898">not landfill?</span></h2>
+  <svg aria-label="One teardown at a fork: a bold gold road leads to a stack of lumber, a faint dashed path leads to landfill" viewBox="0 0 1664 520" style="position:absolute; top:450px; left:128px; width:1664px; height:520px"><rect x="70" y="200" width="250" height="190" rx="6" fill="#C98B4A"/><rect x="70" y="236" width="250" height="4" fill="#B37A3E"/><rect x="70" y="272" width="250" height="4" fill="#B37A3E"/><rect x="70" y="308" width="250" height="4" fill="#B37A3E"/><rect x="70" y="344" width="250" height="4" fill="#B37A3E"/><polygon points="46,214 195,92 344,214" fill="#8F5A0E"/><rect x="170" y="300" width="50" height="90" rx="4" fill="#1E4A37"/><rect x="96" y="240" width="52" height="44" rx="4" fill="#EEF3EA"/><rect x="242" y="240" width="52" height="44" rx="4" fill="#EEF3EA"/><rect x="30" y="390" width="330" height="10" rx="5" fill="#45604F" opacity="0.4"/><path d="M350 380 C 720 380 820 470 1250 470" fill="none" stroke="#B9CBBE" stroke-width="10" stroke-linecap="round" stroke-dasharray="4 22"/><path d="M1290 500 C 1330 420 1390 400 1440 430 C 1480 400 1550 410 1590 500 Z" fill="#C8D6C6" opacity="0.7"/><path d="M350 330 C 720 330 820 140 1230 140" fill="none" stroke="#E3A33B" stroke-width="30" stroke-linecap="round"/><path d="M350 330 C 720 330 820 140 1230 140" fill="none" stroke="#F8FBF5" stroke-width="4" stroke-dasharray="26 26" stroke-linecap="round"/><path d="M1214 104 L1262 140 L1214 176" fill="none" stroke="#E3A33B" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/><rect x="1300" y="190" width="300" height="30" rx="6" fill="#B37A3E"/><rect x="1316" y="154" width="280" height="30" rx="6" fill="#C98B4A"/><rect x="1290" y="118" width="250" height="30" rx="6" fill="#D29A5C"/><rect x="1330" y="82" width="260" height="30" rx="6" fill="#C98B4A"/><rect x="1306" y="46" width="230" height="30" rx="6" fill="#D29A5C"/><circle cx="1612" cy="52" r="38" fill="#2F7D57"/><path d="M1594 52 L1607 66 L1632 38" fill="none" stroke="#F8FBF5" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <p style="position:absolute; top:866px; left:158px; width:330px; font-family:Oswald, Arial, sans-serif; font-size:30px; font-weight:600; letter-spacing:3px; text-align:center; text-transform:uppercase; color:#1e4a37">One teardown</p>
+  <p style="position:absolute; top:640px; left:820px; padding:10px 26px; font-family:Oswald, Arial, sans-serif; font-size:28px; font-weight:600; letter-spacing:4px; text-transform:uppercase; white-space:nowrap; color:#e3a33b; background:#1e4a37; border-radius:32px; transform:rotate(-8deg); box-shadow:0 8px 18px #1e4a3740">With your help</p>
+  <p style="position:absolute; top:690px; left:1418px; width:340px; font-family:Oswald, Arial, sans-serif; font-size:60px; font-weight:700; line-height:1; text-align:center; text-transform:uppercase; color:#1e4a37">Lumber</p>
+  <p style="position:absolute; top:880px; left:1418px; width:300px; font-family:'Public Sans', Arial, sans-serif; font-size:26px; text-align:center; color:#8fa898">landfill</p>
+  <aside>(30 s) ReGrade in one line: we grade demolition wood and metal, sell every grade, and receipt every load. We are not “nice things from old wood”; we turn wood with a poor outlet into verified, saleable streams, and earn more where the best pieces become products. Our ask is simple: will you help one teardown become lumber, not landfill? That means one contractor lot, introductions to a yard, a wood recycler, a scrap buyer and a fabricator, and seed backing to run the six tests. Thank you.</aside>
+</section>
+
+<section class="slide" id="appx" data-transition="fade" style="background:#1E4A37;color:#EEF3EA;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:row;gap:96px;align-items:center">
+<div style="position:absolute;left:0;top:0;width:36px;height:1080px;background:repeating-linear-gradient(180deg, #C98B4A 0px, #C98B4A 54px, #B37A3E 54px, #B37A3E 58px, #D29A5C 58px, #D29A5C 120px, #B37A3E 120px, #B37A3E 123px)"></div>
+<div style="flex:1;display:flex;flex-direction:column;gap:24px">
+<p style="font-family:'Oswald', Arial, sans-serif;font-size:24px;letter-spacing:4px;text-transform:uppercase;color:#E3A33B">Backup for questions</p>
+<h2 style="font-family:'Oswald', Arial, sans-serif;font-size:120px;font-weight:700;line-height:1;color:#EEF3EA">Appendix</h2>
+<p style="font-size:34px;line-height:1.4;color:#CFE3D6; font-family:'Public Sans', Arial, sans-serif">Not presented. Opened only when a judge asks. Tap a row to open it online.</p>
+</div>
+<div style="width:820px;display:flex;flex-direction:column;gap:16px">
+<div style="display:flex;flex-direction:row;gap:24px;align-items:center;padding:22px 28px;background:#2A5C47;border-left:8px solid #E3A33B;border-radius:8px"><p style="width:56px;font-family:'Oswald', Arial, sans-serif;font-size:44px;font-weight:700;color:#E3A33B">A</p><p style="flex:1;font-size:32px;color:#EEF3EA; font-family:'Public Sans', Arial, sans-serif"><a href="#qa1">The 8 hardest judge questions</a></p></div>
+<div style="display:flex;flex-direction:row;gap:24px;align-items:center;padding:22px 28px;background:#2A5C47;border-left:8px solid #E3A33B;border-radius:8px"><p style="width:56px;font-family:'Oswald', Arial, sans-serif;font-size:44px;font-weight:700;color:#E3A33B">B</p><p style="flex:1;font-size:32px;color:#EEF3EA; font-family:'Public Sans', Arial, sans-serif"><a href="#range3d">3D product models</a></p></div>
+<div style="display:flex;flex-direction:row;gap:24px;align-items:center;padding:22px 28px;background:#2A5C47;border-left:8px solid #E3A33B;border-radius:8px"><p style="width:56px;font-family:'Oswald', Arial, sans-serif;font-size:44px;font-weight:700;color:#E3A33B">C</p><p style="flex:1;font-size:32px;color:#EEF3EA; font-family:'Public Sans', Arial, sans-serif"><a href="#bmc">Business Model Canvas</a></p></div>
+<div style="display:flex;flex-direction:row;gap:24px;align-items:center;padding:22px 28px;background:#2A5C47;border-left:8px solid #E3A33B;border-radius:8px"><p style="width:56px;font-family:'Oswald', Arial, sans-serif;font-size:44px;font-weight:700;color:#E3A33B">D</p><p style="flex:1;font-size:32px;color:#EEF3EA; font-family:'Public Sans', Arial, sans-serif"><a href="#region">City rules and the region</a></p></div>
+<div style="display:flex;flex-direction:row;gap:24px;align-items:center;padding:22px 28px;background:#2A5C47;border-left:8px solid #E3A33B;border-radius:8px"><p style="width:56px;font-family:'Oswald', Arial, sans-serif;font-size:44px;font-weight:700;color:#E3A33B">E</p><p style="flex:1;font-size:32px;color:#EEF3EA; font-family:'Public Sans', Arial, sans-serif"><a href="#safety">Safety, in full</a></p></div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-family:'Oswald', Arial, sans-serif;font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#A9C9B6">Appendix · Q&amp;A</p>
+<aside>Backup slides for Q&amp;A only. A: the eight hardest judge questions with short answers. B: the 3D concept models of the bench, table and planter. C: the Business Model Canvas. D: the City’s rules and the regional data. E: safety in full.</aside>
+</section>
+
+<section class="slide" id="qa1" data-transition="fade" style="background:#EEF3EA;color:#1E4A37;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:36px">
+<div style="position:absolute;left:0;top:0;width:36px;height:1080px;background:repeating-linear-gradient(180deg, #C98B4A 0px, #C98B4A 54px, #B37A3E 54px, #B37A3E 58px, #D29A5C 58px, #D29A5C 120px, #B37A3E 120px, #B37A3E 123px)"></div>
+<div style="border-radius:50%;position:absolute;left:1580px;top:0;width:340px;height:340px;background:#DCEADB;opacity:0.7"></div>
+<div style="border-radius:50%;position:absolute;left:1700px;top:860px;width:220px;height:220px;background:#E6EFE2;opacity:0.8"></div>
+<p style="position:absolute;left:128px;top:56px;width:1664px;text-align:right;font-family:'Oswald', Arial, sans-serif;font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#5E7768">Appendix · Q&amp;A</p>
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'Oswald', Arial, sans-serif;font-size:24px;letter-spacing:4px;text-transform:uppercase;color:#8F5A0E">Appendix A · Judge questions 1–4</p>
+<h2 style="font-family:'Oswald', Arial, sans-serif;font-size:56px;font-weight:600;line-height:1.1;color:#1E4A37">Customers, safety, buyers and money</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+<div style="display:flex;flex-direction:column;gap:12px;padding:28px 32px;background:#F8FBF5;border-top:6px solid #8F5A0E;border-radius:8px">
+<h3 style="font-family:'Oswald', Arial, sans-serif;font-size:32px;font-weight:600;color:#1E4A37">1 · Why would a contractor pay you?</h3>
+<p style="font-size:26px;line-height:1.4;color:#45604F; font-family:'Public Sans', Arial, sans-serif">Their $15,310 deposit is refunded on proven reuse and recycling. Our receipts document every load, and reused wood counts 5× toward the 75% target. The fee is untested [T]; the pilot prices it.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;padding:28px 32px;background:#F8FBF5;border-top:6px solid #8F5A0E;border-radius:8px">
+<h3 style="font-family:'Oswald', Arial, sans-serif;font-size:32px;font-weight:600;color:#1E4A37">2 · Is the wood safe?</h3>
+<p style="font-size:26px;line-height:1.4;color:#45604F; font-family:'Public Sans', Arial, sans-serif">Every lot gets the City’s hazmat report, a copper test and a lead check. Painted and treated wood is never reused. No product is sold before a load test.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;padding:28px 32px;background:#F8FBF5;border-top:6px solid #8F5A0E;border-radius:8px">
+<h3 style="font-family:'Oswald', Arial, sans-serif;font-size:32px;font-weight:600;color:#1E4A37">3 · Who buys the wood?</h3>
+<p style="font-size:26px;line-height:1.4;color:#45604F; font-family:'Public Sans', Arial, sans-serif">Grade A goes to reclaimed yards (Heritage Lumber paid ≈ $1,132/t for Dunbar’s lumber) or Habitat. Grade B becomes our products. Scraps and metal: Smallwood and ABC Recycling, quotes pending.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;padding:28px 32px;background:#F8FBF5;border-top:6px solid #8F5A0E;border-radius:8px">
+<h3 style="font-family:'Oswald', Arial, sans-serif;font-size:32px;font-weight:600;color:#1E4A37">4 · Do you make money?</h3>
+<p style="font-size:26px;line-height:1.4;color:#45604F; font-family:'Public Sans', Arial, sans-serif">About +$624 is known per 10-tonne lot [C], before the fee, metal income and collection. Break-even is ≈ $848/t. Four written quotes will settle it.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#45604F; font-family:'Public Sans', Arial, sans-serif">[T] untested assumption · [C] our calculation. Sources as on the main slides.</p>
+<aside>Short answers to the four questions judges are most likely to ask first: why contractors pay, safety, who buys the wood, and whether the numbers work.</aside>
+</section>
+
+<section class="slide" id="qa2" data-transition="fade" style="background:#EEF3EA;color:#1E4A37;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:36px">
+<div style="position:absolute;left:0;top:0;width:36px;height:1080px;background:repeating-linear-gradient(180deg, #C98B4A 0px, #C98B4A 54px, #B37A3E 54px, #B37A3E 58px, #D29A5C 58px, #D29A5C 120px, #B37A3E 120px, #B37A3E 123px)"></div>
+<div style="border-radius:50%;position:absolute;left:1580px;top:0;width:340px;height:340px;background:#DCEADB;opacity:0.7"></div>
+<div style="border-radius:50%;position:absolute;left:1700px;top:860px;width:220px;height:220px;background:#E6EFE2;opacity:0.8"></div>
+<p style="position:absolute;left:128px;top:56px;width:1664px;text-align:right;font-family:'Oswald', Arial, sans-serif;font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#5E7768">Appendix · Q&amp;A</p>
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'Oswald', Arial, sans-serif;font-size:24px;letter-spacing:4px;text-transform:uppercase;color:#8F5A0E">Appendix A · Judge questions 5–8</p>
+<h2 style="font-family:'Oswald', Arial, sans-serif;font-size:56px;font-weight:600;line-height:1.1;color:#1E4A37">Labour, products, impact and the stop rule</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:24px">
+<div style="display:flex;flex-direction:column;gap:12px;padding:28px 32px;background:#F8FBF5;border-top:6px solid #2F7D57;border-radius:8px">
+<h3 style="font-family:'Oswald', Arial, sans-serif;font-size:32px;font-weight:600;color:#1E4A37">5 · How long does de-nailing take?</h3>
+<p style="font-size:26px;line-height:1.4;color:#45604F; font-family:'Public Sans', Arial, sans-serif">22.4 h per reused tonne in the City’s Grandview-Woodland case, costed at BC’s $18.25/h minimum wage as a floor.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;padding:28px 32px;background:#F8FBF5;border-top:6px solid #2F7D57;border-radius:8px">
+<h3 style="font-family:'Oswald', Arial, sans-serif;font-size:32px;font-weight:600;color:#1E4A37">6 · Why make furniture at all?</h3>
+<p style="font-size:26px;line-height:1.4;color:#45604F; font-family:'Public Sans', Arial, sans-serif">It gives Grade B pieces a higher-value outlet. City dedication fees ($2,800–$9,500) are anchors, not prices. No margin claimed until a fabricator quotes the frame.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;padding:28px 32px;background:#F8FBF5;border-top:6px solid #2F7D57;border-radius:8px">
+<h3 style="font-family:'Oswald', Arial, sans-serif;font-size:32px;font-weight:600;color:#1E4A37">7 · What impact do you claim?</h3>
+<p style="font-size:26px;line-height:1.4;color:#45604F; font-family:'Public Sans', Arial, sans-serif">Only reuse. Recycling, energy recovery and landfill are reported separately. No carbon claim until a life-cycle method is run.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;padding:28px 32px;background:#F8FBF5;border-top:6px solid #2F7D57;border-radius:8px">
+<h3 style="font-family:'Oswald', Arial, sans-serif;font-size:32px;font-weight:600;color:#1E4A37">8 · What if the pilot fails?</h3>
+<p style="font-size:26px;line-height:1.4;color:#45604F; font-family:'Public Sans', Arial, sans-serif">We stop. We go only if the measured lot is positive at quoted prices; otherwise we revise the grades, fee or routes before trying again.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#45604F; font-family:'Public Sans', Arial, sans-serif">Sources: CoV Grandview-Woodland case study; BC Employment Standards; Surrey, Richmond and Vancouver dedication programs.</p>
+<aside>Four more likely questions: labour time, why furniture, what impact we claim, and what happens if the pilot does not work.</aside>
+</section>
+
+<section class="slide" id="range3d" data-transition="fade" style="background:#EEF3EA;color:#1E4A37;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:32px">
+<div style="position:absolute;left:0;top:0;width:36px;height:1080px;background:repeating-linear-gradient(180deg, #C98B4A 0px, #C98B4A 54px, #B37A3E 54px, #B37A3E 58px, #D29A5C 58px, #D29A5C 120px, #B37A3E 120px, #B37A3E 123px)"></div>
+<div style="border-radius:50%;position:absolute;left:1580px;top:0;width:340px;height:340px;background:#DCEADB;opacity:0.7"></div>
+<div style="border-radius:50%;position:absolute;left:1700px;top:860px;width:220px;height:220px;background:#E6EFE2;opacity:0.8"></div>
+<p style="position:absolute;left:128px;top:56px;width:1664px;text-align:right;font-family:'Oswald', Arial, sans-serif;font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#5E7768">Appendix · Q&amp;A</p>
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'Oswald', Arial, sans-serif;font-size:24px;letter-spacing:4px;text-transform:uppercase;color:#8F5A0E">Appendix B · 3D product models</p>
+<h2 style="font-family:'Oswald', Arial, sans-serif;font-size:56px;font-weight:600;line-height:1.1;color:#1E4A37">Three products from Grade B wood; no buyer committed</h2>
+</div>
+<div style="display:flex;flex-direction:row;gap:28px">
+<div style="flex:1;display:flex;flex-direction:column;background:#F8FBF5;border:2px solid #C8D6C6;border-radius:12px;overflow:hidden">
+<img src="bench.jpg" alt="3D model of the bench: bolted reclaimed slats on a steel frame" style="width:100%;height:250px;object-fit:cover">
+<div style="display:flex;flex-direction:row;gap:16px;align-items:center;padding:20px 24px">
+<div style="flex:1;display:flex;flex-direction:column;gap:6px">
+<h3 style="font-family:'Oswald', Arial, sans-serif;font-size:36px;font-weight:600;color:#1E4A37">Bench</h3>
+<p style="font-size:26px;line-height:1.35;color:#45604F; font-family:'Public Sans', Arial, sans-serif">6 ft, 5 bolted slats, ≈ 26 kg fir [C]</p>
+<p style="font-size:26px;line-height:1.35;color:#1E4A37; font-family:'Public Sans', Arial, sans-serif"><b>Anchor:</b> $3,500 (Richmond)</p>
+</div>
+<a href="bench-3d.html" target="_blank" title="Rotate the 3D model"><img src="qr-bench.png" alt="QR code to rotate the bench model" style="width:110px;height:110px;object-fit:contain"></a>
+</div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;background:#F8FBF5;border:2px solid #C8D6C6;border-radius:12px;overflow:hidden">
+<img src="table.jpg" alt="3D model of the picnic table with an open end for wheelchairs" style="width:100%;height:250px;object-fit:cover">
+<div style="display:flex;flex-direction:row;gap:16px;align-items:center;padding:20px 24px">
+<div style="flex:1;display:flex;flex-direction:column;gap:6px">
+<h3 style="font-family:'Oswald', Arial, sans-serif;font-size:36px;font-weight:600;color:#1E4A37">Table</h3>
+<p style="font-size:26px;line-height:1.35;color:#45604F; font-family:'Public Sans', Arial, sans-serif">Same slats; open end for wheelchairs</p>
+<p style="font-size:26px;line-height:1.35;color:#1E4A37; font-family:'Public Sans', Arial, sans-serif"><b>Anchor:</b> $4,000 (Richmond)</p>
+</div>
+<a href="3d.html#table" target="_blank" title="Rotate the 3D model"><img src="qr-table.png" alt="QR code to rotate the table model" style="width:110px;height:110px;object-fit:contain"></a>
+</div>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;background:#F8FBF5;border:2px solid #C8D6C6;border-radius:12px;overflow:hidden">
+<img src="planter.jpg" alt="3D model of the planter made from 16-inch boards" style="width:100%;height:250px;object-fit:cover">
+<div style="display:flex;flex-direction:row;gap:16px;align-items:center;padding:20px 24px">
+<div style="flex:1;display:flex;flex-direction:column;gap:6px">
+<h3 style="font-family:'Oswald', Arial, sans-serif;font-size:36px;font-weight:600;color:#1E4A37">Planter</h3>
+<p style="font-size:26px;line-height:1.35;color:#45604F; font-family:'Public Sans', Arial, sans-serif">16 in offcuts, steel corners</p>
+<p style="font-size:26px;line-height:1.35;color:#1E4A37; font-family:'Public Sans', Arial, sans-serif"><b>Anchor:</b> $150–$200 (BC makers)</p>
+</div>
+<a href="3d.html#planter" target="_blank" title="Rotate the 3D model"><img src="qr-planter.png" alt="QR code to rotate the planter model" style="width:110px;height:110px;object-fit:contain"></a>
+</div>
+</div>
+</div>
+<p style="font-size:26px;line-height:1.4;color:#1E4A37; font-family:'Public Sans', Arial, sans-serif"><b>Potential buyers, not contacted:</b> Surrey Parks ($2,800 donor bench) · Richmond Parks · Vancouver Park Board ($9,500) · community gardens · Welcome Parlour</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#45604F; font-family:'Public Sans', Arial, sans-serif">Concept models, Rev A; not engineer-reviewed. Scan a code to rotate a model. Anchors are donor fees and peer prices, not quotes.</p>
+<aside>These are the three end products, the premium outlet for Grade B wood. The bench is 6 feet with five bolted slats, about 26 kilograms of fir by our calculation. The table reuses the same slats and has an open end for wheelchairs. The planter uses 16-inch offcuts. Price anchors are Richmond’s dedication fees and BC makers’ planter prices, not quotes. Scan a code to rotate a model. Potential buyers are real programs we have not contacted yet, and the Welcome Parlour in North Vancouver already reused Riley Park lumber. None of the designs is engineer-reviewed.</aside>
+</section>
+
+<section class="slide" id="bmc" data-transition="fade" style="background:#EEF3EA;color:#1E4A37;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:22px">
+<div style="position:absolute;left:0;top:0;width:36px;height:1080px;background:repeating-linear-gradient(180deg, #C98B4A 0px, #C98B4A 54px, #B37A3E 54px, #B37A3E 58px, #D29A5C 58px, #D29A5C 120px, #B37A3E 120px, #B37A3E 123px)"></div>
+<div style="border-radius:50%;position:absolute;left:1580px;top:0;width:340px;height:340px;background:#DCEADB;opacity:0.7"></div>
+<p style="position:absolute;left:128px;top:56px;width:1664px;text-align:right;font-family:'Oswald', Arial, sans-serif;font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#5E7768">Appendix · Q&amp;A</p>
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'Oswald', Arial, sans-serif;font-size:24px;letter-spacing:4px;text-transform:uppercase;color:#8F5A0E">Appendix C · Business Model Canvas</p>
+<h2 style="font-family:'Oswald', Arial, sans-serif;font-size:56px;font-weight:600;line-height:1.1;color:#1E4A37">Contractors pay; recyclers are partners</h2>
+</div>
+<div style="flex:1;display:grid;grid-template-columns:repeat(10, 1fr);grid-template-rows:auto 1fr 1fr auto;gap:12px">
+<div style="grid-column:span 4;display:flex;flex-direction:column;gap:6px"><p style="font-family:'Oswald', Arial, sans-serif;font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;text-align:center;color:#45604F">How we deliver</p><div style="height:4px;background:#45604F;border-radius:2px"></div></div>
+<div style="grid-column:span 2;display:flex;flex-direction:column;gap:6px"><p style="font-family:'Oswald', Arial, sans-serif;font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;text-align:center;color:#8F5A0E">What we offer</p><div style="height:4px;background:#8F5A0E;border-radius:2px"></div></div>
+<div style="grid-column:span 4;display:flex;flex-direction:column;gap:6px"><p style="font-family:'Oswald', Arial, sans-serif;font-size:24px;font-weight:600;letter-spacing:3px;text-transform:uppercase;text-align:center;color:#45604F">Who we serve</p><div style="height:4px;background:#45604F;border-radius:2px"></div></div>
+<div style="grid-column:span 2;grid-row:span 2;display:flex;flex-direction:column;gap:8px;padding:16px 20px;background:#F8FBF5;border-top:6px solid #2F7D57;border-radius:10px"><div style="display:flex;flex-direction:row;gap:10px;align-items:center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;width:34px;height:34px;color:#2F7D57"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></svg><h3 style="font-family:'Oswald', Arial, sans-serif;font-size:28px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#2F7D57">Key partners</h3></div><p style="font-family:'Public Sans', Arial, sans-serif;font-size:24px;font-style:italic;color:#5E7768">Who helps us?</p><p style="font-family:'Public Sans', Arial, sans-serif;font-size:26px;line-height:1.3;color:#1E4A37">• Western Reclaimed</p><p style="font-family:'Public Sans', Arial, sans-serif;font-size:26px;line-height:1.3;color:#1E4A37">• Heritage Lumber</p><p style="font-family:'Public Sans', Arial, sans-serif;font-size:26px;line-height:1.3;color:#1E4A37">• Habitat for Humanity</p><p style="font-family:'Public Sans', Arial, sans-serif;font-size:26px;line-height:1.3;color:#1E4A37">• Smallwood</p><p style="font-family:'Public Sans', Arial, sans-serif;font-size:26px;line-height:1.3;color:#1E4A37">• ABC Recycling</p><p style="font-family:'Public Sans', Arial, sans-serif;font-size:26px;line-height:1.3;color:#1E4A37">• A fabricator</p><p style="font-family:'Public Sans', Arial, sans-serif;font-size:26px;line-height:1.3;color:#1E4A37"><i>None committed yet</i></p></div>
+<div style="grid-column:span 2;display:flex;flex-direction:column;gap:8px;padding:16px 20px;background:#F8FBF5;border-top:6px solid #2F7D57;border-radius:10px"><div style="display:flex;flex-direction:row;gap:10px;align-items:center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;width:34px;height:34px;color:#2F7D57"><path d="M3 21l7-7M14 4l6 6-4 4-6-6z"/></svg><h3 style="font-family:'Oswald', Arial, sans-serif;font-size:28px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#2F7D57">Activities</h3></div><p style="font-family:'Public Sans', Arial, sans-serif;font-size:24px;font-style:italic;color:#5E7768">What we do</p><p style="font-family:'Public Sans', Arial, sans-serif;font-size:26px;line-height:1.3;color:#1E4A37">Screen → de-nail → grade → route → receipt</p></div>
+<div style="grid-column:span 2;grid-row:span 2;display:flex;flex-direction:column;gap:8px;padding:16px 20px;background:#1E4A37;border-radius:10px"><div style="display:flex;flex-direction:row;gap:10px;align-items:center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;width:34px;height:34px;color:#E3A33B"><path d="M12 3l2.8 5.7 6.2.9-4.5 4.4 1 6.2L12 17.3 6.5 20.2l1-6.2L3 9.6l6.2-.9z"/></svg><h3 style="font-family:'Oswald', Arial, sans-serif;font-size:28px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#E3A33B">Value</h3></div><p style="font-family:'Public Sans', Arial, sans-serif;font-size:24px;font-style:italic;color:#CFE3D6">Why it matters</p><p style="font-family:'Public Sans', Arial, sans-serif;font-size:28px;line-height:1.3;color:#EEF3EA"><b>Contractors:</b> sorted wood and a receipt for every load</p><p style="font-family:'Public Sans', Arial, sans-serif;font-size:28px;line-height:1.3;color:#EEF3EA"><b>Buyers:</b> graded, screened wood</p><p style="font-family:'Public Sans', Arial, sans-serif;font-size:28px;line-height:1.3;color:#EEF3EA"><b>Public:</b> furniture with a story</p></div>
+<div style="grid-column:span 2;display:flex;flex-direction:column;gap:8px;padding:16px 20px;background:#F8FBF5;border-top:6px solid #2F7D57;border-radius:10px"><div style="display:flex;flex-direction:row;gap:10px;align-items:center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;width:34px;height:34px;color:#2F7D57"><path d="M4 5h16v11H9l-5 4z"/></svg><h3 style="font-family:'Oswald', Arial, sans-serif;font-size:28px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#2F7D57">Relationships</h3></div><p style="font-family:'Public Sans', Arial, sans-serif;font-size:24px;font-style:italic;color:#5E7768">How we work together</p><p style="font-family:'Public Sans', Arial, sans-serif;font-size:26px;line-height:1.3;color:#1E4A37">Per-lot service</p></div>
+<div style="grid-column:span 2;grid-row:span 2;display:flex;flex-direction:column;gap:8px;padding:16px 20px;background:#F8FBF5;border-top:6px solid #2F7D57;border-radius:10px"><div style="display:flex;flex-direction:row;gap:10px;align-items:center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;width:34px;height:34px;color:#2F7D57"><circle cx="9" cy="8" r="4"/><path d="M2 21c0-4 3-6 7-6s7 2 7 6M16 4a4 4 0 0 1 0 8M22 21c0-3-2-5-4-6"/></svg><h3 style="font-family:'Oswald', Arial, sans-serif;font-size:28px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#2F7D57">Customers</h3></div><p style="font-family:'Public Sans', Arial, sans-serif;font-size:24px;font-style:italic;color:#5E7768">Who pays us?</p><p style="font-family:'Public Sans', Arial, sans-serif;font-size:26px;line-height:1.3;color:#1E4A37">• Demolition contractors (paying)</p><p style="font-family:'Public Sans', Arial, sans-serif;font-size:26px;line-height:1.3;color:#1E4A37">• Reclaimed yards</p><p style="font-family:'Public Sans', Arial, sans-serif;font-size:26px;line-height:1.3;color:#1E4A37">• Park and product buyers</p></div>
+<div style="grid-column:span 2;display:flex;flex-direction:column;gap:8px;padding:16px 20px;background:#F8FBF5;border-top:6px solid #2F7D57;border-radius:10px"><div style="display:flex;flex-direction:row;gap:10px;align-items:center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;width:34px;height:34px;color:#2F7D57"><circle cx="8" cy="15" r="4"/><path d="M11 12l9-9M17 6l3 3"/></svg><h3 style="font-family:'Oswald', Arial, sans-serif;font-size:28px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#2F7D57">Resources</h3></div><p style="font-family:'Public Sans', Arial, sans-serif;font-size:24px;font-style:italic;color:#5E7768">What we need</p><p style="font-family:'Public Sans', Arial, sans-serif;font-size:26px;line-height:1.3;color:#1E4A37">Crew · grading rule · safety screen</p></div>
+<div style="grid-column:span 2;display:flex;flex-direction:column;gap:8px;padding:16px 20px;background:#F8FBF5;border-top:6px solid #2F7D57;border-radius:10px"><div style="display:flex;flex-direction:row;gap:10px;align-items:center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;width:34px;height:34px;color:#2F7D57"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4z"/></svg><h3 style="font-family:'Oswald', Arial, sans-serif;font-size:28px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#2F7D57">Channels</h3></div><p style="font-family:'Public Sans', Arial, sans-serif;font-size:24px;font-style:italic;color:#5E7768">How we reach them</p><p style="font-family:'Public Sans', Arial, sans-serif;font-size:26px;line-height:1.3;color:#1E4A37">Direct to contractors and yards</p></div>
+<div style="grid-column:span 5;display:flex;flex-direction:column;gap:8px;padding:16px 20px;background:#F8FBF5;border-top:6px solid #8F5A0E;border-radius:10px"><div style="display:flex;flex-direction:row;gap:14px;align-items:center"><p style="width:44px;height:44px;font-family:'Oswald', Arial, sans-serif;font-size:34px;font-weight:700;line-height:1.25;text-align:center;color:#EEF3EA;background:#8F5A0E;border-radius:50%">−</p><h3 style="font-family:'Oswald', Arial, sans-serif;font-size:28px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#8F5A0E">Costs</h3><p style="font-family:'Public Sans', Arial, sans-serif;font-size:24px;font-style:italic;color:#5E7768">what we spend</p></div><p style="font-family:'Public Sans', Arial, sans-serif;font-size:26px;line-height:1.3;color:#1E4A37">Labour ($18.25/h floor) · disposal ($124/t) · collection and frames [quote]</p></div>
+<div style="grid-column:span 5;display:flex;flex-direction:column;gap:8px;padding:16px 20px;background:#F8FBF5;border-top:6px solid #2F7D57;border-radius:10px"><div style="display:flex;flex-direction:row;gap:14px;align-items:center"><p style="width:44px;height:44px;font-family:'Oswald', Arial, sans-serif;font-size:34px;font-weight:700;line-height:1.25;text-align:center;color:#EEF3EA;background:#2F7D57;border-radius:50%">+</p><h3 style="font-family:'Oswald', Arial, sans-serif;font-size:28px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:#2F7D57">Revenue</h3><p style="font-family:'Public Sans', Arial, sans-serif;font-size:24px;font-style:italic;color:#5E7768">what we earn</p></div><p style="font-family:'Public Sans', Arial, sans-serif;font-size:26px;line-height:1.3;color:#1E4A37">Service fee [T] · wood (≈ $1,132/t, Grade A) and metal sales · products</p></div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-family:'Public Sans', Arial, sans-serif;font-size:24px;color:#45604F">[T] untested assumption · [quote] written quote still needed.</p>
+<aside>The canvas matches the pitch: contractors are a paying customer, and recyclers are partners rather than customers. We create value by sorting every lot and receipting every load. Revenue comes from the service fee, which is untested, wood and metal sales, and products. Costs are labour at the BC minimum wage as a floor, disposal at $124 a tonne, and collection and frames, which still need quotes.</aside>
+</section>
+
+<section class="slide" id="region" data-transition="fade" style="background:#EEF3EA;color:#1E4A37;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:44px">
+<div style="position:absolute;left:0;top:0;width:36px;height:1080px;background:repeating-linear-gradient(180deg, #C98B4A 0px, #C98B4A 54px, #B37A3E 54px, #B37A3E 58px, #D29A5C 58px, #D29A5C 120px, #B37A3E 120px, #B37A3E 123px)"></div>
+<div style="border-radius:50%;position:absolute;left:1580px;top:0;width:340px;height:340px;background:#DCEADB;opacity:0.7"></div>
+<div style="border-radius:50%;position:absolute;left:1700px;top:860px;width:220px;height:220px;background:#E6EFE2;opacity:0.8"></div>
+<p style="position:absolute;left:128px;top:56px;width:1664px;text-align:right;font-family:'Oswald', Arial, sans-serif;font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#5E7768">Appendix · Q&amp;A</p>
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'Oswald', Arial, sans-serif;font-size:24px;letter-spacing:4px;text-transform:uppercase;color:#8F5A0E">Appendix D · City rules and the region</p>
+<h2 style="font-family:'Oswald', Arial, sans-serif;font-size:56px;font-weight:600;line-height:1.1;color:#1E4A37">Wood is nearly half of the region’s disposed demolition waste</h2>
+</div>
+<div style="flex:1;display:flex;flex-direction:row;gap:48px">
+<div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:24px;padding:48px;background:#1E4A37;border-radius:12px">
+<p style="font-family:'Oswald', Arial, sans-serif;font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#E3A33B">Metro Vancouver · 2022 study</p>
+<p style="font-family:'Oswald', Arial, sans-serif;font-size:120px;font-weight:700;line-height:1;color:#EEF3EA">177,011 t</p>
+<p style="font-size:34px;line-height:1.35;color:#CFE3D6; font-family:'Public Sans', Arial, sans-serif">of wood disposed in one year</p>
+<div style="height:2px;background:#3F7259"></div>
+<p style="font-family:'Oswald', Arial, sans-serif;font-size:120px;font-weight:700;line-height:1;color:#E3A33B">48%</p>
+<p style="font-size:34px;line-height:1.35;color:#CFE3D6; font-family:'Public Sans', Arial, sans-serif">of disposed construction and demolition waste</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:20px">
+<p style="font-family:'Oswald', Arial, sans-serif;font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#45604F">Vancouver’s rule for pre-1950 homes</p>
+<div style="display:flex;flex-direction:row;gap:20px;align-items:center;padding:24px 28px;background:#F8FBF5;border-left:8px solid #8F5A0E;border-radius:8px">
+<p style="width:240px;font-family:'Oswald', Arial, sans-serif;font-size:56px;font-weight:700;color:#1E4A37">75%</p>
+<p style="flex:1;font-size:30px;line-height:1.35;color:#1E4A37; font-family:'Public Sans', Arial, sans-serif">reuse or recycling target</p>
+</div>
+<div style="display:flex;flex-direction:row;gap:20px;align-items:center;padding:24px 28px;background:#F8FBF5;border-left:8px solid #8F5A0E;border-radius:8px">
+<p style="width:240px;font-family:'Oswald', Arial, sans-serif;font-size:56px;font-weight:700;color:#1E4A37">5×</p>
+<p style="flex:1;font-size:30px;line-height:1.35;color:#1E4A37; font-family:'Public Sans', Arial, sans-serif">reused wood counts five times its weight</p>
+</div>
+<div style="display:flex;flex-direction:row;gap:20px;align-items:center;padding:24px 28px;background:#F8FBF5;border-left:8px solid #8F5A0E;border-radius:8px">
+<p style="width:240px;font-family:'Oswald', Arial, sans-serif;font-size:56px;font-weight:700;color:#1E4A37">$15,310</p>
+<p style="flex:1;font-size:30px;line-height:1.35;color:#1E4A37; font-family:'Public Sans', Arial, sans-serif">deposit, refunded to the contractor on compliance</p>
+</div>
+<p style="font-size:28px;line-height:1.4;color:#45604F; font-family:'Public Sans', Arial, sans-serif">Post-1950 homes have no reuse rule yet (Council motion, May 2025).</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#45604F; font-family:'Public Sans', Arial, sans-serif">Sources: Metro Vancouver (2022); City of Vancouver Green Demolition By-law 11023; CoV Council motion (May 21, 2025).</p>
+<aside>Zoom out. Metro Vancouver’s 2022 study found 177,011 tonnes of wood in disposed construction and demolition waste, 48 percent of it. In Vancouver, pre-1950 houses must reach 75 percent reuse or recycling, and reused wood counts five times its weight toward that target under By-law 11023. The contractor pays a $15,310 deposit and gets it back on a sliding scale when they prove compliance with receipts. That refund is the contractor’s money, not ours. A May 2025 Council motion noted there is no similar reuse rule yet for post-1950 homes.</aside>
+</section>
+
+<section class="slide" id="safety" data-transition="fade" style="background:#E3A33B;color:#1E4A37;font-family:'Public Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:56px">
+<div style="position:absolute;left:0;top:0;width:36px;height:1080px;background:repeating-linear-gradient(180deg, #C98B4A 0px, #C98B4A 54px, #B37A3E 54px, #B37A3E 58px, #D29A5C 58px, #D29A5C 120px, #B37A3E 120px, #B37A3E 123px)"></div>
+<p style="position:absolute;left:128px;top:56px;width:1664px;text-align:right;font-family:'Oswald', Arial, sans-serif;font-size:24px;letter-spacing:3px;text-transform:uppercase;color:#1E4A37">Appendix · Q&amp;A</p>
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-family:'Oswald', Arial, sans-serif;font-size:24px;letter-spacing:4px;text-transform:uppercase;color:#1E4A37">Appendix E · Safety</p>
+<h2 style="font-family:'Oswald', Arial, sans-serif;font-size:72px;font-weight:700;line-height:1.1;color:#1E4A37">Safety is a fixed rule, not a step we can skip</h2>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:28px">
+<div style="display:flex;flex-direction:row;gap:24px;align-items:center;padding:32px;background:#1E4A37;border-radius:12px">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:#E3A33B;width:64px;height:64px"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+<div style="flex:1;display:flex;flex-direction:column;gap:6px"><h3 style="font-family:'Oswald', Arial, sans-serif;font-size:36px;font-weight:600;color:#EEF3EA">Every lot</h3><p style="font-size:30px;line-height:1.35;color:#CFE3D6; font-family:'Public Sans', Arial, sans-serif">City hazardous-materials report</p></div>
+</div>
+<div style="display:flex;flex-direction:row;gap:24px;align-items:center;padding:32px;background:#1E4A37;border-radius:12px">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:#E3A33B;width:64px;height:64px"><path d="M3 12h4l3-8 4 16 3-8h4"/></svg>
+<div style="flex:1;display:flex;flex-direction:column;gap:6px"><h3 style="font-family:'Oswald', Arial, sans-serif;font-size:36px;font-weight:600;color:#EEF3EA">Every lot</h3><p style="font-size:30px;line-height:1.35;color:#CFE3D6; font-family:'Public Sans', Arial, sans-serif">Copper test and lead check</p></div>
+</div>
+<div style="display:flex;flex-direction:row;gap:24px;align-items:center;padding:32px;background:#1E4A37;border-radius:12px">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:#E3A33B;width:64px;height:64px"><path d="M12 3 2 21h20L12 3z"/><path d="M12 10v5M12 18h.01"/></svg>
+<div style="flex:1;display:flex;flex-direction:column;gap:6px"><h3 style="font-family:'Oswald', Arial, sans-serif;font-size:36px;font-weight:600;color:#EEF3EA">Painted or treated</h3><p style="font-size:30px;line-height:1.35;color:#CFE3D6; font-family:'Public Sans', Arial, sans-serif">Never reused, always approved disposal</p></div>
+</div>
+<div style="display:flex;flex-direction:row;gap:24px;align-items:center;padding:32px;background:#1E4A37;border-radius:12px">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;color:#E3A33B;width:64px;height:64px"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>
+<div style="flex:1;display:flex;flex-direction:column;gap:6px"><h3 style="font-family:'Oswald', Arial, sans-serif;font-size:36px;font-weight:600;color:#EEF3EA">Before any sale</h3><p style="font-size:30px;line-height:1.35;color:#CFE3D6; font-family:'Public Sans', Arial, sans-serif">A load test on every product design</p></div>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#1E4A37; font-family:'Public Sans', Arial, sans-serif">Material safety (what wood we accept) and product safety (what we sell) are separate checks.</p>
+<aside>Safety is a mandatory constraint, not a pilot step we can trade off. Every lot gets the City’s hazardous-materials report, a copper test and a lead check before we touch the wood. Painted and treated wood is never reused; it goes to approved disposal. And no product is sold before a load test. Material safety, what we accept, and product safety, what we sell, are two separate checks.</aside>
+</section>
+
+</div>
+<div id="notes"></div>
+<div id="bar"><button id="prev" aria-label="Previous slide">&larr;</button><span id="count"></span><button id="next" aria-label="Next slide">&rarr;</button><button id="nb">Notes (N)</button><button id="fs">Full screen (F)</button><a href="#appx"><button tabindex="-1">Appendix</button></a></div>
+<script>
+const S=[...document.querySelectorAll('.slide')],st=document.getElementById('stage');let i=0;
+function fit(){const k=Math.min(innerWidth/1920,innerHeight/1080);st.style.transform='scale('+k+') translate(-50%,-50%)';}
+function show(n,push){i=Math.max(0,Math.min(S.length-1,n));S.forEach((s,j)=>s.classList.toggle('on',j===i));
+document.getElementById('count').textContent=(i+1)+' / '+S.length;
+const a=S[i].querySelector('aside');document.getElementById('notes').textContent=a?a.textContent:'';
+if(push!==false&&location.hash!=='#'+S[i].id)history.replaceState(null,'','#'+S[i].id);}
+function fromHash(){const h=decodeURIComponent(location.hash.slice(1));const j=S.findIndex(s=>s.id===h);show(j>=0?j:0,false);}
+addEventListener('hashchange',fromHash);addEventListener('resize',fit);
+addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();show(i+1)}else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();show(i-1)}else if(e.key==='Home')show(0);else if(e.key==='End')show(S.length-1);else if(e.key==='n'||e.key==='N')document.getElementById('notes').classList.toggle('on');else if(e.key==='f'||e.key==='F'){document.fullscreenElement?document.exitFullscreen():document.documentElement.requestFullscreen()}});
+document.getElementById('prev').onclick=()=>show(i-1);document.getElementById('next').onclick=()=>show(i+1);
+document.getElementById('nb').onclick=()=>document.getElementById('notes').classList.toggle('on');
+document.getElementById('fs').onclick=()=>document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();
+let tx=null;addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});addEventListener('touchend',e=>{if(tx===null)return;const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>50)show(i+(dx<0?1:-1));tx=null});
+fit();fromHash();
+</script></body></html>
